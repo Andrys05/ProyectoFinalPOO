@@ -46,7 +46,7 @@ public class RegPaciente extends JDialog {
 	/**
 	 * Launch the application.
 	 */
-	
+	/*
 	 public static void main(String[] args) {
 	        try {
 	            RegPaciente dialog = new RegPaciente(null);
@@ -56,7 +56,7 @@ public class RegPaciente extends JDialog {
 	            e.printStackTrace();
 	        }
 	    }
-	    
+	   */ 
 	/**
 	 * Create the dialog.
 	 */
@@ -114,16 +114,6 @@ public class RegPaciente extends JDialog {
 			JLabel lblDireccion = new JLabel("Direccion:");
 			lblDireccion.setBounds(30, 160, 117, 14);
 			panel.add(lblDireccion);
-			/*
-			SpinnerDateModel modelo = new SpinnerDateModel();
-			spnEdad = new JSpinner(new SpinnerDateModel(new Date(1689347865263L), null, new Date(1689347865263L), Calendar.DAY_OF_MONTH));
-			JSpinner.DateEditor dateEditor = new JSpinner.DateEditor(spnEdad, "dd/MM/yyyy");
-	        spnEdad.setEditor(dateEditor);
-			
-			//spnEdad.setModel(new SpinnerDateModel(new Date(1689307200000L), null, new Date(1689307200000L), Calendar.DAY_OF_YEAR));
-			spnEdad.setBounds(214, 37, 127, 20);
-			panel.add(spnEdad);
-			*/
 			
 			SpinnerDateModel modelo = new SpinnerDateModel();
 	        spnEdad = new JSpinner(new SpinnerDateModel(new Date(1689351000234L), null, new Date(1689351000234L), Calendar.DAY_OF_MONTH));
@@ -158,6 +148,7 @@ public class RegPaciente extends JDialog {
 			txtNumeroEmer.setBounds(214, 175, 127, 20);
 			panel.add(txtNumeroEmer);
 			
+			sexo = 'H';
 			String[] sexos = {"Hombre", "Mujer", "Otro"};
 			cbxSexo = new JComboBox(sexos);
 			cbxSexo.addActionListener(new ActionListener() {
@@ -188,16 +179,30 @@ public class RegPaciente extends JDialog {
 				JButton btnRegistrar = new JButton("Registrar");
 				btnRegistrar.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
+						Date fechaNacim = (Date) spnEdad.getValue();
 						if (miPaciente == null) {
-							SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
-							Date fechaNacim = (Date) spnEdad.getValue();
-							String fechaNacimientoStr = dateFormat.format(fechaNacim);
-							miPaciente = new Paciente(txtNombre.getText(), txtCedula.getText(), txtDir.getText(), fechaNacim, sexo, txtTelefono.getText(), false, txtContactoEmer.getText(), txtNumeroEmer.getText());
-							JOptionPane.showMessageDialog(null, "Fecha es " + fechaNacimientoStr + "!", "Paciente Registrado!", JOptionPane.INFORMATION_MESSAGE); 
-							Clinica.getInstance().insertarPaciente(miPaciente);
-							JOptionPane.showMessageDialog(null, "Paciente Registrado!", "Registracion!", JOptionPane.INFORMATION_MESSAGE); 
+							//SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+							//String fechaNacimientoStr = dateFormat.format(fechaNacim);
+							Paciente nuevoPaciente = new Paciente(txtNombre.getText(), txtCedula.getText(), txtDir.getText(), fechaNacim, sexo, txtTelefono.getText(), false, txtContactoEmer.getText(), txtNumeroEmer.getText());
+							Clinica.getInstance().insertarPaciente(nuevoPaciente);
+							JOptionPane.showMessageDialog(null, "Paciente Registrado!\n", "Registracion!", JOptionPane.INFORMATION_MESSAGE); 
+							clean();
 						}
-						clean();
+						else {
+							//Nota: La unica cosa que funciona aqui es Genero por ahora
+							miPaciente.setNombre(txtNombre.getText());
+							miPaciente.setCedula(txtCedula.getText());
+							miPaciente.setTelefono(txtTelefono.getText());
+							miPaciente.setDireccion(txtCedula.getText());
+							miPaciente.setFechaDeNacim(fechaNacim);
+							miPaciente.setContactoEmergencia(txtContactoEmer.getText());
+							miPaciente.setNumEmergencia(txtNumeroEmer.getText());
+							cbxSexo.setSelectedItem(sexo);
+							
+							Clinica.getInstance().modificarPaciente(miPaciente);
+							dispose();
+							ListarPaciente.loadPacientes(0);
+						}
 					}
 				});
 				btnRegistrar.setActionCommand("OK");
@@ -215,6 +220,23 @@ public class RegPaciente extends JDialog {
 				buttonPane.add(btnCancelar);
 			}
 		}
+		loadPaciente();
+	}
+
+
+	public void loadPaciente() {
+		if(miPaciente != null) {
+			txtNombre.setText(miPaciente.getNombre());
+			txtCedula.setText(miPaciente.getCedula());
+			txtTelefono.setText(miPaciente.getDireccion());
+			txtDir.setText(miPaciente.getDireccion());
+			txtContactoEmer.setText(miPaciente.getContactoEmergencia());
+			txtNumeroEmer.setText(miPaciente.getNumEmergencia());
+			cbxSexo.setSelectedItem(miPaciente.getSexo());
+			spnEdad.setValue(miPaciente.getFechaDeNacim());
+			
+		}
+		
 	}
 
 

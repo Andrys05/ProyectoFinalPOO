@@ -44,7 +44,41 @@ public class Clinica {
 	public void setMisPersonas(ArrayList<Persona> misPersonas) {
 		this.misPersonas = misPersonas;
 	}
+	
+	public void modificarPaciente(Paciente miPaciente) {
+		int index = buscarIndexPerByCode(miPaciente.getCedula());
+		misPersonas.set(index, miPaciente);
+	}
 
+	public Paciente buscarPaciente(String idPaciente) {
+		Paciente temp = null;
+		boolean encontrado = false;
+		int i=0;
+		while (!encontrado && i<misPersonas.size()) {
+			if(misPersonas.get(i).getCedula().equalsIgnoreCase(idPaciente) && misPersonas.get(i) instanceof Paciente){
+				temp = (Paciente) misPersonas.get(i);
+				encontrado = true;
+			}
+			i++;
+		}
+		
+		return temp;
+	}
+	
+	private int buscarIndexPerByCode(String codigo) {
+		int aux = -1;
+		boolean encontrado = false;
+		int i=0;
+		while (!encontrado && i<misPersonas.size()) {
+			if(misPersonas.get(i).getCedula().equalsIgnoreCase(codigo)){
+				aux = i;
+				encontrado = true;
+			}
+			i++;
+		}
+		
+		return aux;
+	}
 /*
 	public ArrayList<Consulta> getMisConsultas() {
 		return misConsultas;
