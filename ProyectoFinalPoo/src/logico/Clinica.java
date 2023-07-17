@@ -49,6 +49,11 @@ public class Clinica {
 		int index = buscarIndexPerByCode(miPaciente.getCedula());
 		misPersonas.set(index, miPaciente);
 	}
+	
+	public void modiMed(Medico misMedis) {
+		int cont = buscarIndexPerByCode(misMedis.getCedula());
+		misPersonas.set(cont, misMedis);
+	}
 
 	public Paciente buscarPaciente(String idPaciente) {
 		Paciente temp = null;
@@ -57,6 +62,22 @@ public class Clinica {
 		while (!encontrado && i<misPersonas.size()) {
 			if(misPersonas.get(i).getCedula().equalsIgnoreCase(idPaciente) && misPersonas.get(i) instanceof Paciente){
 				temp = (Paciente) misPersonas.get(i);
+				encontrado = true;
+			}
+			i++;
+		}
+		
+		return temp;
+	}
+	
+	
+	public Medico buscarMedico(String idMed) {
+		Medico temp = null;
+		boolean encontrado = false;
+		int i=0;
+		while (!encontrado && i<misPersonas.size()) {
+			if(misPersonas.get(i).getCedula().equalsIgnoreCase(idMed) && misPersonas.get(i) instanceof Medico){
+				temp = (Medico) misPersonas.get(i);
 				encontrado = true;
 			}
 			i++;
@@ -122,5 +143,13 @@ public class Clinica {
 	
 	public void insertarPaciente(Paciente miPaciente) {
 		misPersonas.add(miPaciente);
+	}
+	
+	public void insertarMedico(Medico misMedis) {
+		misPersonas.add(misMedis);
+	}
+	
+	public void eliminarMedico(Medico select) {
+		misPersonas.remove(select);
 	}
 }

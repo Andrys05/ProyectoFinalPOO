@@ -8,8 +8,6 @@ import javax.swing.JDialog;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-import com.sun.org.apache.bcel.internal.generic.NEW;
-
 import logico.Clinica;
 import logico.Paciente;
 import logico.Persona;
