@@ -4,7 +4,8 @@ import java.util.ArrayList;
 
 public class Clinica {
 	
-	private ArrayList<Persona> misPersonas;
+	private ArrayList<Paciente> misPacientes;
+	private ArrayList<Medico> misMedicos;
 	/*
 	private ArrayList<Consulta> misConsultas;
 	private ArrayList<Cita> misCitas;
@@ -13,11 +14,6 @@ public class Clinica {
 	*/
 	private static Clinica clinic = null;
 	
-	public Clinica() {
-		super();
-		this.misPersonas = new ArrayList<Persona>();
-	}
-	
 	public static Clinica getInstance() {
 		if(clinic==null)
 			clinic = new Clinica();
@@ -25,43 +21,52 @@ public class Clinica {
 		
 	}
 
-	/*
+	
 	public Clinica() {
 		super();
-		this.misPersonas = new ArrayList<Persona>();
-		this.misConsultas = new ArrayList<Consulta>();
-		this.misCitas = new ArrayList<Cita>();
-		this.misEnfermedades = new ArrayList<Enfermedad>();
-		this.misVacunas = new ArrayList<Persona>();
-	}
-	*/
-
-	public ArrayList<Persona> getMisPersonas() {
-		return misPersonas;
-	}
-
-
-	public void setMisPersonas(ArrayList<Persona> misPersonas) {
-		this.misPersonas = misPersonas;
+		this.misPacientes = new ArrayList<Paciente>();
+		this.misMedicos = new ArrayList<Medico>();
+		//this.misConsultas = new ArrayList<Consulta>();
+		//this.misCitas = new ArrayList<Cita>();
+		//this.misEnfermedades = new ArrayList<Enfermedad>();
+		//this.misVacunas = new ArrayList<Persona>();
 	}
 	
+
+	
+	public ArrayList<Paciente> getMisPacientes() {
+		return misPacientes;
+	}
+
+	public void setMisPacientes(ArrayList<Paciente> misPacientes) {
+		this.misPacientes = misPacientes;
+	}
+
+	public ArrayList<Medico> getMisMedicos() {
+		return misMedicos;
+	}
+
+	public void setMisMedicos(ArrayList<Medico> misMedis) {
+		this.misMedicos = misMedis;
+	}
+
 	public void modificarPaciente(Paciente miPaciente) {
-		int index = buscarIndexPerByCode(miPaciente.getCedula());
-		misPersonas.set(index, miPaciente);
+		int index = buscarIndexPacByCode(miPaciente.getCedula());
+		misPacientes.set(index, miPaciente);
 	}
 	
 	public void modiMed(Medico misMedis) {
-		int cont = buscarIndexPerByCode(misMedis.getCedula());
-		misPersonas.set(cont, misMedis);
+		int cont = buscarIndexMedByCode(misMedis.getCedula());
+		misMedicos.set(cont, misMedis);
 	}
 
 	public Paciente buscarPaciente(String idPaciente) {
 		Paciente temp = null;
 		boolean encontrado = false;
 		int i=0;
-		while (!encontrado && i<misPersonas.size()) {
-			if(misPersonas.get(i).getCedula().equalsIgnoreCase(idPaciente) && misPersonas.get(i) instanceof Paciente){
-				temp = (Paciente) misPersonas.get(i);
+		while (!encontrado && i<misPacientes.size()) {
+			if(misPacientes.get(i).getCedula().equalsIgnoreCase(idPaciente)){
+				temp = (Paciente) misPacientes.get(i);
 				encontrado = true;
 			}
 			i++;
@@ -75,9 +80,9 @@ public class Clinica {
 		Medico temp = null;
 		boolean encontrado = false;
 		int i=0;
-		while (!encontrado && i<misPersonas.size()) {
-			if(misPersonas.get(i).getCedula().equalsIgnoreCase(idMed) && misPersonas.get(i) instanceof Medico){
-				temp = (Medico) misPersonas.get(i);
+		while (!encontrado && i<misMedicos.size()) {
+			if(misMedicos.get(i).getCedula().equalsIgnoreCase(idMed)){
+				temp = (Medico) misMedicos.get(i);
 				encontrado = true;
 			}
 			i++;
@@ -86,12 +91,27 @@ public class Clinica {
 		return temp;
 	}
 	
-	private int buscarIndexPerByCode(String codigo) {
+	private int buscarIndexPacByCode(String codigo) {
 		int aux = -1;
 		boolean encontrado = false;
 		int i=0;
-		while (!encontrado && i<misPersonas.size()) {
-			if(misPersonas.get(i).getCedula().equalsIgnoreCase(codigo)){
+		while (!encontrado && i<misPacientes.size()) {
+			if(misPacientes.get(i).getCedula().equalsIgnoreCase(codigo)){
+				aux = i;
+				encontrado = true;
+			}
+			i++;
+		}
+		
+		return aux;
+	}
+	
+	private int buscarIndexMedByCode(String codigo) {
+		int aux = -1;
+		boolean encontrado = false;
+		int i=0;
+		while (!encontrado && i<misMedicos.size()) {
+			if(misMedicos.get(i).getCedula().equalsIgnoreCase(codigo)){
 				aux = i;
 				encontrado = true;
 			}
@@ -142,14 +162,14 @@ public class Clinica {
 */
 	
 	public void insertarPaciente(Paciente miPaciente) {
-		misPersonas.add(miPaciente);
+		misPacientes.add(miPaciente);
 	}
 	
 	public void insertarMedico(Medico misMedis) {
-		misPersonas.add(misMedis);
+		misMedicos.add(misMedis);
 	}
 	
 	public void eliminarMedico(Medico select) {
-		misPersonas.remove(select);
+		misMedicos.remove(select);
 	}
 }

@@ -13,7 +13,6 @@ import javax.swing.table.TableColumnModel;
 
 import logico.Clinica;
 import logico.Paciente;
-import logico.Persona;
 
 import javax.swing.JScrollPane;
 import java.awt.event.ActionListener;
@@ -146,7 +145,7 @@ public class ListarPaciente extends JDialog {
 		
 		switch(seleccion){
 		case 0:
-			for(Persona aux : Clinica.getInstance().getMisPersonas()) {
+			for(Paciente aux : Clinica.getInstance().getMisPacientes()) {
 				if (aux instanceof Paciente) {
 					fila[0] = aux.getNombre();
 					fila[1] = aux.getCedula();
@@ -167,7 +166,7 @@ public class ListarPaciente extends JDialog {
 			}
 			break;
 		case 1: 
-			for(Persona aux : Clinica.getInstance().getMisPersonas()) {
+			for(Paciente aux : Clinica.getInstance().getMisPacientes()) {
 				if (aux instanceof Paciente && ((Paciente) aux).isEstado() == false) {
 					fila[0] = aux.getNombre();
 					fila[1] = aux.getCedula();
@@ -185,7 +184,7 @@ public class ListarPaciente extends JDialog {
 			}
 			break;
 		case 2: 
-			for(Persona aux : Clinica.getInstance().getMisPersonas()) {
+			for(Paciente aux : Clinica.getInstance().getMisPacientes()) {
 				if (aux instanceof Paciente && ((Paciente) aux).isEstado() == true) {
 					fila[0] = aux.getNombre();
 					fila[1] = aux.getCedula();

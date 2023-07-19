@@ -10,7 +10,6 @@ import javax.swing.border.EmptyBorder;
 
 import logico.Clinica;
 import logico.Paciente;
-import logico.Persona;
 
 import javax.swing.JTextField;
 import javax.swing.JLabel;
@@ -181,7 +180,7 @@ public class RegPaciente extends JDialog {
 						if (miPaciente == null) {
 							//SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
 							//String fechaNacimientoStr = dateFormat.format(fechaNacim);
-							Paciente nuevoPaciente = new Paciente(txtNombre.getText(), txtCedula.getText(), txtDir.getText(), fechaNacim, sexo, txtTelefono.getText(), false, txtContactoEmer.getText(), txtNumeroEmer.getText());
+							Paciente nuevoPaciente = new Paciente(txtNombre.getText(), txtCedula.getText(), txtDir.getText(), fechaNacim, sexo, txtTelefono.getText(), false, txtContactoEmer.getText(), txtNumeroEmer.getText(), null);
 							Clinica.getInstance().insertarPaciente(nuevoPaciente);
 							JOptionPane.showMessageDialog(null, "Paciente Registrado!\n", "Registracion!", JOptionPane.INFORMATION_MESSAGE); 
 							clean();
