@@ -45,6 +45,15 @@ public class RegMed extends JDialog {
 	private Medico miMed = null;
 
 	
+	 public static void main(String[] args) {
+	        try {
+	            RegMed dialog = new RegMed(null);
+	            dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+	            dialog.setVisible(true);
+	        } catch (Exception e) {
+	            e.printStackTrace();
+	        }
+	    }
 
 	/**
 	 * Create the dialog.
@@ -176,6 +185,18 @@ public class RegMed extends JDialog {
 							Clinica.getInstance().insertarMedico(aux);
 						    JOptionPane.showMessageDialog(null, "Operación satisfactoria", "Registro", JOptionPane.INFORMATION_MESSAGE);				  
 						    clear();
+						}else {
+							med.setUsuario(txtUsu.getText());
+							med.setContrasenaDoctor(txtContra.getText());
+							med.setEspecialidad(txtEsp.getText());
+							med.setNombre(txtNombre.getText());
+							med.setCedula(txtCed.getText());
+							med.setDireccion(txtDir.getText());
+							med.setedad(Integer.valueOf(spnEdad.getValue().toString()));
+							med.setTelefono(txtTel.getText());
+							Clinica.getInstance().modiMed(med);
+							dispose();
+							ListMed.loadMedicos();
 						}
 					}
 				});
@@ -194,6 +215,32 @@ public class RegMed extends JDialog {
 				buttonPane.add(btnCancel);
 			}
 		}
+		loadMed();
+	}
+
+
+
+	private void loadMed() {
+		
+		if(miMed != null) {
+		txtUsu.setText(miMed.getUsuario());
+		txtContra.setText(miMed.getContrasenaDoctor());
+		txtEsp.setText(miMed.getEspecialidad());
+		txtNombre.setText(miMed.getNombre());
+		txtCed.setText(miMed.getCedula());
+		txtDir.setText(miMed.getDireccion());
+		spnEdad.setValue(new Integer(miMed.getedad()));
+		rdbtnMas.setSelected(false);
+		rdbtnFem.setSelected(false);
+		
+		if(miMed.getSexo()) {
+			rdbtnMas.setSelected(true);
+		}else {
+			rdbtnFem.setSelected(true);
+		}
+		txtTel.setText(miMed.getTelefono());
+	 }
+		
 	}
 
 
