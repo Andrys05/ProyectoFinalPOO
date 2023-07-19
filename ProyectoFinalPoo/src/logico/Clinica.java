@@ -8,6 +8,10 @@ public class Clinica {
 	private ArrayList<Medico> misMedicos;
 	private ArrayList<Cita> misCitas;
 	private ArrayList<Vacuna> misVacunas;
+	private int cant = 0;
+	private int cantmax = 0;
+	private String tipo;
+	private String tipomax;
 	
 	/*
 	private ArrayList<Consulta> misConsultas;
@@ -176,5 +180,29 @@ public class Clinica {
 	}
 	public void insertarVacuna(Vacuna misVacs) {
 		misVacunas.add(misVacs);
+	}
+	
+	//vacuna
+	{
+		for (Vacuna vac : misVacunas) {
+			tipo = vac.getTipo();
+			
+			if(tipo != tipomax)
+			{
+				for (Vacuna vacs : misVacunas) {
+					if(vacs.getTipo() == tipo)
+						cant++;
+				}	
+			}
+			
+			if(cant > cantmax)
+			{
+				cantmax = cant;
+				tipomax = tipo;
+				cant = 0;
+			}
+				
+	
+		}
 	}
 }

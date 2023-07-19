@@ -6,6 +6,7 @@ public class Vacuna {
 	private String codigo;
 	private String nombre;
 	private String  descrip;
+	private String tipo;
 	private int antMiligramos;
 	private Date fechaRecibida;
 	public String getCodigo() {
@@ -37,6 +38,13 @@ public class Vacuna {
 	}
 	public void setFechaRecibida(Date fechaRecibida) {
 		this.fechaRecibida = fechaRecibida;
+	}
+	
+	public String getTipo() {
+		return tipo;
+	}
+	public void setTipo(String tipo) {
+		this.tipo = tipo;
 	}
 	public Vacuna(String codigo, String nombre, String descrip, int antMiligramos, Date fechaRecibida) {
 		super();
