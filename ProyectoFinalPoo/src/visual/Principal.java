@@ -71,18 +71,17 @@ public class Principal extends JFrame {
 		});
 		mnNewMenu.add(mntmNewMenuItem_5);
 		
-		JMenu mnNewMenu_1 = new JMenu("Medico");
+		JMenu mnNewMenu_1 = new JMenu("Médico");
 		menuBar.add(mnNewMenu_1);
 		
-		JMenuItem mntmNewMenuItem_1 = new JMenuItem("Registrar Empleado");
+		JMenuItem mntmNewMenuItem_1 = new JMenuItem("Registrar Médico");
 		mntmNewMenuItem_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				/*
-				RegCliente reg = new RegCliente();
+				RegMed reg = new RegMed(null);
 				reg.setModal(true);
 				reg.setLocationRelativeTo(null);
 				reg.setVisible(true);
-				*/
+				
 				
 				
 			}
