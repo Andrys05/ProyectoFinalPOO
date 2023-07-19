@@ -7,11 +7,11 @@ public class Clinica {
 	private ArrayList<Paciente> misPacientes;
 	private ArrayList<Medico> misMedicos;
 	private ArrayList<Cita> misCitas;
+	private ArrayList<Vacuna> misVacunas;
 	
 	/*
 	private ArrayList<Consulta> misConsultas;
 	private ArrayList<Enfermedad> misEnfermedades;
-	private ArrayList<Vacuna> misVacunas;
 	*/
 	private static Clinica clinic = null;
 	
@@ -30,7 +30,7 @@ public class Clinica {
 		//this.misConsultas = new ArrayList<Consulta>();
 		 this.misCitas = new ArrayList<Cita>();
 		//this.misEnfermedades = new ArrayList<Enfermedad>();
-		//this.misVacunas = new ArrayList<Persona>();
+		this.misVacunas = new ArrayList<Vacuna>();
 	}
 	
 
@@ -49,6 +49,15 @@ public class Clinica {
 
 	public void setMisMedicos(ArrayList<Medico> misMedis) {
 		this.misMedicos = misMedis;
+	}
+	
+	public ArrayList<Vacuna> getMisVacunas() {
+		return misVacunas;
+	}
+
+
+	public void setMisVacunas(ArrayList<Vacuna> misVacunas) {
+		this.misVacunas = misVacunas;
 	}
 
 	public void modificarPaciente(Paciente miPaciente) {
@@ -151,14 +160,7 @@ public class Clinica {
 	}
 
 
-	public ArrayList<Vacuna> getMisVacunas() {
-		return misVacunas;
-	}
-
-
-	public void setMisVacunas(ArrayList<Vacuna> misVacunas) {
-		this.misVacunas = misVacunas;
-	}
+	
 */
 	
 	public void insertarPaciente(Paciente miPaciente) {
@@ -171,5 +173,8 @@ public class Clinica {
 	
 	public void eliminarMedico(Medico select) {
 		misMedicos.remove(select);
+	}
+	public void insertarVacuna(Vacuna misVacs) {
+		misVacunas.add(misVacs);
 	}
 }
