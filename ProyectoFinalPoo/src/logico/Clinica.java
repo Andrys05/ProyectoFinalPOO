@@ -183,7 +183,7 @@ public class Clinica {
 	}
 	
 	//vacuna
-	{
+	private void vacunasUsadas(){
 		for (Vacuna vac : misVacunas) {
 			tipo = vac.getTipo();
 			
