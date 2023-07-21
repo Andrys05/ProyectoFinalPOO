@@ -65,15 +65,20 @@ public class ListMed extends JDialog {
 				Tabla.addMouseListener(new MouseAdapter() {
 					@Override
 					public void mouseClicked(MouseEvent e) {
-						int ind =-1;
-						 ind = Tabla.getSelectedRow();
-						 if(ind >= 0) {
-							  btnElim.setEnabled(true);
-							  btnModi.setEnabled(true);
-							  selected = Clinica.getInstance().buscarMedico(Tabla.getValueAt(ind, 0).toString());
-							}
+						int  ind = Tabla.getSelectedRow();
+						if (ind >= 0 ) {
+							btnElim.setEnabled(true);
+							btnModi.setEnabled(true);
+							selected = Clinica.getInstance().buscarMedico(Tabla.getValueAt(ind,0).toString());
+							String cedula = Tabla.getValueAt(ind, 1).toString();
+							selected = Clinica.getInstance().buscarMedico(cedula);
+							
+							
+						}
 					}
 				});
+				
+				
 				scrollPane.setViewportView(Tabla);
 				
 				model = new DefaultTableModel();
@@ -90,9 +95,11 @@ public class ListMed extends JDialog {
 				btnModi = new JButton("Modificar Datos");
 				btnModi.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
-						RegMed update = new RegMed(selected);
+						ModMed update = new ModMed(selected);
 						update.setModal(true);
+						update.setLocationRelativeTo(null);
 						update.setVisible(true);
+						loadMedicos();
 					}
 				});
 				btnModi.setActionCommand("OK");
@@ -107,8 +114,8 @@ public class ListMed extends JDialog {
 							int option = JOptionPane.showConfirmDialog(null,"Está Seguro(a) que desea eliminar este empleado?"+selected.getNombre(), "Confirmación",JOptionPane.OK_CANCEL_OPTION);
 							if(option == JOptionPane.OK_OPTION) {
 								Clinica.getInstance().eliminarMedico(selected);
-								btnElim.setEnabled(false);
-								btnModi.setEnabled(false);
+								btnElim.setEnabled(true);
+								btnModi.setEnabled(true);
 								loadMedicos();
 							}
 						

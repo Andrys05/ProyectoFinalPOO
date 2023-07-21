@@ -2,6 +2,8 @@ package logico;
 
 import java.util.ArrayList;
 
+
+
 public class Clinica {
 	
 	private ArrayList<Paciente> misPacientes;
@@ -90,13 +92,13 @@ public class Clinica {
 	}
 	
 	
-	public Medico buscarMedico(String idMed) {
+	public Medico buscarMedico(String cedu) {
 		Medico temp = null;
 		boolean encontrado = false;
 		int i=0;
 		while (!encontrado && i<misMedicos.size()) {
-			if(misMedicos.get(i).getCedula().equalsIgnoreCase(idMed)){
-				temp = (Medico) misMedicos.get(i);
+			if(misMedicos.get(i).getCedula().equalsIgnoreCase(cedu)){
+				temp = misMedicos.get(i);
 				encontrado = true;
 			}
 			i++;
@@ -120,20 +122,21 @@ public class Clinica {
 		return aux;
 	}
 	
-	private int buscarIndexMedByCode(String codigo) {
+	private int buscarIndexMedByCode(String cedu) {
 		int aux = -1;
 		boolean encontrado = false;
 		int i=0;
-		while (!encontrado && i<misMedicos.size()) {
-			if(misMedicos.get(i).getCedula().equalsIgnoreCase(codigo)){
-				aux = i;
+		while (i<misMedicos.size()&& !encontrado) {
+			if(misMedicos.get(i).getCedula().equalsIgnoreCase(cedu)){
 				encontrado = true;
+				aux = i;
 			}
 			i++;
 		}
 		
 		return aux;
 	}
+	
 
 	public ArrayList<Cita> getMisCitas() {
 		return misCitas;
@@ -176,7 +179,9 @@ public class Clinica {
 	}
 	
 	public void eliminarMedico(Medico select) {
-		misMedicos.remove(select);
+		int cont;
+		cont = misMedicos.indexOf(select);
+		misMedicos.remove(cont);
 	}
 	public void insertarVacuna(Vacuna misVacs) {
 		misVacunas.add(misVacs);

@@ -59,14 +59,7 @@ public class RegMed extends JDialog {
 	 * Create the dialog.
 	 */
 	public RegMed(Medico med) {
-		miMed = med;
-		setResizable(false);
-		if(miMed == null) {
-			setTitle("Registrar Paciente");
-		}
-		else {
-			setTitle("Modificar Paciente");
-		}
+		
 		setTitle("Registrar M\u00E9dico");
 		setBounds(100, 100, 573, 434);
 		getContentPane().setLayout(new BorderLayout());
@@ -186,13 +179,14 @@ public class RegMed extends JDialog {
 						    JOptionPane.showMessageDialog(null, "Operación satisfactoria", "Registro", JOptionPane.INFORMATION_MESSAGE);				  
 						    clear();
 						}else {
+							
 							med.setUsuario(txtUsu.getText());
 							med.setContrasenaDoctor(txtContra.getText());
-							med.setEspecialidad(txtEsp.getText());
 							med.setNombre(txtNombre.getText());
 							med.setCedula(txtCed.getText());
 							med.setDireccion(txtDir.getText());
 							med.setedad(Integer.valueOf(spnEdad.getValue().toString()));
+							med.setEspecialidad(txtEsp.getText());
 							med.setTelefono(txtTel.getText());
 							Clinica.getInstance().modiMed(med);
 							dispose();
