@@ -8,6 +8,7 @@ public class Vacuna {
 	private String  descrip;
 	private int antMiligramos;
 	private Date fechaRecibida;
+	
 	public String getCodigo() {
 		return codigo;
 	}
@@ -38,6 +39,7 @@ public class Vacuna {
 	public void setFechaRecibida(Date fechaRecibida) {
 		this.fechaRecibida = fechaRecibida;
 	}
+	
 	public Vacuna(String codigo, String nombre, String descrip, int antMiligramos, Date fechaRecibida) {
 		super();
 		this.codigo = codigo;

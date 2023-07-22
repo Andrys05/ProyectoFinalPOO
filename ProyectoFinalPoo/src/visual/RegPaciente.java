@@ -24,6 +24,7 @@ import javax.swing.JComboBox;
 import java.awt.event.ActionListener;
 import java.text.SimpleDateFormat;
 import java.awt.event.ActionEvent;
+import javax.swing.DefaultComboBoxModel;
 
 public class RegPaciente extends JDialog {
 
@@ -113,7 +114,7 @@ public class RegPaciente extends JDialog {
 			panel.add(lblDireccion);
 			
 			SpinnerDateModel modelo = new SpinnerDateModel();
-	        spnEdad = new JSpinner(new SpinnerDateModel(new Date(1689351000234L), null, new Date(1689351000234L), Calendar.DAY_OF_MONTH));
+	        spnEdad = new JSpinner(new SpinnerDateModel(new Date(), null, new Date(), Calendar.DAY_OF_MONTH));
 	        JSpinner.DateEditor dateEditor = new JSpinner.DateEditor(spnEdad, "dd/MM/yyyy");
 	        spnEdad.setEditor(dateEditor);
 	        spnEdad.setBounds(214, 37, 127, 20);
@@ -146,19 +147,17 @@ public class RegPaciente extends JDialog {
 			panel.add(txtNumeroEmer);
 			
 			sexo = 'H';
-			String[] sexos = {"Hombre", "Mujer", "Otro"};
+			String[] sexos = {"Hombre", "Mujer"};
 			cbxSexo = new JComboBox(sexos);
+			cbxSexo.setModel(new DefaultComboBoxModel(new String[] {"Hombre", "Mujer"}));
 			cbxSexo.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					if(e.getSource()==cbxSexo) {
 						if(cbxSexo.getSelectedItem().equals("Hombre")) {
 							sexo = 'H';
 						}
-						else if(cbxSexo.getSelectedItem().equals("Mujer")) {
-							sexo = 'M';
-						}
 						else {
-							sexo = 'O';
+							sexo = 'M';
 						}
 						//Para probar que el valor correcto del char estaba funcionando
 						//JOptionPane.showMessageDialog(null, "Sexo es " + sexo + "!", "Sexo", JOptionPane.INFORMATION_MESSAGE); 
@@ -177,29 +176,36 @@ public class RegPaciente extends JDialog {
 				btnRegistrar.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
 						Date fechaNacim = (Date) spnEdad.getValue();
-						if (miPaciente == null) {
-							//SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
-							//String fechaNacimientoStr = dateFormat.format(fechaNacim);
-							Paciente nuevoPaciente = new Paciente(txtNombre.getText(), txtCedula.getText(), txtDir.getText(), fechaNacim, sexo, txtTelefono.getText(), false, txtContactoEmer.getText(), txtNumeroEmer.getText(), null);
-							Clinica.getInstance().insertarPaciente(nuevoPaciente);
-							JOptionPane.showMessageDialog(null, "Paciente Registrado!\n", "Registracion!", JOptionPane.INFORMATION_MESSAGE); 
-							clean();
+						if(txtNombre.getText().isEmpty() || txtCedula.getText().isEmpty() || txtTelefono.getText().isEmpty() || txtDir.getText().isEmpty() || 
+								txtContactoEmer.getText().isEmpty() || txtNumeroEmer.getText().isEmpty()) {
+							JOptionPane.showMessageDialog(null, "Disculpe, parece que faltan algunos datos en la registracion del paciente. Por favor, llene los datos que faltan e intenta la registracion de nuevo.\n", "Datos Ausentes", JOptionPane.INFORMATION_MESSAGE);
 						}
 						else {
-							//Nota: La unica cosa que funciona aqui es Genero por ahora
-							miPaciente.setNombre(txtNombre.getText());
-							miPaciente.setCedula(txtCedula.getText());
-							miPaciente.setTelefono(txtTelefono.getText());
-							miPaciente.setDireccion(txtCedula.getText());
-							miPaciente.setFechaDeNacim(fechaNacim);
-							miPaciente.setContactoEmergencia(txtContactoEmer.getText());
-							miPaciente.setNumEmergencia(txtNumeroEmer.getText());
-							cbxSexo.setSelectedItem(sexo);
-							
-							Clinica.getInstance().modificarPaciente(miPaciente);
-							dispose();
-							ListarPaciente.loadPacientes(0);
-						}
+							if (miPaciente == null) {
+									//SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+									//String fechaNacimientoStr = dateFormat.format(fechaNacim);
+									Paciente nuevoPaciente = new Paciente(txtNombre.getText(), txtCedula.getText(), txtDir.getText(), fechaNacim, sexo, txtTelefono.getText(), false, txtContactoEmer.getText(), txtNumeroEmer.getText(), null);
+									Clinica.getInstance().insertarPaciente(nuevoPaciente);
+									JOptionPane.showMessageDialog(null, "Paciente Registrado!\n", "Registracion!", JOptionPane.INFORMATION_MESSAGE); 
+									clean();
+								}
+							else {
+									//Nota: La unica cosa que funciona aqui es Genero por ahora
+									miPaciente.setNombre(txtNombre.getText());
+									miPaciente.setCedula(txtCedula.getText());
+									miPaciente.setTelefono(txtTelefono.getText());
+									miPaciente.setDireccion(txtCedula.getText());
+									miPaciente.setFechaDeNacim(fechaNacim);
+									miPaciente.setContactoEmergencia(txtContactoEmer.getText());
+									miPaciente.setNumEmergencia(txtNumeroEmer.getText());
+									cbxSexo.setSelectedItem(sexo);
+									
+									Clinica.getInstance().modificarPaciente(miPaciente);
+									dispose();
+									ListarPaciente.loadPacientes(0);
+								}
+					} 
+					
 					}
 				});
 				btnRegistrar.setActionCommand("OK");
@@ -229,7 +235,12 @@ public class RegPaciente extends JDialog {
 			txtDir.setText(miPaciente.getDireccion());
 			txtContactoEmer.setText(miPaciente.getContactoEmergencia());
 			txtNumeroEmer.setText(miPaciente.getNumEmergencia());
-			cbxSexo.setSelectedItem(miPaciente.getSexo());
+			//Falta esta parte de ser arreglado
+			if(miPaciente.getSexo()=='H')
+				cbxSexo.setSelectedItem("Hombre");
+			else
+				cbxSexo.setSelectedItem("Mujer");
+			
 			spnEdad.setValue(miPaciente.getFechaDeNacim());
 			
 		}
