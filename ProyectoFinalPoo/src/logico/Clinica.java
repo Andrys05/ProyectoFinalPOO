@@ -10,18 +10,21 @@ public class Clinica {
 	private ArrayList<Medico> misMedicos;
 	private ArrayList<Cita> misCitas;
 	private ArrayList<Vacuna> misVacunas;
-	private int cant = 0;
-	private int cantmax = 0;
-	private String tipo;
-	private String tipomax;
-	public static int codigo = 1;
-
-	
-	/*
 	private ArrayList<Consulta> misConsultas;
 	private ArrayList<Enfermedad> misEnfermedades;
-	*/
+	/*private int cant = 0;
+	private int cantmax = 0;
+	private String tipo;
+	private String tipomax;*/
+	public static int codigo = 1;
+	public static int consultaCodigo = 1;
 	private static Clinica clinic = null;
+	/*private ArrayList<Enfermedad> misEnfermedades;
+	*/
+	
+//>>>>>>> branch 'main' of https://github.com/Andrys05/ProyectoFinalPoo.git
+	
+	
 	
 	public static Clinica getInstance() {
 		if(clinic==null)
@@ -35,9 +38,9 @@ public class Clinica {
 		super();
 		this.misPacientes = new ArrayList<Paciente>();
 		this.misMedicos = new ArrayList<Medico>();
-		//this.misConsultas = new ArrayList<Consulta>();
-		 this.misCitas = new ArrayList<Cita>();
-		//this.misEnfermedades = new ArrayList<Enfermedad>();
+		this.misConsultas = new ArrayList<Consulta>();
+		this.misCitas = new ArrayList<Cita>();
+		this.misEnfermedades = new ArrayList<Enfermedad>();
 		this.misVacunas = new ArrayList<Vacuna>();
 	}
 	
@@ -93,6 +96,40 @@ public class Clinica {
 		return temp;
 	}
 	
+
+	public int cantPacientes(int seleccion) {
+		int cant = 0;
+		
+		for(Paciente aux : misPacientes) {
+			switch(seleccion) {
+			case 0:
+				cant++;
+				break;
+			case 1:
+				if(aux.isEstado() == false)
+					cant++;
+				break;
+			case 2:
+				if(aux.isEstado() == true)
+					cant++;
+				break;
+			case 3:
+				if(aux.getSexo() == 'H')
+					cant++;
+				break;
+			case 4: 
+				if(aux.getSexo() == 'M')
+					cant++;
+				break;
+			default: 
+				break;
+			}
+		}
+		
+		return cant;
+	}
+
+	
 	
 	public Medico buscarMedico(String cedu) {
 		Medico temp = null;
@@ -101,6 +138,36 @@ public class Clinica {
 		while (!encontrado && i<misMedicos.size()) {
 			if(misMedicos.get(i).getCedula().equalsIgnoreCase(cedu)){
 				temp = misMedicos.get(i);
+				encontrado = true;
+			}
+			i++;
+		}
+		
+		return temp;
+	}
+	
+	public Enfermedad buscarEnfermedad(String idEnfermedad) {
+		Enfermedad temp = null;
+		boolean encontrado = false;
+		int i=0;
+		while (!encontrado && i<misEnfermedades.size()) {
+			if(misEnfermedades.get(i).getId().equalsIgnoreCase(idEnfermedad)){
+				temp = (Enfermedad) misEnfermedades.get(i);
+				encontrado = true;
+			}
+			i++;
+		}
+		
+		return temp;
+	}
+	
+	public Consulta buscarConsulta(String idConsulta) {
+		Consulta temp = null;
+		boolean encontrado = false;
+		int i=0;
+		while (!encontrado && i<misConsultas.size()) {
+			if(misConsultas.get(i).getCodigo().equalsIgnoreCase(idConsulta)){
+				temp = (Consulta) misConsultas.get(i);
 				encontrado = true;
 			}
 			i++;
@@ -180,13 +247,58 @@ public class Clinica {
 		misMedicos.add(misMedis);
 	}
 	
+	//public void eliminarMedico(Medico select) {
+		//misMedicos.remove(select);
+	//}
+	
 	public void eliminarMedico(Medico select) {
 		int cont;
 		cont = misMedicos.indexOf(select);
 		misMedicos.remove(cont);
 	}
+	
+	
 	public void insertarVacuna(Vacuna misVacs) {
 		misVacunas.add(misVacs);
+	}
+
+	public void insertarEnfermedad(Enfermedad miEnfermedad) {
+		misEnfermedades.add(miEnfermedad);
+	}
+	
+	public void insertarConsulta(Consulta miConsulta) {
+		misConsultas.add(miConsulta);
+		consultaCodigo++;
+	}
+
+	public ArrayList<Consulta> getMisConsultas() {
+		return misConsultas;
+	}
+
+
+	public void setMisConsultas(ArrayList<Consulta> misConsultas) {
+		this.misConsultas = misConsultas;
+	}
+
+
+	public ArrayList<Enfermedad> getMisEnfermedades() {
+		return misEnfermedades;
+	}
+
+
+	public void setMisEnfermedades(ArrayList<Enfermedad> misEnfermedades) {
+		this.misEnfermedades = misEnfermedades;
+	}
+	
+	public int cantPacientesPorEnfermedad(String idEnfermedad) {
+		int cant = 0;
+		
+		for(Consulta aux : misConsultas) {
+			if(aux.getPaciente().isEstado() == true && aux.getDiagnostico().getId().equalsIgnoreCase(idEnfermedad))
+				cant++;
+		}
+		
+		return cant;
 	}
 	
 	/*vacuna
