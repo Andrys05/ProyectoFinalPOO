@@ -24,6 +24,8 @@ import javax.swing.JTextField;
 import javax.swing.JRadioButton;
 import javax.swing.JSpinner;
 import javax.swing.SpinnerNumberModel;
+import javax.swing.JTextArea;
+import javax.swing.JTextPane;
 
 public class RegMed extends JDialog {
 
@@ -36,13 +38,13 @@ public class RegMed extends JDialog {
 	private JRadioButton rdbtnFem;
 	private JRadioButton rdbtnMas;
 	private JTextField txtEsp;
-	private JTextField txtDir;
 	private JTextField txtUsu;
 	private JTextField txtContra;
 	private boolean control;
 	private JLabel lblNewLabel_8;
 	private JSpinner spnEdad;
 	private Medico miMed = null;
+	private JTextPane txtDir;
 
 	
 	 public static void main(String[] args) {
@@ -59,14 +61,7 @@ public class RegMed extends JDialog {
 	 * Create the dialog.
 	 */
 	public RegMed(Medico med) {
-		miMed = med;
-		setResizable(false);
-		if(miMed == null) {
-			setTitle("Registrar Paciente");
-		}
-		else {
-			setTitle("Modificar Paciente");
-		}
+		
 		setTitle("Registrar M\u00E9dico");
 		setBounds(100, 100, 573, 434);
 		getContentPane().setLayout(new BorderLayout());
@@ -140,11 +135,6 @@ public class RegMed extends JDialog {
 		lblNewLabel_5.setBounds(279, 230, 56, 16);
 		contentPanel.add(lblNewLabel_5);
 		
-		txtDir = new JTextField();
-		txtDir.setBounds(279, 259, 261, 74);
-		contentPanel.add(txtDir);
-		txtDir.setColumns(10);
-		
 		JLabel lblNewLabel_6 = new JLabel("Usuario");
 		lblNewLabel_6.setBounds(12, 224, 56, 16);
 		contentPanel.add(lblNewLabel_6);
@@ -171,6 +161,10 @@ public class RegMed extends JDialog {
 		spnEdad.setModel(new SpinnerNumberModel(1, null, 100, 1));
 		spnEdad.setBounds(279, 42, 85, 22);
 		contentPanel.add(spnEdad);
+		
+		txtDir = new JTextPane();
+		txtDir.setBounds(279, 259, 223, 75);
+		contentPanel.add(txtDir);
 		{
 			JPanel buttonPane = new JPanel();
 			buttonPane.setBorder(new TitledBorder(null, "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
@@ -186,13 +180,14 @@ public class RegMed extends JDialog {
 						    JOptionPane.showMessageDialog(null, "Operación satisfactoria", "Registro", JOptionPane.INFORMATION_MESSAGE);				  
 						    clear();
 						}else {
+							
 							med.setUsuario(txtUsu.getText());
 							med.setContrasenaDoctor(txtContra.getText());
-							med.setEspecialidad(txtEsp.getText());
 							med.setNombre(txtNombre.getText());
 							med.setCedula(txtCed.getText());
 							med.setDireccion(txtDir.getText());
 							med.setedad(Integer.valueOf(spnEdad.getValue().toString()));
+							med.setEspecialidad(txtEsp.getText());
 							med.setTelefono(txtTel.getText());
 							Clinica.getInstance().modiMed(med);
 							dispose();

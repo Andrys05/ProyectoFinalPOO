@@ -23,7 +23,7 @@ public class Principal extends JFrame {
 	 */
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
-			public void run() {
+			public void run() { 
 				try {
 					Principal frame = new Principal();
 					frame.setVisible(true);
@@ -165,6 +165,17 @@ public class Principal extends JFrame {
 		menuBar.add(mnNewMenu_4);
 		
 		JMenuItem mntmNewMenuItem_8 = new JMenuItem("Agregar Vacuna");
+		mntmNewMenuItem_8.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				AgrVac vacunas = new AgrVac();
+				vacunas.setModal(true);
+				vacunas.setLocationRelativeTo(null);
+				vacunas.setVisible(true);
+				
+				
+			}
+		});
+
 		mnNewMenu_4.add(mntmNewMenuItem_8);
 		
 		JMenuItem mntmNewMenuItem_9 = new JMenuItem("Listar Vacunas");

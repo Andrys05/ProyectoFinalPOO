@@ -2,6 +2,8 @@ package logico;
 
 import java.util.ArrayList;
 
+
+
 public class Clinica {
 	
 	private ArrayList<Paciente> misPacientes;
@@ -10,12 +12,12 @@ public class Clinica {
 	private ArrayList<Vacuna> misVacunas;
 	private ArrayList<Consulta> misConsultas;
 	private ArrayList<Enfermedad> misEnfermedades;
-	public static int consultaCodigo = 1;
-	private static Clinica clinic = null;
 	private int cant = 0;
 	private int cantmax = 0;
 	private String tipo;
 	private String tipomax;
+	public static int consultaCodigo = 1;
+	private static Clinica clinic = null;
 	
 	
 	public static Clinica getInstance() {
@@ -123,13 +125,13 @@ public class Clinica {
 
 	
 	
-	public Medico buscarMedico(String idMed) {
+	public Medico buscarMedico(String cedu) {
 		Medico temp = null;
 		boolean encontrado = false;
 		int i=0;
 		while (!encontrado && i<misMedicos.size()) {
-			if(misMedicos.get(i).getCedula().equalsIgnoreCase(idMed)){
-				temp = (Medico) misMedicos.get(i);
+			if(misMedicos.get(i).getCedula().equalsIgnoreCase(cedu)){
+				temp = misMedicos.get(i);
 				encontrado = true;
 			}
 			i++;
@@ -183,20 +185,21 @@ public class Clinica {
 		return aux;
 	}
 	
-	private int buscarIndexMedByCode(String codigo) {
+	private int buscarIndexMedByCode(String cedu) {
 		int aux = -1;
 		boolean encontrado = false;
 		int i=0;
-		while (!encontrado && i<misMedicos.size()) {
-			if(misMedicos.get(i).getCedula().equalsIgnoreCase(codigo)){
-				aux = i;
+		while (i<misMedicos.size()&& !encontrado) {
+			if(misMedicos.get(i).getCedula().equalsIgnoreCase(cedu)){
 				encontrado = true;
+				aux = i;
 			}
 			i++;
 		}
 		
 		return aux;
 	}
+	
 
 	public ArrayList<Cita> getMisCitas() {
 		return misCitas;
