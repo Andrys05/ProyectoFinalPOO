@@ -10,8 +10,14 @@ import javax.swing.JDialog;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.border.TitledBorder;
+
+import logico.Clinica;
+import logico.Medico;
+import logico.Vacuna;
+
 import javax.swing.JSpinner;
 import javax.swing.SpinnerDateModel;
 import java.util.Date;
@@ -26,6 +32,7 @@ public class AgrVac extends JDialog {
 	private JTextField txtCod;
 	private JTextField txtNombre;
 	private JTextPane txtDir;
+	private boolean control;
 	
 
 	/**
@@ -59,6 +66,7 @@ public class AgrVac extends JDialog {
 		{
 			txtCod = new JTextField();
 			txtCod.setEditable(false);
+			txtCod.setText("Vac-"+Clinica.getInstance().codigo);
 			txtCod.setBounds(12, 36, 73, 22);
 			contentPanel.add(txtCod);
 			txtCod.setColumns(10);
@@ -90,6 +98,19 @@ public class AgrVac extends JDialog {
 			getContentPane().add(buttonPane, BorderLayout.SOUTH);
 			{
 				btnAgr = new JButton("Agregar Vacuna");
+				btnAgr.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+						if(!control) {
+							//Vacuna aux = new Vacuna(txtCod,txtNombre,txtDir,0,);
+							//Clinica.getInstance().insertarVacuna(aux);
+						    JOptionPane.showMessageDialog(null, "Operación satisfactoria", "Registro", JOptionPane.INFORMATION_MESSAGE);				  
+						    clear();
+						}else {
+							
+						}
+						
+					}
+				});
 				btnAgr.setActionCommand("OK");
 				buttonPane.add(btnAgr);
 				getRootPane().setDefaultButton(btnAgr);
@@ -105,5 +126,13 @@ public class AgrVac extends JDialog {
 				buttonPane.add(btnCancel);
 			}
 		}
+	}
+
+	protected void clear() {
+		txtCod.setText("Vac-"+Clinica.getInstance().codigo);
+		txtNombre.setText("");
+		txtDir.setText("");
+		
+		
 	}
 }

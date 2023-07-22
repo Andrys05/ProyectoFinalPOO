@@ -14,6 +14,8 @@ public class Clinica {
 	private int cantmax = 0;
 	private String tipo;
 	private String tipomax;
+	public static int codigo = 1;
+
 	
 	/*
 	private ArrayList<Consulta> misConsultas;
