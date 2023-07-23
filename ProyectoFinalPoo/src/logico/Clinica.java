@@ -260,6 +260,7 @@ public class Clinica {
 	
 	public void insertarVacuna(Vacuna misVacs) {
 		misVacunas.add(misVacs);
+		codigo++;
 	}
 
 	public void insertarEnfermedad(Enfermedad miEnfermedad) {

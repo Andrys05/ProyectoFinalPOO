@@ -101,8 +101,8 @@ public class AgrVac extends JDialog {
 				btnAgr.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
 						if(!control) {
-							//Vacuna aux = new Vacuna(txtCod,txtNombre,txtDir,0,);
-							//Clinica.getInstance().insertarVacuna(aux);
+							Vacuna aux = new Vacuna(txtCod.getText(),txtNombre.getText(),txtDir.getText(),0);
+							Clinica.getInstance().insertarVacuna(aux);
 						    JOptionPane.showMessageDialog(null, "Operación satisfactoria", "Registro", JOptionPane.INFORMATION_MESSAGE);				  
 						    clear();
 						}else {
