@@ -12,12 +12,14 @@ public class Clinica {
 	private ArrayList<Vacuna> misVacunas;
 	private ArrayList<Consulta> misConsultas;
 	private ArrayList<Enfermedad> misEnfermedades;
-	private int cant = 0;
+	/*private int cant = 0;
 	private int cantmax = 0;
 	private String tipo;
-	private String tipomax;
+	private String tipomax;*/
+	public static int codigo = 1;
 	public static int consultaCodigo = 1;
 	private static Clinica clinic = null;
+
 	public static String pacienteCedula = "";
 	public static String medicoCedula = "";
 	
@@ -271,6 +273,7 @@ public class Clinica {
 	
 	public void insertarVacuna(Vacuna misVacs) {
 		misVacunas.add(misVacs);
+		codigo++;
 	}
 
 	public void insertarEnfermedad(Enfermedad miEnfermedad) {
