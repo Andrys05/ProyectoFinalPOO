@@ -240,7 +240,7 @@ public class RegMed extends JDialog {
 
 
 
-	protected void clear() {
+	private void clear() {
 		txtUsu.setText("");
 		txtContra.setText("");
 		txtEsp.setText("");

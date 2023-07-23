@@ -18,6 +18,8 @@ public class Clinica {
 	private String tipomax;
 	public static int consultaCodigo = 1;
 	private static Clinica clinic = null;
+	public static String pacienteCedula = "";
+	public static String medicoCedula = "";
 	
 	
 	public static Clinica getInstance() {
@@ -81,7 +83,7 @@ public class Clinica {
 		int i=0;
 		while (!encontrado && i<misPacientes.size()) {
 			if(misPacientes.get(i).getCedula().equalsIgnoreCase(idPaciente)){
-				temp = (Paciente) misPacientes.get(i);
+				temp = misPacientes.get(i);
 				encontrado = true;
 			}
 			i++;
@@ -161,7 +163,22 @@ public class Clinica {
 		int i=0;
 		while (!encontrado && i<misConsultas.size()) {
 			if(misConsultas.get(i).getCodigo().equalsIgnoreCase(idConsulta)){
-				temp = (Consulta) misConsultas.get(i);
+				temp =  misConsultas.get(i);
+				encontrado = true;
+			}
+			i++;
+		}
+		
+		return temp;
+	}
+	
+	public Vacuna buscarVacuna(String idVacuna) {
+		Vacuna temp = null;
+		boolean encontrado = false;
+		int i=0;
+		while (!encontrado && i<misVacunas.size()) {
+			if(misVacunas.get(i).getCodigo().equalsIgnoreCase(idVacuna)){
+				temp =  misVacunas.get(i);
 				encontrado = true;
 			}
 			i++;
@@ -294,6 +311,27 @@ public class Clinica {
 		
 		return cant;
 	}
+
+
+	public static String getPacienteCedula() {
+		return pacienteCedula; 
+	}
+
+
+	public void setPacienteCedula(String pacienteCedula) {
+		this.pacienteCedula = pacienteCedula;
+	}
+
+
+	public static String getMedicoCedula() {
+		return medicoCedula;
+	}
+
+
+	public void setMedicoCedula(String medicoCedula) {
+		this.medicoCedula = medicoCedula;
+	}
+
 	
 	/*vacuna
 	private void vacunasUsadas(){

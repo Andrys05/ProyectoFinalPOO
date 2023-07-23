@@ -31,6 +31,7 @@ public class ListMed extends JDialog {
 	private Medico selected = null;
 	private static DefaultTableModel model;
 	private static Object row[];
+	private static JButton btnSeleccionar;
 
 	/**
 	 * Launch the application.
@@ -65,12 +66,13 @@ public class ListMed extends JDialog {
 				Tabla.addMouseListener(new MouseAdapter() {
 					@Override
 					public void mouseClicked(MouseEvent e) {
-						int  ind = Tabla.getSelectedRow();
-						if (ind >= 0 ) {
+						int ind = Tabla.getSelectedRow();
+						if (ind >= 0) {
 							btnElim.setEnabled(true);
 							btnModi.setEnabled(true);
+							btnSeleccionar.setEnabled(true);
 							selected = Clinica.getInstance().buscarMedico(Tabla.getValueAt(ind,0).toString());
-							String cedula = Tabla.getValueAt(ind, 1).toString();
+							String cedula = Tabla.getValueAt(ind, 0).toString();
 							selected = Clinica.getInstance().buscarMedico(cedula);
 							
 							
@@ -102,6 +104,22 @@ public class ListMed extends JDialog {
 						loadMedicos();
 					}
 				});
+				{
+					btnSeleccionar = new JButton("Seleccionar Medico (Solo Consulta)");
+					btnSeleccionar.setEnabled(false);
+					btnSeleccionar.addActionListener(new ActionListener() {
+						@Override
+						public void actionPerformed(ActionEvent e) {
+							if(selected != null) {
+								Clinica.getInstance().setMedicoCedula(selected.getCedula());
+								dispose();
+							}
+							else
+								JOptionPane.showMessageDialog(null, "Disculpe, parece que no hay un valor seleccionado aqui para: \n" + Clinica.getMedicoCedula() + "\n Por favor, seleccione un medico y intentalo de nuevo.\n", "Error", JOptionPane.INFORMATION_MESSAGE);
+						}
+					});
+					buttonPane.add(btnSeleccionar);
+				}
 				btnModi.setActionCommand("OK");
 				buttonPane.add(btnModi);
 				getRootPane().setDefaultButton(btnModi);
@@ -144,8 +162,8 @@ public class ListMed extends JDialog {
 		
 		for (Medico aux : Clinica.getInstance().getMisMedicos()) {
 			if(aux != null){
-			row[0] = aux.getNombre();
-			row[1] = aux.getCedula();
+			row[0] = aux.getCedula();
+			row[1] = aux.getNombre();
 			row[2] = aux.getDireccion();
 			row[3] = aux.getTelefono();
 			row[4] = aux.getUsuario();

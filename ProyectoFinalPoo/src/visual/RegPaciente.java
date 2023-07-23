@@ -35,10 +35,11 @@ public class RegPaciente extends JDialog {
 	private JTextField txtDir;
 	private JTextField txtContactoEmer;
 	private JTextField txtNumeroEmer;
-	private char sexo;
+	private char sexo = 'H';
 	JSpinner spnEdad;
 	JComboBox<String> cbxSexo;
 	private Paciente miPaciente = null;
+	private JTextField txtAlergias;
 	
 
 	/**
@@ -59,7 +60,7 @@ public class RegPaciente extends JDialog {
 	 * Create the dialog.
 	 */
 	public RegPaciente(Paciente paciente) {
-		miPaciente = paciente;
+		miPaciente = paciente;	
 		setResizable(false);
 		if(miPaciente == null) {
 			setTitle("Registrar Paciente");
@@ -67,7 +68,7 @@ public class RegPaciente extends JDialog {
 		else {
 			setTitle("Modificar Paciente");
 		}
-		setBounds(100, 100, 431, 312);
+		setBounds(100, 100, 480, 372);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
@@ -78,7 +79,7 @@ public class RegPaciente extends JDialog {
 			panel.setLayout(null);
 			
 			txtNombre = new JTextField();
-			txtNombre.setBounds(30, 37, 117, 20);
+			txtNombre.setBounds(30, 37, 148, 20);
 			panel.add(txtNombre);
 			txtNombre.setColumns(10);
 			
@@ -88,7 +89,7 @@ public class RegPaciente extends JDialog {
 			
 			txtCedula = new JTextField();
 			txtCedula.setColumns(10);
-			txtCedula.setBounds(30, 83, 117, 20);
+			txtCedula.setBounds(30, 83, 148, 20);
 			panel.add(txtCedula);
 			
 			JLabel lblCedula = new JLabel("Cedula:");
@@ -97,7 +98,7 @@ public class RegPaciente extends JDialog {
 			
 			txtTelefono = new JTextField();
 			txtTelefono.setColumns(10);
-			txtTelefono.setBounds(30, 129, 117, 20);
+			txtTelefono.setBounds(30, 129, 148, 20);
 			panel.add(txtTelefono);
 			
 			JLabel lblNumeroDeTelefono = new JLabel("Numero de Telefono:");
@@ -106,7 +107,7 @@ public class RegPaciente extends JDialog {
 			
 			txtDir = new JTextField();
 			txtDir.setColumns(10);
-			txtDir.setBounds(30, 175, 117, 20);
+			txtDir.setBounds(30, 175, 148, 20);
 			panel.add(txtDir);
 			
 			JLabel lblDireccion = new JLabel("Direccion:");
@@ -117,36 +118,35 @@ public class RegPaciente extends JDialog {
 	        spnEdad = new JSpinner(new SpinnerDateModel(new Date(), null, new Date(), Calendar.DAY_OF_MONTH));
 	        JSpinner.DateEditor dateEditor = new JSpinner.DateEditor(spnEdad, "dd/MM/yyyy");
 	        spnEdad.setEditor(dateEditor);
-	        spnEdad.setBounds(214, 37, 127, 20);
+	        spnEdad.setBounds(244, 37, 168, 20);
 	        panel.add(spnEdad);
 			
 			JLabel lblNewLabel_1 = new JLabel("Fecha de Nacimiento:");
-			lblNewLabel_1.setBounds(214, 22, 168, 14);
+			lblNewLabel_1.setBounds(244, 22, 168, 14);
 			panel.add(lblNewLabel_1);
 			
 			JLabel lblNewLabel_2 = new JLabel("Sexo:");
-			lblNewLabel_2.setBounds(214, 68, 46, 14);
+			lblNewLabel_2.setBounds(244, 68, 46, 14);
 			panel.add(lblNewLabel_2);
 			
 			txtContactoEmer = new JTextField();
-			txtContactoEmer.setBounds(214, 129, 127, 20);
+			txtContactoEmer.setBounds(244, 129, 168, 20);
 			panel.add(txtContactoEmer);
 			txtContactoEmer.setColumns(10);
 			
 			JLabel lblNewLabel_3 = new JLabel("Contacto de Emergencia:");
-			lblNewLabel_3.setBounds(214, 114, 168, 14);
+			lblNewLabel_3.setBounds(244, 114, 168, 14);
 			panel.add(lblNewLabel_3);
 			
 			JLabel lblNumeroDeCont = new JLabel("Numero de Contacto de ER:");
-			lblNumeroDeCont.setBounds(214, 160, 168, 14);
+			lblNumeroDeCont.setBounds(244, 160, 168, 14);
 			panel.add(lblNumeroDeCont);
 			
 			txtNumeroEmer = new JTextField();
 			txtNumeroEmer.setColumns(10);
-			txtNumeroEmer.setBounds(214, 175, 127, 20);
+			txtNumeroEmer.setBounds(244, 175, 168, 20);
 			panel.add(txtNumeroEmer);
 			
-			sexo = 'H';
 			String[] sexos = {"Hombre", "Mujer"};
 			cbxSexo = new JComboBox(sexos);
 			cbxSexo.setModel(new DefaultComboBoxModel(new String[] {"Hombre", "Mujer"}));
@@ -156,7 +156,7 @@ public class RegPaciente extends JDialog {
 						if(cbxSexo.getSelectedItem().equals("Hombre")) {
 							sexo = 'H';
 						}
-						else {
+						if(cbxSexo.getSelectedItem().equals("Mujer")) {
 							sexo = 'M';
 						}
 						//Para probar que el valor correcto del char estaba funcionando
@@ -164,8 +164,17 @@ public class RegPaciente extends JDialog {
 					}
 				}
 			});
-			cbxSexo.setBounds(214, 83, 127, 20);
+			cbxSexo.setBounds(244, 83, 168, 20);
 			panel.add(cbxSexo);
+			
+			txtAlergias = new JTextField();
+			txtAlergias.setBounds(30, 225, 382, 64);
+			panel.add(txtAlergias);
+			txtAlergias.setColumns(10);
+			
+			JLabel lblNewLabel_4 = new JLabel("Alergias:");
+			lblNewLabel_4.setBounds(30, 206, 117, 14);
+			panel.add(lblNewLabel_4);
 		}
 		{
 			JPanel buttonPane = new JPanel();
@@ -176,29 +185,32 @@ public class RegPaciente extends JDialog {
 				btnRegistrar.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
 						Date fechaNacim = (Date) spnEdad.getValue();
-						if(txtNombre.getText().isEmpty() || txtCedula.getText().isEmpty() || txtTelefono.getText().isEmpty() || txtDir.getText().isEmpty() || 
-								txtContactoEmer.getText().isEmpty() || txtNumeroEmer.getText().isEmpty()) {
+						if (txtNombre.getText().isEmpty() || txtCedula.getText().isEmpty() || txtTelefono.getText().isEmpty() || txtDir.getText().isEmpty() || 
+							    txtContactoEmer.getText().isEmpty() || txtNumeroEmer.getText().isEmpty() || (sexo != 'H' && sexo != 'M')) {
 							JOptionPane.showMessageDialog(null, "Disculpe, parece que faltan algunos datos en la registracion del paciente. Por favor, llene los datos que faltan e intenta la registracion de nuevo.\n", "Datos Ausentes", JOptionPane.INFORMATION_MESSAGE);
 						}
 						else {
 							if (miPaciente == null) {
 									//SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
 									//String fechaNacimientoStr = dateFormat.format(fechaNacim);
-									Paciente nuevoPaciente = new Paciente(txtNombre.getText(), txtCedula.getText(), txtDir.getText(), fechaNacim, sexo, txtTelefono.getText(), false, txtContactoEmer.getText(), txtNumeroEmer.getText(), null);
-									Clinica.getInstance().insertarPaciente(nuevoPaciente);
+								
+									if(txtAlergias.getText().isEmpty())
+										txtAlergias.setText("N/A");
+									miPaciente = new Paciente(txtNombre.getText(), txtCedula.getText(), txtDir.getText(), fechaNacim, sexo, txtTelefono.getText(), false, txtContactoEmer.getText(), txtNumeroEmer.getText(), txtAlergias.getText());
+									Clinica.getInstance().insertarPaciente(miPaciente);
 									JOptionPane.showMessageDialog(null, "Paciente Registrado!\n", "Registracion!", JOptionPane.INFORMATION_MESSAGE); 
 									clean();
 								}
 							else {
-									//Nota: La unica cosa que funciona aqui es Genero por ahora
 									miPaciente.setNombre(txtNombre.getText());
 									miPaciente.setCedula(txtCedula.getText());
 									miPaciente.setTelefono(txtTelefono.getText());
-									miPaciente.setDireccion(txtCedula.getText());
+									miPaciente.setDireccion(txtDir.getText());
 									miPaciente.setFechaDeNacim(fechaNacim);
 									miPaciente.setContactoEmergencia(txtContactoEmer.getText());
 									miPaciente.setNumEmergencia(txtNumeroEmer.getText());
-									cbxSexo.setSelectedItem(sexo);
+									miPaciente.setSexo(sexo);
+									miPaciente.setAlergias(txtAlergias.getText());
 									
 									Clinica.getInstance().modificarPaciente(miPaciente);
 									dispose();
@@ -231,14 +243,15 @@ public class RegPaciente extends JDialog {
 		if(miPaciente != null) {
 			txtNombre.setText(miPaciente.getNombre());
 			txtCedula.setText(miPaciente.getCedula());
-			txtTelefono.setText(miPaciente.getDireccion());
+			txtTelefono.setText(miPaciente.getTelefono());
 			txtDir.setText(miPaciente.getDireccion());
 			txtContactoEmer.setText(miPaciente.getContactoEmergencia());
 			txtNumeroEmer.setText(miPaciente.getNumEmergencia());
+			txtAlergias.setText(miPaciente.getAlergias());
 			//Falta esta parte de ser arreglado
 			if(miPaciente.getSexo()=='H')
 				cbxSexo.setSelectedItem("Hombre");
-			else
+			if(miPaciente.getSexo()=='M')
 				cbxSexo.setSelectedItem("Mujer");
 			
 			spnEdad.setValue(miPaciente.getFechaDeNacim());
@@ -255,8 +268,9 @@ public class RegPaciente extends JDialog {
 		txtDir.setText("");
 		txtContactoEmer.setText("");
 		txtNumeroEmer.setText("");
-		cbxSexo.setSelectedItem("Hombre");
+		cbxSexo.setSelectedItem("");
 		spnEdad.setValue(new Date());
+		txtAlergias.setText("");
 		miPaciente = null;
 	}
 }

@@ -1,6 +1,3 @@
-
-
-
 package visual;
 
 import java.awt.BorderLayout;
@@ -27,6 +24,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.ScrollPaneConstants;
 
@@ -38,9 +36,9 @@ public class ListarPaciente extends JDialog {
 	private static Object[] fila;
 	private static int seleccion;
 	private JComboBox cbxCondicion;
+	private static JButton btnSeleccionar;
 	private static JButton btnModificar;
 	private static JButton btnConsultaHistorial;
-	private int codigo;
 	static JLabel lblNewLabel_1;
 	private static Paciente seleccionado = null;
 	
@@ -59,6 +57,7 @@ public class ListarPaciente extends JDialog {
 
 	/**
 	 * Create the dialog.
+	 * @return 
 	 */
 	public ListarPaciente() {
 		setTitle("Listado de Pacientes");
@@ -92,15 +91,19 @@ public class ListarPaciente extends JDialog {
 				public void mouseClicked(MouseEvent e) {
 					if (table.getSelectedRow() >= 0) {
 						int index = table.getSelectedRow();
-						btnModificar.setEnabled(true);
-						btnConsultaHistorial.setEnabled(true);
-						seleccionado = Clinica.getInstance().buscarPaciente(table.getValueAt(index, 0).toString());
-						codigo = (int)table.getModel().getValueAt(index, 0);
+						if(index >= 0) {
+							btnModificar.setEnabled(true);
+							btnConsultaHistorial.setEnabled(true);
+							btnSeleccionar.setEnabled(true);
+							String cedula =  table.getValueAt(index, 0).toString();
+							seleccionado = Clinica.getInstance().buscarPaciente(cedula);
+						}
 					}
 				}
 			});
 			modelo = new DefaultTableModel();
-			String[] headers = {"Nombre", "Cedula", "Sexo", "Nacimiento", "Direccion", "Telefono", "Estado", "Contacto Em.", "Telefono de Contacto Em."};
+			String[] headers = {"Cedula", "Nombre", "Sexo", "Nacimiento", "Direccion", "Telefono", "Estado", "Contacto Em.", "Telefono de Contacto Em."};
+			table.setModel(modelo);
 			modelo.setColumnIdentifiers(headers);
 			loadPacientes(0);
 			scrollPane.setViewportView(table);
@@ -140,8 +143,26 @@ public class ListarPaciente extends JDialog {
 				btnConsultaHistorial.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
 						ListConsultas list = new ListConsultas(seleccionado);
+						list.setModal(true);
+						list.setLocationRelativeTo(null);
+						list.setVisible(true);
 					}
 				});
+				
+				btnSeleccionar = new JButton("Seleccionar Paciente (Solo Consulta)");
+				btnSeleccionar.setEnabled(false);
+				btnSeleccionar.addActionListener(new ActionListener() {
+					@Override
+					public void actionPerformed(ActionEvent e) {
+						if(seleccionado != null) {
+							Clinica.getInstance().setPacienteCedula(seleccionado.getCedula());
+							dispose();
+						}
+						else
+							JOptionPane.showMessageDialog(null, "Disculpe, parece que no hay un valor seleccionado aqui para: \n" + Clinica.getPacienteCedula() + "\n Por favor, seleccione un paciente y intentalo de nuevo.\n", "Error", JOptionPane.INFORMATION_MESSAGE);
+					}
+				});
+				buttonPane.add(btnSeleccionar);
 				btnConsultaHistorial.setEnabled(false);
 				buttonPane.add(btnConsultaHistorial);
 				btnModificar.setActionCommand("OK");
@@ -171,8 +192,8 @@ public class ListarPaciente extends JDialog {
 		switch(seleccion){
 		case 0:
 			for(Paciente aux : Clinica.getInstance().getMisPacientes()) {
-					fila[0] = aux.getNombre();
-					fila[1] = aux.getCedula();
+					fila[0] = aux.getCedula();
+					fila[1] = aux.getNombre();
 					fila[2] = aux.getSexo();
 					SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
 					String fechaNacimientoStr = dateFormat.format(aux.getFechaDeNacim());
@@ -190,9 +211,9 @@ public class ListarPaciente extends JDialog {
 			break;
 		case 1: 
 			for(Paciente aux : Clinica.getInstance().getMisPacientes()) {
-				if (((Paciente) aux).isEstado() == false) {
-					fila[0] = aux.getNombre();
-					fila[1] = aux.getCedula();
+				if (aux.isEstado() == false) {
+					fila[0] = aux.getCedula();
+					fila[1] = aux.getNombre();
 					fila[2] = aux.getSexo();
 					SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
 					String fechaNacimientoStr = dateFormat.format(aux.getFechaDeNacim());
@@ -208,9 +229,9 @@ public class ListarPaciente extends JDialog {
 			break;
 		case 2: 
 			for(Paciente aux : Clinica.getInstance().getMisPacientes()) {
-				if (((Paciente) aux).isEstado() == true) {
-					fila[0] = aux.getNombre();
-					fila[1] = aux.getCedula();
+				if (aux.isEstado() == true) {
+					fila[0] = aux.getCedula();
+					fila[1] = aux.getNombre();
 					fila[2] = aux.getSexo();
 					SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
 					String fechaNacimientoStr = dateFormat.format(aux.getFechaDeNacim());
@@ -226,9 +247,9 @@ public class ListarPaciente extends JDialog {
 			break;
 		case 3: 
 			for(Paciente aux : Clinica.getInstance().getMisPacientes()) {
-				if (aux instanceof Paciente && ((Paciente) aux).getSexo() == 'H') {
-					fila[0] = aux.getNombre();
-					fila[1] = aux.getCedula();
+				if (aux.getSexo() == 'H') {
+					fila[0] = aux.getCedula();
+					fila[1] = aux.getNombre();
 					fila[2] = aux.getSexo();
 					SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
 					String fechaNacimientoStr = dateFormat.format(aux.getFechaDeNacim());
@@ -247,9 +268,9 @@ public class ListarPaciente extends JDialog {
 			break;
 		case 4:
 			for(Paciente aux : Clinica.getInstance().getMisPacientes()) {
-				if (aux instanceof Paciente && ((Paciente) aux).getSexo() == 'M') {
-					fila[0] = aux.getNombre();
-					fila[1] = aux.getCedula();
+				if (aux.getSexo() == 'M') {
+					fila[0] = aux.getCedula();
+					fila[1] = aux.getNombre();
 					fila[2] = aux.getSexo();
 					SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
 					String fechaNacimientoStr = dateFormat.format(aux.getFechaDeNacim());
