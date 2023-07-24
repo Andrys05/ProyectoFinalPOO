@@ -112,10 +112,10 @@ public class Principal extends JFrame {
 		mntmNewMenuItem_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-				/*RegCitas citas = new RegCitas();
-				citas.setModal(true);
+				RegCitas citas = new RegCitas();
+				//citas.setModal(true);
 				citas.setLocationRelativeTo(null);
-				citas.setVisible(true);*/
+				citas.setVisible(true);
 				
 			}
 		});
@@ -125,7 +125,7 @@ public class Principal extends JFrame {
 		mntmNewMenuItem_3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				/*
-				//ListarQueso list = new ListarQueso();
+				//ListarCitas list = new ListarCitas();
 				list.setModal(true);
 				list.setLocationRelativeTo(null);
 				list.setVisible(true);
