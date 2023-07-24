@@ -50,6 +50,7 @@ public class RegCitas extends JFrame {
 	 * Create the frame.
 	 */
 	public RegCitas() {
+		setResizable(false);
 		setTitle("Registrar Cita");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 700, 500);
@@ -100,6 +101,7 @@ public class RegCitas extends JFrame {
 		contentPane.add(lblHora_1);
 		
 		txtNombre = new JTextField();
+		txtNombre.setEditable(false);
 		txtNombre.setBounds(96, 87, 304, 26);
 		contentPane.add(txtNombre);
 		txtNombre.setColumns(10);
