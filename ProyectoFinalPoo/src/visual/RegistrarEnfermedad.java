@@ -17,6 +17,7 @@ import javax.swing.JTextField;
 import javax.swing.JButton;
 import javax.swing.JRadioButton;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import java.awt.event.ActionEvent;
 
 public class RegistrarEnfermedad extends JFrame {
@@ -26,6 +27,7 @@ public class RegistrarEnfermedad extends JFrame {
 	private JTextField textNombre;
 	private JTextField textNombreEnfermedad;
 	private JTextField textSintomas;
+	ArrayList<String> Sintomas = new ArrayList<>(100);
 
 	/**
 	 * Launch the application.
@@ -129,6 +131,14 @@ public class RegistrarEnfermedad extends JFrame {
 		textSintomas.setColumns(10);
 		
 		JButton btnNewButton_1 = new JButton("Agregar");
+		btnNewButton_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			 Sintomas.add(textSintomas.getText());
+			 JOptionPane.showMessageDialog(contentPane, "Añadido");
+			 textSintomas.setText("");
+				
+			}
+		});
 		btnNewButton_1.setBackground(new Color(255, 255, 255));
 		btnNewButton_1.setBounds(329, 119, 115, 29);
 		panel_2.add(btnNewButton_1);
