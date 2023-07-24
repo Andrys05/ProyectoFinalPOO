@@ -32,6 +32,7 @@ public class ListVac extends JDialog {
 	private JButton btnElim;
 	private static DefaultTableModel model;
 	private static Object row[];
+	private JButton btnNewButton;
 
 	/**
 	 * Launch the application.
@@ -50,8 +51,9 @@ public class ListVac extends JDialog {
 	 * Create the dialog.
 	 */
 	public ListVac() {
+		Clinica.getInstance().setVacunaCodigo("");
 		setTitle("Lista de Vacunas");
-		setBounds(100, 100, 484, 300);
+		setBounds(100, 100, 733, 433);
 		setLocationRelativeTo(null);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBorder(new TitledBorder(null, "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
@@ -97,6 +99,20 @@ public class ListVac extends JDialog {
 						loadVacunas();
 					}
 				});
+				{
+					btnNewButton = new JButton("Seleccionar Vacuna (Solo Consulta)");
+					btnNewButton.addActionListener(new ActionListener() {
+						public void actionPerformed(ActionEvent e) {
+							if(select != null) {
+								Clinica.getInstance().setVacunaCodigo(select.getCodigo());
+								dispose();
+							}
+							else
+								JOptionPane.showMessageDialog(null, "Disculpe, parece que no hay un valor seleccionado aqui para: \n" + Clinica.getVacunaCodigo() + "\n Por favor, seleccione una Vacuna y intentalo de nuevo.\n", "Error", JOptionPane.INFORMATION_MESSAGE);
+						}
+					});
+					buttonPane.add(btnNewButton);
+				}
 				btnModi.setActionCommand("OK");
 				buttonPane.add(btnModi);
 				getRootPane().setDefaultButton(btnModi);

@@ -119,7 +119,7 @@ public class RegConsulta extends JDialog {
 			
 			spnFecha = new JSpinner();
 			spnFecha.setModel(new SpinnerDateModel(new Date(), null, new Date(), Calendar.DAY_OF_YEAR));
-			JSpinner.DateEditor dateEditor = new JSpinner.DateEditor(spnFecha, "dd/MM/yyyy hh:mm");
+			JSpinner.DateEditor dateEditor = new JSpinner.DateEditor(spnFecha, "dd/MM/yyyy hh:mm a");
 			spnFecha.setEditor(dateEditor);
 			spnFecha.setEnabled(false);
 			spnFecha.setBounds(177, 48, 181, 20);
@@ -157,7 +157,7 @@ public class RegConsulta extends JDialog {
 					list.setVisible(true);
 					if(Clinica.getPacienteCedula() != "") {
 						txtPaciente.setText(Clinica.getPacienteCedula());
-						JOptionPane.showMessageDialog(null, "Tu paciente es \n" + Clinica.getPacienteCedula(), "Prueba", JOptionPane.INFORMATION_MESSAGE);
+						Clinica.getInstance().setPacienteCedula("");
 					}
 				}
 			});
@@ -172,12 +172,27 @@ public class RegConsulta extends JDialog {
 					list.setVisible(true);
 					if(Clinica.getMedicoCedula() != "") {
 						txtCedMedico.setText(Clinica.getMedicoCedula());
-						JOptionPane.showMessageDialog(null, "Tu medico es \n" + Clinica.getMedicoCedula(), "Prueba", JOptionPane.INFORMATION_MESSAGE);
+						Clinica.getInstance().setMedicoCedula("");
 					}
 				}
 			});
 			btnBuscMedico.setBounds(177, 140, 138, 23);
 			panel.add(btnBuscMedico);
+			
+			JButton btnNewButton = new JButton("Buscar Vacuna");
+			btnNewButton.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					ListVac list = new ListVac();
+					list.setModal(true);
+					list.setVisible(true);
+					if(Clinica.getVacunaCodigo() != "") {
+						txtVacuna.setText(Clinica.getVacunaCodigo());
+						Clinica.getInstance().setVacunaCodigo("");
+					}
+				}
+			});
+			btnNewButton.setBounds(177, 350, 138, 23);
+			panel.add(btnNewButton);
 		}
 		{
 			JPanel buttonPane = new JPanel();

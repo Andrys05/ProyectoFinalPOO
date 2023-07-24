@@ -60,6 +60,7 @@ public class ListarPaciente extends JDialog {
 	 * @return 
 	 */
 	public ListarPaciente() {
+		Clinica.getInstance().setPacienteCedula("");
 		setTitle("Listado de Pacientes");
 		setBounds(100, 100, 996, 487);
 		getContentPane().setLayout(new BorderLayout());

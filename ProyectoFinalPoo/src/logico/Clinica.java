@@ -22,6 +22,7 @@ public class Clinica {
 
 	public static String pacienteCedula = "";
 	public static String medicoCedula = "";
+	public static String vacunaCodigo = "";
 	
 	
 	public static Clinica getInstance() {
@@ -358,6 +359,16 @@ public class Clinica {
 		int cont;
 		cont = misVacunas.indexOf(select);
 		misVacunas.remove(cont);
+	}
+
+
+	public static String getVacunaCodigo() {
+		return vacunaCodigo;
+	}
+
+
+	public void setVacunaCodigo(String vacunaCodigo) {
+		this.vacunaCodigo = vacunaCodigo;
 	}
 
 	
