@@ -81,9 +81,6 @@ public class Principal extends JFrame {
 				reg.setModal(true);
 				reg.setLocationRelativeTo(null);
 				reg.setVisible(true);
-				
-				
-				
 			}
 		});
 		mnNewMenu_1.add(mntmNewMenuItem_1);
@@ -95,9 +92,6 @@ public class Principal extends JFrame {
 				list.setModal(true);
 				list.setLocationRelativeTo(null);
 				list.setVisible(true);
-				
-				
-				
 			}
 		});
 		mnNewMenu_1.add(mntmNewMenuItem_11);
@@ -117,13 +111,11 @@ public class Principal extends JFrame {
 		JMenuItem mntmNewMenuItem_2 = new JMenuItem("Hacer una Cita");
 		mntmNewMenuItem_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				/*
-				//RegQueso reg = new RegQueso(null);
-				reg.setModal(true);
-				reg.setLocationRelativeTo(null);
-				reg.setVisible(true);
-				*/
 				
+				/*RegCitas citas = new RegCitas();
+				citas.setModal(true);
+				citas.setLocationRelativeTo(null);
+				citas.setVisible(true);*/
 				
 			}
 		});
@@ -148,9 +140,25 @@ public class Principal extends JFrame {
 		menuBar.add(mnNewMenu_3);
 		
 		JMenuItem mntmNewMenuItem_6 = new JMenuItem("Hacer una Consulta");
+		mntmNewMenuItem_6.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				RegConsulta reg = new RegConsulta();
+				reg.setModal(true);
+				reg.setLocationRelativeTo(null);
+				reg.setVisible(true);
+			}
+		});
 		mnNewMenu_3.add(mntmNewMenuItem_6);
 		
 		JMenuItem mntmNewMenuItem_7 = new JMenuItem("Listar Consultas");
+		mntmNewMenuItem_7.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				ListConsultas list = new ListConsultas(null);
+				list.setModal(true);
+				list.setLocationRelativeTo(null);
+				list.setVisible(true);
+			}
+		});
 		mnNewMenu_3.add(mntmNewMenuItem_7);
 		
 		JMenu mnNewMenu_4 = new JMenu("Vacuna");
@@ -159,7 +167,7 @@ public class Principal extends JFrame {
 		JMenuItem mntmNewMenuItem_8 = new JMenuItem("Agregar Vacuna");
 		mntmNewMenuItem_8.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				AgrVac vacunas = new AgrVac();
+				AgrVac vacunas = new AgrVac(null);
 				vacunas.setModal(true);
 				vacunas.setLocationRelativeTo(null);
 				vacunas.setVisible(true);
@@ -171,10 +179,22 @@ public class Principal extends JFrame {
 		mnNewMenu_4.add(mntmNewMenuItem_8);
 		
 		JMenuItem mntmNewMenuItem_9 = new JMenuItem("Listar Vacunas");
+		mntmNewMenuItem_9.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				ListVac vacunas = new ListVac();
+				vacunas.setModal(true);
+				vacunas.setLocationRelativeTo(null);
+				vacunas.setVisible(true);
+				
+				
+			}
+		});
 		mnNewMenu_4.add(mntmNewMenuItem_9);
+		
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		contentPane.setLayout(new BorderLayout(0, 0));
 		setContentPane(contentPane);
 	}
 }
+

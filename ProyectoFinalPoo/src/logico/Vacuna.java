@@ -40,13 +40,13 @@ public class Vacuna {
 		this.fechaRecibida = fechaRecibida;
 	}
 	
-	public Vacuna(String codigo, String nombre, String descrip, int antMiligramos, Date fechaRecibida) {
+	public Vacuna(String codigo, String nombre, String descrip, int antMiligramos) {
 		super();
 		this.codigo = codigo;
 		this.nombre = nombre;
 		this.descrip = descrip;
 		this.antMiligramos = antMiligramos;
-		this.fechaRecibida = fechaRecibida;
+		fechaRecibida =  new Date();
 	}
 	
 	

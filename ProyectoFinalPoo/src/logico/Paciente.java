@@ -12,12 +12,12 @@ public class Paciente{
 	private boolean estado;
 	private String contactoEmergencia;
 	private String numEmergencia;
-	private String alergias[];
+	private String alergias;
 
 	
 
 	public Paciente(String nombre, String cedula, String direccion, Date fechaDeNacim, char sexo, String telefono,
-			boolean estado, String contactoEmergencia, String numEmergencia, String[] alergias) {
+			boolean estado, String contactoEmergencia, String numEmergencia, String alergias) {
 		super();
 		this.nombre = nombre;
 		this.cedula = cedula;
@@ -103,11 +103,11 @@ public class Paciente{
 		this.numEmergencia = numEmergencia;
 	}
 
-	public String[] getAlergias() {
+	public String getAlergias() {
 		return alergias;
 	}
 
-	public void setAlergias(String alergias[]) {
+	public void setAlergias(String alergias) {
 		this.alergias = alergias;
 	}
 

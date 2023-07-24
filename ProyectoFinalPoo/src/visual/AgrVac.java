@@ -10,8 +10,14 @@ import javax.swing.JDialog;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.border.TitledBorder;
+
+import logico.Clinica;
+import logico.Medico;
+import logico.Vacuna;
+
 import javax.swing.JSpinner;
 import javax.swing.SpinnerDateModel;
 import java.util.Date;
@@ -25,7 +31,10 @@ public class AgrVac extends JDialog {
 	private JButton btnCancel;
 	private JTextField txtCod;
 	private JTextField txtNombre;
-	private JTextPane txtDir;
+	private JTextPane txtDescrip;
+	private boolean control;
+	private static Vacuna vac=null;
+
 	
 
 	/**
@@ -33,7 +42,7 @@ public class AgrVac extends JDialog {
 	 */
 	public static void main(String[] args) {
 		try {
-			AgrVac dialog = new AgrVac();
+			AgrVac dialog = new AgrVac(null);
 			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 			dialog.setVisible(true);
 		} catch (Exception e) {
@@ -44,7 +53,7 @@ public class AgrVac extends JDialog {
 	/**
 	 * Create the dialog.
 	 */
-	public AgrVac() {
+	public AgrVac(Vacuna vac) {
 		setTitle("Agregar Vacuna al Inventario");
 		setBounds(100, 100, 341, 252);
 		getContentPane().setLayout(new BorderLayout());
@@ -59,6 +68,7 @@ public class AgrVac extends JDialog {
 		{
 			txtCod = new JTextField();
 			txtCod.setEditable(false);
+			txtCod.setText("Vac-"+Clinica.getInstance().codigo);
 			txtCod.setBounds(12, 36, 73, 22);
 			contentPanel.add(txtCod);
 			txtCod.setColumns(10);
@@ -80,9 +90,9 @@ public class AgrVac extends JDialog {
 			contentPanel.add(lblNewLabel_2);
 		}
 		
-		txtDir = new JTextPane();
-		txtDir.setBounds(12, 107, 199, 45);
-		contentPanel.add(txtDir);
+		txtDescrip = new JTextPane();
+		txtDescrip.setBounds(12, 107, 199, 45);
+		contentPanel.add(txtDescrip);
 		{
 			JPanel buttonPane = new JPanel();
 			buttonPane.setBorder(new TitledBorder(null, "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
@@ -90,6 +100,24 @@ public class AgrVac extends JDialog {
 			getContentPane().add(buttonPane, BorderLayout.SOUTH);
 			{
 				btnAgr = new JButton("Agregar Vacuna");
+				btnAgr.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+						if(!control) {
+							Vacuna aux = new Vacuna(txtCod.getText(),txtNombre.getText(),txtDescrip.getText(),0);
+							Clinica.getInstance().insertarVacuna(aux);
+						    JOptionPane.showMessageDialog(null, "Operación satisfactoria", "Registro", JOptionPane.INFORMATION_MESSAGE);				  
+						    clear();
+						}else {
+							vac.setNombre(txtNombre.getText());
+							vac.setDescrip(txtDescrip.getText());
+							Clinica.getInstance().modificarVac(vac);
+							dispose();
+							ListVac.loadVacunas();
+							
+						}
+						
+					}
+				});
 				btnAgr.setActionCommand("OK");
 				buttonPane.add(btnAgr);
 				getRootPane().setDefaultButton(btnAgr);
@@ -105,5 +133,21 @@ public class AgrVac extends JDialog {
 				buttonPane.add(btnCancel);
 			}
 		}
+		loadVacuna();
+	}
+	
+	public void loadVacuna() {
+		if(vac != null) {
+			txtCod.setText(vac.getCodigo());
+			txtNombre.setText(vac.getNombre());
+			txtDescrip.setText(vac.getDescrip());		}
+	}
+
+	protected void clear() {
+		txtCod.setText("Vac-"+Clinica.getInstance().codigo);
+		txtNombre.setText("");
+		txtDescrip.setText("");
+		
+		
 	}
 }
