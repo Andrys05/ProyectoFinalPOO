@@ -135,7 +135,6 @@ public class RegCitas extends JFrame {
 				dispose();
 			}
 		});
-		//btnCancelar.setActionCommand("Cancel");
 		
 	}
 
