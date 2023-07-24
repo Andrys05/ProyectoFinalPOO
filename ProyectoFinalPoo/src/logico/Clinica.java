@@ -360,6 +360,12 @@ public class Clinica {
 		misVacunas.remove(cont);
 	}
 
+
+	public void RegistrarCita(Cita aux) {
+		misCitas.add(aux);		// TODO Auto-generated method stub
+		
+	}
+
 	
 	/*vacuna
 	private void vacunasUsadas(){

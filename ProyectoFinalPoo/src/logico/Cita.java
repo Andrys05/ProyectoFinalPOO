@@ -5,13 +5,13 @@ import java.util.Date;
 public class Cita {
 	
 	private String nombre;
-	private Date fecha;
+	private String fecha;
 	private String hora;
 	private String doctor;
 	private String tipo;
 	private String cedula;
 	
-	public Cita(String nombre, Date fecha, String hora, String doctor, String tipo, String cedula) {
+	public Cita(String nombre, String fecha, String hora, String doctor, String tipo, String cedula) {
 		super();
 		this.nombre = nombre;
 		this.fecha = fecha;
@@ -29,11 +29,11 @@ public class Cita {
 		this.nombre = nombre;
 	}
 
-	public Date getFecha() {
+	public String getFecha() {
 		return fecha;
 	}
 
-	public void setFecha(Date fecha) {
+	public void setFecha(String fecha) {
 		this.fecha = fecha;
 	}
 
