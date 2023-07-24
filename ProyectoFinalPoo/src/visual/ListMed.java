@@ -50,6 +50,7 @@ public class ListMed extends JDialog {
 	 * Create the dialog.
 	 */
 	public ListMed() {
+		Clinica.getInstance().setMedicoCedula("");
 		setTitle("Listar M\u00E9dicos");
 		setBounds(100, 100, 686, 329);
 		setLocationRelativeTo(null);

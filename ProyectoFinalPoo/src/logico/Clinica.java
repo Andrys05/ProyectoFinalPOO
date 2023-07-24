@@ -22,6 +22,7 @@ public class Clinica {
 
 	public static String pacienteCedula = "";
 	public static String medicoCedula = "";
+	public static String vacunaCodigo = "";
 	
 	
 	public static Clinica getInstance() {
@@ -361,9 +362,19 @@ public class Clinica {
 	}
 
 
+
 	public void RegistrarCita(Cita aux) {
 		misCitas.add(aux);		// TODO Auto-generated method stub
 		
+	}
+	public static String getVacunaCodigo() {
+		return vacunaCodigo;
+	}
+
+
+	public void setVacunaCodigo(String vacunaCodigo) {
+		this.vacunaCodigo = vacunaCodigo;
+
 	}
 
 	

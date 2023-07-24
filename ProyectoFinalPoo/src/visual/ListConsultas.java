@@ -57,7 +57,7 @@ public class ListConsultas extends JDialog {
 			setTitle("Consulta Historial de "+ miPaciente.getNombre());
 		else
 			setTitle("Listado de Consultas");
-		setBounds(100, 100, 853, 491);
+		setBounds(100, 100, 1048, 491);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
@@ -68,7 +68,7 @@ public class ListConsultas extends JDialog {
 			panel.setLayout(null);
 			{
 				JScrollPane scrollPane = new JScrollPane();
-				scrollPane.setBounds(10, 36, 807, 362);
+				scrollPane.setBounds(10, 36, 1002, 362);
 				scrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 				panel.add(scrollPane);
 				{
@@ -90,7 +90,7 @@ public class ListConsultas extends JDialog {
 						}
 					});
 					modelo = new DefaultTableModel();
-					String[] headers = {"Codigo", "Paciente", "Medico", "Tiempo", "Desc.", "Diagnostico"};
+					String[] headers = {"Codigo", "Paciente", "Medico", "Desc.", "Tiempo", "Diagnostico", "Tratamiento", "Vacuna"};
 					modelo.setColumnIdentifiers(headers);
 					loadConsultas(0);
 					scrollPane.setViewportView(table);
@@ -129,14 +129,19 @@ public class ListConsultas extends JDialog {
 				fila[0] = aux.getCodigo();
 				fila[1] = aux.getPaciente().getNombre();
 				fila[2] = aux.getMedico().getNombre();
-				SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy hh:mm");
+				fila[3] = aux.getDescripcion();
+				SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy hh:mm a");
 				String fechaOcurrida = dateFormat.format(aux.getFechaConsulta());
-				fila[3] = fechaOcurrida;
-				fila[4] = aux.getDescripcion();
+				fila[4] = fechaOcurrida;
 				if(aux.getDiagnostico() == null) 
 					fila[5] = "N/A";
 				else
 					fila[5] = aux.getDiagnostico().getNombre();
+				fila[6] = aux.getTratamiento();
+				if(aux.getVacuna() == null)
+					fila[7] = "N/A";
+				else
+					fila[7] = aux.getVacuna().getNombre();
 				modelo.addRow(fila);
 			}
 		}
@@ -146,14 +151,19 @@ public class ListConsultas extends JDialog {
 					fila[0] = aux.getCodigo();
 					fila[1] = aux.getPaciente().getNombre();
 					fila[2] = aux.getMedico().getNombre();
-					SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy hh:mm");
+					fila[3] = aux.getDescripcion();
+					SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy hh:mm a");
 					String fechaOcurrida = dateFormat.format(aux.getFechaConsulta());
-					fila[3] = fechaOcurrida;
-					fila[4] = aux.getDescripcion();
+					fila[4] = fechaOcurrida;
 					if(aux.getDiagnostico() == null) 
 						fila[5] = "N/A";
 					else
 						fila[5] = aux.getDiagnostico().getNombre();
+					fila[6] = aux.getTratamiento();
+					if(aux.getVacuna() == null)
+						fila[7] = "N/A";
+					else
+						fila[7] = aux.getVacuna().getNombre();
 					modelo.addRow(fila);
 				}
 			}
@@ -166,8 +176,10 @@ public class ListConsultas extends JDialog {
 		columnModel.getColumn(0).setPreferredWidth(110);
 		columnModel.getColumn(1).setPreferredWidth(120);
 		columnModel.getColumn(2).setPreferredWidth(120);
-		columnModel.getColumn(3).setPreferredWidth(120);
-		columnModel.getColumn(4).setPreferredWidth(220);
+		columnModel.getColumn(3).setPreferredWidth(220);
+		columnModel.getColumn(4).setPreferredWidth(120);
 		columnModel.getColumn(5).setPreferredWidth(120);
+		columnModel.getColumn(6).setPreferredWidth(220);
+		columnModel.getColumn(7).setPreferredWidth(120);
 	}
 }
