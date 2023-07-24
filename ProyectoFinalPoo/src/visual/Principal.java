@@ -111,12 +111,12 @@ public class Principal extends JFrame {
 		JMenuItem mntmNewMenuItem_2 = new JMenuItem("Hacer una Cita");
 		mntmNewMenuItem_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				/*
-				//RegQueso reg = new RegQueso(null);
-				reg.setModal(true);
-				reg.setLocationRelativeTo(null);
-				reg.setVisible(true);
-				*/
+				
+				/*RegCitas citas = new RegCitas();
+				citas.setModal(true);
+				citas.setLocationRelativeTo(null);
+				citas.setVisible(true);*/
+				
 			}
 		});
 		mnNewMenu_2.add(mntmNewMenuItem_2);
@@ -167,7 +167,7 @@ public class Principal extends JFrame {
 		JMenuItem mntmNewMenuItem_8 = new JMenuItem("Agregar Vacuna");
 		mntmNewMenuItem_8.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				AgrVac vacunas = new AgrVac();
+				AgrVac vacunas = new AgrVac(null);
 				vacunas.setModal(true);
 				vacunas.setLocationRelativeTo(null);
 				vacunas.setVisible(true);
@@ -179,7 +179,18 @@ public class Principal extends JFrame {
 		mnNewMenu_4.add(mntmNewMenuItem_8);
 		
 		JMenuItem mntmNewMenuItem_9 = new JMenuItem("Listar Vacunas");
+		mntmNewMenuItem_9.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				ListVac vacunas = new ListVac();
+				vacunas.setModal(true);
+				vacunas.setLocationRelativeTo(null);
+				vacunas.setVisible(true);
+				
+				
+			}
+		});
 		mnNewMenu_4.add(mntmNewMenuItem_9);
+		
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		contentPane.setLayout(new BorderLayout(0, 0));

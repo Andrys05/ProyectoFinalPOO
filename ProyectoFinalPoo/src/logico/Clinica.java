@@ -219,6 +219,21 @@ public class Clinica {
 		return aux;
 	}
 	
+	private int buscarIndexVacByCode(String code) {
+		int aux = -1;
+		boolean encontrado = false;
+		int i=0;
+		while (i<misVacunas.size()&& !encontrado) {
+			if(misVacunas.get(i).getCodigo().equalsIgnoreCase(code)){
+				encontrado = true;
+				aux = i;
+			}
+			i++;
+		}
+		
+		return aux;
+	}
+	
 
 	public ArrayList<Cita> getMisCitas() {
 		return misCitas;
@@ -260,9 +275,6 @@ public class Clinica {
 		misMedicos.add(misMedis);
 	}
 	
-	//public void eliminarMedico(Medico select) {
-		//misMedicos.remove(select);
-	//}
 	
 	public void eliminarMedico(Medico select) {
 		int cont;
@@ -333,6 +345,19 @@ public class Clinica {
 
 	public void setMedicoCedula(String medicoCedula) {
 		this.medicoCedula = medicoCedula;
+	}
+
+
+	public void modificarVac(Vacuna vac) {
+		int cont = buscarIndexVacByCode(vac.getCodigo());
+		misVacunas.set(cont, vac);
+
+	}
+	
+	public void eliminarVac(Vacuna select) {
+		int cont;
+		cont = misVacunas.indexOf(select);
+		misVacunas.remove(cont);
 	}
 
 	
