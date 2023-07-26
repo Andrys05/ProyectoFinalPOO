@@ -1,17 +1,22 @@
 package logico;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 
 
-public class Clinica {
+public class Clinica implements Serializable{
 	
+	private static final long serialVersionUID = 1L;
 	private ArrayList<Paciente> misPacientes;
 	private ArrayList<Medico> misMedicos;
 	private ArrayList<Cita> misCitas;
 	private ArrayList<Vacuna> misVacunas;
 	private ArrayList<Consulta> misConsultas;
 	private ArrayList<Enfermedad> misEnfermedades;
+	private ArrayList<Administrador> misAdministradores;
+	private static Clinica clinica;
+	private static Administrador loginAdministrador;
 	/*private int cant = 0;
 	private int cantmax = 0;
 	private String tipo;
@@ -41,6 +46,7 @@ public class Clinica {
 		this.misCitas = new ArrayList<Cita>();
 		this.misEnfermedades = new ArrayList<Enfermedad>();
 		this.misVacunas = new ArrayList<Vacuna>();
+		this.misAdministradores = new ArrayList<Administrador>();
 	}
 	
 
@@ -245,29 +251,6 @@ public class Clinica {
 		this.misCitas = misCitas;
 	}
 
-/*
-	public ArrayList<Consulta> getMisConsultas() {
-		return misConsultas;
-	}
-
-
-	public void setMisConsultas(ArrayList<Consulta> misConsultas) {
-		this.misConsultas = misConsultas;
-	}
-
-	public ArrayList<Enfermedad> getMisEnfermedades() {
-		return misEnfermedades;
-	}
-
-
-	public void setMisEnfermedades(ArrayList<Enfermedad> misEnfermedades) {
-		this.misEnfermedades = misEnfermedades;
-	}
-
-
-	
-*/
-	
 	public void insertarPaciente(Paciente miPaciente) {
 		misPacientes.add(miPaciente);
 	}
@@ -364,7 +347,7 @@ public class Clinica {
 
 
 	public void RegistrarCita(Cita aux) {
-		misCitas.add(aux);		// TODO Auto-generated method stub
+		misCitas.add(aux);		
 		
 	}
 	public static String getVacunaCodigo() {
@@ -377,6 +360,33 @@ public class Clinica {
 
 	}
 
+
+	public static Clinica getClinica() {
+		return clinic;
+	}
+
+
+	public static void setClinica(Clinica clinica) {
+		Clinica.clinic = clinica;
+	}
+
+
+	public ArrayList<Administrador> getMisAdministradores() {
+		return misAdministradores;
+	}
+
+
+	public void setMisAdministradores(ArrayList<Administrador> misAdministradores) {
+		this.misAdministradores = misAdministradores;
+	}
+
+	public static void setLoginAdministrador(Administrador loginAdministrador) {
+		Clinica.loginAdministrador = loginAdministrador;
+	}
+
+	public void regAdmin(Administrador loginAdministrador) {
+		misAdministradores.add(loginAdministrador);
+	}
 	
 	/*vacuna
 	private void vacunasUsadas(){
@@ -401,4 +411,15 @@ public class Clinica {
 	
 		}
 	}*/
+	
+	public boolean confirmLogin(String text, String text2) {
+		boolean login = false;
+		for (Administrador user : misAdministradores) {
+			if(user.getUsuario().equals(text) && user.getContrasena().equals(text2)){
+				loginAdministrador = user;
+				login = true;
+			}
+		}
+		return login;
+	}
 }

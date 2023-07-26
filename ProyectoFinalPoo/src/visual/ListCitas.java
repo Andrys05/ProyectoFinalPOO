@@ -46,7 +46,7 @@ public class ListCitas extends JDialog {
 	public ListCitas() {
 		setBounds(100, 100, 588, 476);
 		setLocationRelativeTo(null);
-		setTitle("Facturas");
+		setTitle("Listado de Citas");
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);

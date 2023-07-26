@@ -82,6 +82,7 @@ public class RegConsulta extends JDialog {
 			panel.add(lblNewLabel);
 			
 			txtPaciente = new JTextField();
+			txtPaciente.setEditable(false);
 			txtPaciente.setBounds(10, 99, 138, 20);
 			panel.add(txtPaciente);
 			txtPaciente.setColumns(10);
@@ -91,6 +92,7 @@ public class RegConsulta extends JDialog {
 			panel.add(lblNewLabel_1);
 			
 			txtCedMedico = new JTextField();
+			txtCedMedico.setEditable(false);
 			txtCedMedico.setBounds(10, 141, 138, 20);
 			panel.add(txtCedMedico);
 			txtCedMedico.setColumns(10);
@@ -113,6 +115,7 @@ public class RegConsulta extends JDialog {
 			panel.add(lblNewLabel_4);
 			
 			txtDiagnostico = new JTextField();
+			txtDiagnostico.setEditable(false);
 			txtDiagnostico.setBounds(10, 299, 138, 20);
 			panel.add(txtDiagnostico);
 			txtDiagnostico.setColumns(10);
@@ -139,6 +142,7 @@ public class RegConsulta extends JDialog {
 			panel.add(lblTratamiento);
 			
 			txtVacuna = new JTextField();
+			txtVacuna.setEditable(false);
 			txtVacuna.setColumns(10);
 			txtVacuna.setBounds(10, 351, 138, 20);
 			panel.add(txtVacuna);
