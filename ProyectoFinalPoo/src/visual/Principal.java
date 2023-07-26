@@ -124,12 +124,8 @@ public class Principal extends JFrame {
 		JMenuItem mntmNewMenuItem_3 = new JMenuItem("Listar Citas Pendientes");
 		mntmNewMenuItem_3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				/*
-				//ListarCitas list = new ListarCitas();
-				list.setModal(true);
-				list.setLocationRelativeTo(null);
-				list.setVisible(true);
-				*/
+				ListCitas dialog = new ListCitas();
+				dialog.setVisible(true);
 				
 				
 			}

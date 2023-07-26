@@ -133,6 +133,7 @@ public class RegCitas extends JFrame {
 		
 		JButton btnRegistrar = new JButton("Registrar");
 		btnRegistrar.addActionListener(new ActionListener() {
+			
 			public void actionPerformed(ActionEvent e) {
 				
 				Cita aux = new Cita( txtNombre.getText(),  txtFecha.getText(), txtHora.getText(),  txtDoctor.getText(),  txtTipo.getText(),  txtCedula.getText());
@@ -159,7 +160,7 @@ public class RegCitas extends JFrame {
 				}
 			}
 		});
-		btnNewButton.setBounds(345, 150, 115, 29);
+		btnNewButton.setBounds(496, 129, 115, 29);
 		contentPane.add(btnNewButton);
 		btnCancelar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {

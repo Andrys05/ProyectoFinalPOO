@@ -28,6 +28,10 @@ public class RegistrarEnfermedad extends JFrame {
 	private JTextField textNombreEnfermedad;
 	private JTextField textSintomas;
 	ArrayList<String> Sintomas = new ArrayList<>(100);
+	private JRadioButton rdbSi;
+	private JRadioButton rdbNo;
+	private JButton btnNewButton_1;
+	private JButton btnNewButton;
 
 	/**
 	 * Launch the application.
@@ -88,7 +92,7 @@ public class RegistrarEnfermedad extends JFrame {
 		textNombre.setBounds(83, 87, 676, 26);
 		panel_1.add(textNombre);
 		
-		JButton btnNewButton = new JButton("Buscar");
+		btnNewButton = new JButton("Buscar");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if(Clinica.getInstance().buscarPaciente(textCedula.getText()) != null) {
@@ -130,7 +134,7 @@ public class RegistrarEnfermedad extends JFrame {
 		panel_2.add(textSintomas);
 		textSintomas.setColumns(10);
 		
-		JButton btnNewButton_1 = new JButton("Agregar");
+		btnNewButton_1 = new JButton("Agregar");
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			 Sintomas.add(textSintomas.getText());
@@ -147,12 +151,12 @@ public class RegistrarEnfermedad extends JFrame {
 		lblNewLabel_3.setBounds(335, 182, 104, 20);
 		panel_2.add(lblNewLabel_3);
 		
-		JRadioButton rdbSi = new JRadioButton("Si");
+		rdbSi = new JRadioButton("Si");
 		rdbSi.setBackground(new Color(245, 255, 250));
 		rdbSi.setBounds(245, 230, 155, 29);
 		panel_2.add(rdbSi);
 		
-		JRadioButton rdbNo = new JRadioButton("No");
+		rdbNo = new JRadioButton("No");
 		rdbNo.setBackground(new Color(245, 255, 250));
 		rdbNo.setBounds(467, 230, 155, 29);
 		panel_2.add(rdbNo);
