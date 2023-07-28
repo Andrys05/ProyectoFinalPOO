@@ -52,6 +52,7 @@ public class ListConsultas extends JDialog {
 	 * Create the dialog.
 	 */
 	public ListConsultas(Paciente paciente) {
+		setTitle("Listado de Consultas");
 		miPaciente = paciente;
 		if(miPaciente != null) 
 			setTitle("Consulta Historial de "+ miPaciente.getNombre());

@@ -26,6 +26,7 @@ import javax.swing.JTable;
 import javax.swing.SpinnerDateModel;
 import java.util.Date;
 import java.util.Calendar;
+import javax.swing.SwingConstants;
 
 public class RegConsulta extends JDialog {
 
@@ -38,10 +39,6 @@ public class RegConsulta extends JDialog {
 	JSpinner spnFecha;
 	private JTextField txtTratamiento;
 	private JTextField txtVacuna;
-	private Paciente miPaciente;
-	private Medico miMedico;
-	private Enfermedad miDiagnostico;
-	private Vacuna miVacuna;
 	
 	/**
 	 * Launch the application.
@@ -60,7 +57,8 @@ public class RegConsulta extends JDialog {
 	 * Create the dialog.
 	 */
 	public RegConsulta() {
-		setBounds(100, 100, 601, 549);
+		setTitle("Registrar Consulta");
+		setBounds(100, 100, 608, 649);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
@@ -73,50 +71,51 @@ public class RegConsulta extends JDialog {
 			txtConsultaCodigo = new JTextField();
 			txtConsultaCodigo.setEditable(false);
 			txtConsultaCodigo.setText("Co-" + Clinica.getInstance().consultaCodigo);
-			txtConsultaCodigo.setBounds(10, 48, 138, 20);
+			txtConsultaCodigo.setBounds(10, 29, 138, 20);
 			panel.add(txtConsultaCodigo);
 			txtConsultaCodigo.setColumns(10);
 			
 			JLabel lblNewLabel = new JLabel("Codigo:");
-			lblNewLabel.setBounds(10, 30, 46, 14);
+			lblNewLabel.setBounds(10, 11, 46, 14);
 			panel.add(lblNewLabel);
 			
 			txtPaciente = new JTextField();
 			txtPaciente.setEditable(false);
-			txtPaciente.setBounds(10, 99, 138, 20);
+			txtPaciente.setBounds(10, 104, 138, 20);
 			panel.add(txtPaciente);
 			txtPaciente.setColumns(10);
 			
 			JLabel lblNewLabel_1 = new JLabel("Cedula del Paciente:");
-			lblNewLabel_1.setBounds(10, 79, 161, 14);
+			lblNewLabel_1.setBounds(10, 84, 161, 14);
 			panel.add(lblNewLabel_1);
 			
 			txtCedMedico = new JTextField();
 			txtCedMedico.setEditable(false);
-			txtCedMedico.setBounds(10, 141, 138, 20);
+			txtCedMedico.setBounds(10, 175, 138, 20);
 			panel.add(txtCedMedico);
 			txtCedMedico.setColumns(10);
 			
 			JLabel lblNewLabel_2 = new JLabel("Cedula del Medico:");
-			lblNewLabel_2.setBounds(10, 125, 138, 14);
+			lblNewLabel_2.setBounds(10, 159, 138, 14);
 			panel.add(lblNewLabel_2);
 			
 			txtDescripcion = new JTextField();
-			txtDescripcion.setBounds(10, 187, 551, 85);
+			txtDescripcion.setHorizontalAlignment(SwingConstants.LEFT);
+			txtDescripcion.setBounds(10, 242, 551, 85);
 			panel.add(txtDescripcion);
 			txtDescripcion.setColumns(10);
 			
 			JLabel lblNewLabel_3 = new JLabel("Descripcion (sintomas, tiempo con sintomas, eventos claves, etc.) :");
-			lblNewLabel_3.setBounds(10, 172, 471, 14);
+			lblNewLabel_3.setBounds(10, 227, 471, 14);
 			panel.add(lblNewLabel_3);
 			
 			JLabel lblNewLabel_4 = new JLabel("Diagnostico:");
-			lblNewLabel_4.setBounds(10, 283, 161, 14);
+			lblNewLabel_4.setBounds(10, 356, 161, 14);
 			panel.add(lblNewLabel_4);
 			
 			txtDiagnostico = new JTextField();
 			txtDiagnostico.setEditable(false);
-			txtDiagnostico.setBounds(10, 299, 138, 20);
+			txtDiagnostico.setBounds(10, 372, 138, 20);
 			panel.add(txtDiagnostico);
 			txtDiagnostico.setColumns(10);
 			
@@ -125,30 +124,31 @@ public class RegConsulta extends JDialog {
 			JSpinner.DateEditor dateEditor = new JSpinner.DateEditor(spnFecha, "dd/MM/yyyy hh:mm a");
 			spnFecha.setEditor(dateEditor);
 			spnFecha.setEnabled(false);
-			spnFecha.setBounds(177, 48, 181, 20);
+			spnFecha.setBounds(177, 29, 181, 20);
 			panel.add(spnFecha);
 			
 			JLabel lblNewLabel_5 = new JLabel("Fecha/Tiempo de Reunion:");
-			lblNewLabel_5.setBounds(177, 30, 180, 14);
+			lblNewLabel_5.setBounds(177, 11, 180, 14);
 			panel.add(lblNewLabel_5);
 			
 			txtTratamiento = new JTextField();
+			txtTratamiento.setHorizontalAlignment(SwingConstants.LEFT);
 			txtTratamiento.setColumns(10);
-			txtTratamiento.setBounds(10, 397, 551, 48);
+			txtTratamiento.setBounds(10, 494, 551, 62);
 			panel.add(txtTratamiento);
 			
 			JLabel lblTratamiento = new JLabel("Tratamiento:");
-			lblTratamiento.setBounds(10, 383, 161, 14);
+			lblTratamiento.setBounds(10, 480, 161, 14);
 			panel.add(lblTratamiento);
 			
 			txtVacuna = new JTextField();
 			txtVacuna.setEditable(false);
 			txtVacuna.setColumns(10);
-			txtVacuna.setBounds(10, 351, 138, 20);
+			txtVacuna.setBounds(10, 436, 138, 20);
 			panel.add(txtVacuna);
 			
 			JLabel lblVacuna = new JLabel("Vacuna:");
-			lblVacuna.setBounds(10, 335, 161, 14);
+			lblVacuna.setBounds(10, 420, 161, 14);
 			panel.add(lblVacuna);
 			
 			
@@ -165,7 +165,7 @@ public class RegConsulta extends JDialog {
 					}
 				}
 			});
-			btnBuscPaciente.setBounds(177, 98, 138, 23);
+			btnBuscPaciente.setBounds(177, 103, 138, 23);
 			panel.add(btnBuscPaciente);
 			
 			JButton btnBuscMedico = new JButton("Buscar Medico");
@@ -180,7 +180,7 @@ public class RegConsulta extends JDialog {
 					}
 				}
 			});
-			btnBuscMedico.setBounds(177, 140, 138, 23);
+			btnBuscMedico.setBounds(177, 174, 138, 23);
 			panel.add(btnBuscMedico);
 			
 			JButton btnNewButton = new JButton("Buscar Vacuna");
@@ -195,7 +195,7 @@ public class RegConsulta extends JDialog {
 					}
 				}
 			});
-			btnNewButton.setBounds(177, 350, 138, 23);
+			btnNewButton.setBounds(177, 435, 138, 23);
 			panel.add(btnNewButton);
 		}
 		{

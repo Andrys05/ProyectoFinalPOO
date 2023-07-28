@@ -60,6 +60,7 @@ public class RegPaciente extends JDialog {
 	 * Create the dialog.
 	 */
 	public RegPaciente(Paciente paciente) {
+		setTitle("Registrar Paciente");
 		miPaciente = paciente;	
 		setResizable(false);
 		if(miPaciente == null) {
@@ -68,7 +69,7 @@ public class RegPaciente extends JDialog {
 		else {
 			setTitle("Modificar Paciente");
 		}
-		setBounds(100, 100, 480, 372);
+		setBounds(100, 100, 527, 461);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
@@ -89,62 +90,62 @@ public class RegPaciente extends JDialog {
 			
 			txtCedula = new JTextField();
 			txtCedula.setColumns(10);
-			txtCedula.setBounds(30, 83, 148, 20);
+			txtCedula.setBounds(30, 97, 148, 20);
 			panel.add(txtCedula);
 			
 			JLabel lblCedula = new JLabel("Cedula:");
-			lblCedula.setBounds(30, 68, 117, 14);
+			lblCedula.setBounds(30, 82, 117, 14);
 			panel.add(lblCedula);
 			
 			txtTelefono = new JTextField();
 			txtTelefono.setColumns(10);
-			txtTelefono.setBounds(30, 129, 148, 20);
+			txtTelefono.setBounds(30, 157, 148, 20);
 			panel.add(txtTelefono);
 			
 			JLabel lblNumeroDeTelefono = new JLabel("Numero de Telefono:");
-			lblNumeroDeTelefono.setBounds(30, 114, 174, 14);
+			lblNumeroDeTelefono.setBounds(30, 142, 174, 14);
 			panel.add(lblNumeroDeTelefono);
 			
 			txtDir = new JTextField();
 			txtDir.setColumns(10);
-			txtDir.setBounds(30, 175, 148, 20);
+			txtDir.setBounds(30, 217, 148, 20);
 			panel.add(txtDir);
 			
 			JLabel lblDireccion = new JLabel("Direccion:");
-			lblDireccion.setBounds(30, 160, 117, 14);
+			lblDireccion.setBounds(30, 202, 117, 14);
 			panel.add(lblDireccion);
 			
 			SpinnerDateModel modelo = new SpinnerDateModel();
 	        spnEdad = new JSpinner(new SpinnerDateModel(new Date(), null, new Date(), Calendar.DAY_OF_MONTH));
 	        JSpinner.DateEditor dateEditor = new JSpinner.DateEditor(spnEdad, "dd/MM/yyyy");
 	        spnEdad.setEditor(dateEditor);
-	        spnEdad.setBounds(244, 37, 168, 20);
+	        spnEdad.setBounds(303, 37, 168, 20);
 	        panel.add(spnEdad);
 			
 			JLabel lblNewLabel_1 = new JLabel("Fecha de Nacimiento:");
-			lblNewLabel_1.setBounds(244, 22, 168, 14);
+			lblNewLabel_1.setBounds(303, 22, 168, 14);
 			panel.add(lblNewLabel_1);
 			
 			JLabel lblNewLabel_2 = new JLabel("Sexo:");
-			lblNewLabel_2.setBounds(244, 68, 46, 14);
+			lblNewLabel_2.setBounds(303, 82, 46, 14);
 			panel.add(lblNewLabel_2);
 			
 			txtContactoEmer = new JTextField();
-			txtContactoEmer.setBounds(244, 129, 168, 20);
+			txtContactoEmer.setBounds(303, 157, 168, 20);
 			panel.add(txtContactoEmer);
 			txtContactoEmer.setColumns(10);
 			
 			JLabel lblNewLabel_3 = new JLabel("Contacto de Emergencia:");
-			lblNewLabel_3.setBounds(244, 114, 168, 14);
+			lblNewLabel_3.setBounds(303, 142, 168, 14);
 			panel.add(lblNewLabel_3);
 			
 			JLabel lblNumeroDeCont = new JLabel("Numero de Contacto de ER:");
-			lblNumeroDeCont.setBounds(244, 160, 168, 14);
+			lblNumeroDeCont.setBounds(303, 202, 168, 14);
 			panel.add(lblNumeroDeCont);
 			
 			txtNumeroEmer = new JTextField();
 			txtNumeroEmer.setColumns(10);
-			txtNumeroEmer.setBounds(244, 175, 168, 20);
+			txtNumeroEmer.setBounds(303, 217, 168, 20);
 			panel.add(txtNumeroEmer);
 			
 			String[] sexos = {"Hombre", "Mujer"};
@@ -164,16 +165,16 @@ public class RegPaciente extends JDialog {
 					}
 				}
 			});
-			cbxSexo.setBounds(244, 83, 168, 20);
+			cbxSexo.setBounds(303, 97, 168, 20);
 			panel.add(cbxSexo);
 			
 			txtAlergias = new JTextField();
-			txtAlergias.setBounds(30, 225, 382, 64);
+			txtAlergias.setBounds(30, 291, 441, 87);
 			panel.add(txtAlergias);
 			txtAlergias.setColumns(10);
 			
 			JLabel lblNewLabel_4 = new JLabel("Alergias:");
-			lblNewLabel_4.setBounds(30, 206, 117, 14);
+			lblNewLabel_4.setBounds(30, 272, 117, 14);
 			panel.add(lblNewLabel_4);
 		}
 		{
