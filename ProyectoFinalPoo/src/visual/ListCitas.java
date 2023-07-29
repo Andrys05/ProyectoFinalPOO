@@ -89,7 +89,7 @@ public class ListCitas extends JDialog {
 			{
 				JButton okButton = new JButton("Volver");
 				okButton.setForeground(Color.BLACK);
-				okButton.setBackground(Color.LIGHT_GRAY);
+				okButton.setBackground(Color.WHITE);
 				okButton.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent arg0) {
 						dispose();		
