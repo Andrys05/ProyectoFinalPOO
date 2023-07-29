@@ -18,6 +18,7 @@ import javax.swing.table.DefaultTableModel;
 import logico.Clinica;
 
 import java.awt.Color;
+import javax.swing.border.TitledBorder;
 
 
 public class ListCitas extends JDialog {
@@ -48,7 +49,7 @@ public class ListCitas extends JDialog {
 		setLocationRelativeTo(null);
 		setTitle("Listado de Citas");
 		getContentPane().setLayout(new BorderLayout());
-		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
+		contentPanel.setBorder(new TitledBorder(null, "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
 		contentPanel.setLayout(new BorderLayout(0, 0));
 		{
@@ -81,7 +82,8 @@ public class ListCitas extends JDialog {
 		}
 		{
 			JPanel buttonPane = new JPanel();
-			buttonPane.setBackground(Color.LIGHT_GRAY);
+			buttonPane.setBorder(new TitledBorder(null, "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+			buttonPane.setBackground(Color.WHITE);
 			buttonPane.setLayout(new FlowLayout(FlowLayout.RIGHT));
 			getContentPane().add(buttonPane, BorderLayout.SOUTH);
 			{
