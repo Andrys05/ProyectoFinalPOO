@@ -43,7 +43,7 @@ public class Login extends JDialog {
 					clinica = new FileInputStream("clinica.dat");
 					clinicaRead = new ObjectInputStream(clinica);
 					Clinica temp = (Clinica)clinicaRead.readObject();
-					Clinica.setClinica(temp);
+					Clinica.setClinic(temp);
 					clinica.close();
 					clinicaRead.close();
 				} catch(FileNotFoundException e) {

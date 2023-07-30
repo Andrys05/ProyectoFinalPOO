@@ -1,9 +1,10 @@
 package logico;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 
-public class Consulta {
+public class Consulta{
 
 	private String codigo;
 	private Paciente paciente;

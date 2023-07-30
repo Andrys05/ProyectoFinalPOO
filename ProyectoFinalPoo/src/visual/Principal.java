@@ -8,6 +8,8 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import org.omg.PortableInterceptor.SYSTEM_EXCEPTION;
+
 import logico.Clinica;
 
 import javax.swing.JMenuBar;
@@ -16,16 +18,30 @@ import javax.swing.JMenuItem;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.io.BufferedInputStream;
+import java.io.BufferedOutputStream;
+import java.io.DataInputStream;
+import java.io.DataOutputStream;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.io.OutputStream;
+import java.net.Socket;
+import java.net.UnknownHostException;
 import java.awt.event.ActionEvent;
 
 public class Principal extends JFrame {
 
 	private JPanel contentPane;
 	private Dimension dim;
+	static Socket sfd = null;
+	static DataInputStream EntradaSocket;
+	static DataOutputStream SalidaSocket;
+
 	
 	/**
 	 * Launch the application.
@@ -54,14 +70,12 @@ public class Principal extends JFrame {
 				FileOutputStream clinica2;
 				ObjectOutputStream clinicaWrite;
 				try {
-					clinica2 = new  FileOutputStream("clinica.dat");
+					clinica2 = new FileOutputStream("clinica.dat");
 					clinicaWrite = new ObjectOutputStream(clinica2);
 					clinicaWrite.writeObject(Clinica.getInstance());
 				} catch (FileNotFoundException e1) {
-					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				} catch (IOException e1) {
-					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
 				
@@ -196,8 +210,6 @@ public class Principal extends JFrame {
 				vacunas.setModal(true);
 				vacunas.setLocationRelativeTo(null);
 				vacunas.setVisible(true);
-				
-				
 			}
 		});
 
@@ -210,8 +222,6 @@ public class Principal extends JFrame {
 				vacunas.setModal(true);
 				vacunas.setLocationRelativeTo(null);
 				vacunas.setVisible(true);
-				
-				
 			}
 		});
 		mnNewMenu_4.add(mntmNewMenuItem_9);
@@ -229,6 +239,38 @@ public class Principal extends JFrame {
 			}
 		});
 		menu.add(menuItem);
+		
+		JMenu mnNewMenu_6 = new JMenu("Respaldo");
+		menuBar.add(mnNewMenu_6);
+		
+		JMenuItem mntmNewMenuItem_12 = new JMenuItem("Crear Respaldo");
+		mntmNewMenuItem_12.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				try 
+			    {
+				  DataInputStream archivoOriginal = new DataInputStream(new FileInputStream("clinica.dat"));
+			      sfd = new Socket("127.0.0.1",7000);
+			      //EntradaSocket = new DataInputStream(new BufferedInputStream(sfd.getInputStream()));
+			      SalidaSocket = new DataOutputStream(new BufferedOutputStream(sfd.getOutputStream()));
+			      int byteLeido;
+			      while((byteLeido = archivoOriginal.read()) != -1)
+			    	  SalidaSocket.write(byteLeido);
+			      archivoOriginal.close();
+			      SalidaSocket.flush();
+			    }
+			    catch (UnknownHostException uhe)
+			    {
+			      System.out.println("No se puede acceder al servidor.");
+			      System.exit(1);
+			    }
+			    catch (IOException ioe)
+			    {
+			      System.out.println("Comunicación rechazada.");
+			      System.exit(1);
+			    }
+			}
+		});
+		mnNewMenu_6.add(mntmNewMenuItem_12);
 		
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));

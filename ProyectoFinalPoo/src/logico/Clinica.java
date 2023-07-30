@@ -3,8 +3,6 @@ package logico;
 import java.io.Serializable;
 import java.util.ArrayList;
 
-
-
 public class Clinica implements Serializable{
 	
 	private static final long serialVersionUID = 1L;
@@ -15,7 +13,6 @@ public class Clinica implements Serializable{
 	private ArrayList<Consulta> misConsultas;
 	private ArrayList<Enfermedad> misEnfermedades;
 	private ArrayList<Administrador> misAdministradores;
-	private static Clinica clinica;
 	private static Administrador loginAdministrador;
 	/*private int cant = 0;
 	private int cantmax = 0;
@@ -34,7 +31,6 @@ public class Clinica implements Serializable{
 		if(clinic==null)
 			clinic = new Clinica();
 		return clinic;
-		
 	}
 
 	
@@ -46,7 +42,7 @@ public class Clinica implements Serializable{
 		this.misCitas = new ArrayList<Cita>();
 		this.misEnfermedades = new ArrayList<Enfermedad>();
 		this.misVacunas = new ArrayList<Vacuna>();
-		this.misAdministradores = new ArrayList<Administrador>();
+		this.misAdministradores = new ArrayList<>();
 	}
 	
 
@@ -360,16 +356,13 @@ public class Clinica implements Serializable{
 
 	}
 
-
-	public static Clinica getClinica() {
+	public static Clinica getClinic() {
 		return clinic;
 	}
 
-
-	public static void setClinica(Clinica clinica) {
-		Clinica.clinic = clinica;
+	public static void setClinic(Clinica clinic) {
+		Clinica.clinic = clinic;
 	}
-
 
 	public ArrayList<Administrador> getMisAdministradores() {
 		return misAdministradores;
@@ -379,6 +372,11 @@ public class Clinica implements Serializable{
 	public void setMisAdministradores(ArrayList<Administrador> misAdministradores) {
 		this.misAdministradores = misAdministradores;
 	}
+	
+	public static Administrador getLoginAdministrador() {
+		return loginAdministrador;
+	}
+
 
 	public static void setLoginAdministrador(Administrador loginAdministrador) {
 		Clinica.loginAdministrador = loginAdministrador;

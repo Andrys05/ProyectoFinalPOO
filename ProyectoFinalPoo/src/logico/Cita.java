@@ -1,8 +1,9 @@
 package logico;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class Cita {
+public class Cita{
 	
 	private String nombre;
 	private String fecha;

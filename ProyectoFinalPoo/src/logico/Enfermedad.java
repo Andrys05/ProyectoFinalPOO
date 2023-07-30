@@ -1,8 +1,12 @@
 package logico;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Enfermedad {
+public class Enfermedad{
+	/**
+	 * 
+	 */
 	private String id;
 	private String nombre;
 	private ArrayList<String> misSintomas;

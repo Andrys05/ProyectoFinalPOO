@@ -1,10 +1,14 @@
 package logico;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 
-public class Medico {
+public class Medico{
 	
+	/**
+	 * 
+	 */
 	private String usuario;
 	private String contrasenaDoctor; 
 	private String especialidad;
@@ -18,7 +22,7 @@ public class Medico {
 	private ArrayList<Cita> misCitas;
 	
 	public Medico(String usuario, String contrasenaDoctor, String especialidad,String nombre, String cedula, 
-			String direccion,int edad, boolean sexo,String telefono) {
+			String direccion,int edad, boolean sexo, String telefono) {
 		super();
 		this.usuario = usuario;
 		this.contrasenaDoctor = contrasenaDoctor;
@@ -101,8 +105,4 @@ public class Medico {
 		this.telefono = telefono;
 	}
 	
-
-	
-	
-
 }

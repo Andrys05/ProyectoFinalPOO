@@ -1,7 +1,11 @@
 package server;
 
 import java.io.BufferedInputStream;
+import java.io.BufferedOutputStream;
 import java.io.DataInputStream;
+import java.io.DataOutput;
+import java.io.DataOutputStream;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
@@ -26,14 +30,16 @@ public class Servidor extends Thread{
 			{
 				Socket nsfd = sfd.accept();
 				System.out.println("Conexion aceptada de: " + nsfd.getInetAddress());
-				DataInputStream flujoLectura = new DataInputStream(new BufferedInputStream(nsfd.getInputStream()));
-				String linea = flujoLectura.readUTF();
-				String text = "";
-				if(!linea.equals(""))
-				{
-					text = text + " " + linea;
-					System.out.println(text);
-				}
+				
+				DataInputStream fuente = new DataInputStream(new BufferedInputStream(nsfd.getInputStream()));
+				DataOutputStream archivoNuevo = new DataOutputStream(new FileOutputStream("clinica_respaldo.dat"));
+				
+				int byteLeido;
+				while((byteLeido = fuente.read()) != -1)
+					archivoNuevo.write(byteLeido);
+				fuente.close();
+				archivoNuevo.close();
+				System.out.println("FINALLY FFS");
 			}
 			catch(IOException ioe)
 			{

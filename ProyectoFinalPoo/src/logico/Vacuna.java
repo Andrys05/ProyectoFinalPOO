@@ -1,8 +1,12 @@
 package logico;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class Vacuna {
+public class Vacuna{
+	/**
+	 * 
+	 */
 	private String codigo;
 	private String nombre;
 	private String  descrip;

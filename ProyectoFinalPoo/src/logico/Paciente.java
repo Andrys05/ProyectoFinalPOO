@@ -1,8 +1,12 @@
 package logico;
 
+import java.io.Serializable;
 import java.util.Date;
 
 public class Paciente{
+	/**
+	 * 
+	 */
 	private String nombre;
 	private String cedula;
 	private String direccion;

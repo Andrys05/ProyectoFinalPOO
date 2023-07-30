@@ -19,6 +19,7 @@ import logico.Clinica;
 
 import java.awt.Color;
 import javax.swing.border.TitledBorder;
+import java.awt.SystemColor;
 
 
 public class ListCitas extends JDialog {
@@ -83,21 +84,17 @@ public class ListCitas extends JDialog {
 		{
 			JPanel buttonPane = new JPanel();
 			buttonPane.setBorder(new TitledBorder(null, "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-			buttonPane.setBackground(Color.WHITE);
+			buttonPane.setBackground(SystemColor.menu);
 			buttonPane.setLayout(new FlowLayout(FlowLayout.RIGHT));
 			getContentPane().add(buttonPane, BorderLayout.SOUTH);
 			{
-				JButton okButton = new JButton("Volver");
-				okButton.setForeground(Color.BLACK);
-				okButton.setBackground(Color.WHITE);
-				okButton.addActionListener(new ActionListener() {
-					public void actionPerformed(ActionEvent arg0) {
-						dispose();		
+				JButton btnVolver = new JButton("Volver");
+				btnVolver.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+						dispose();
 					}
 				});
-				okButton.setActionCommand("OK");
-				buttonPane.add(okButton);
-				getRootPane().setDefaultButton(okButton);
+				buttonPane.add(btnVolver);
 			}
 		}
 		loadTable();
