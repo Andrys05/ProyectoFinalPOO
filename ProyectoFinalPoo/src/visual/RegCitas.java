@@ -59,76 +59,76 @@ public class RegCitas extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JLabel lblNewLabel = new JLabel("DATOS DEL PACIENTE:");
-		lblNewLabel.setFont(new Font("Arial Black", Font.BOLD, 16));
+		JLabel lblNewLabel = new JLabel("Datos del paciente:");
+		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		lblNewLabel.setBounds(15, 28, 242, 20);
 		contentPane.add(lblNewLabel);
 		
 		JLabel lblNombre = new JLabel("Nombre:");
 		   
-		lblNombre.setFont(new Font("Arial Black", Font.PLAIN, 16));
-		lblNombre.setBounds(15, 89, 81, 20);
+		lblNombre.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		lblNombre.setBounds(15, 119, 81, 20);
 		contentPane.add(lblNombre);
 		
 		JLabel lblCedula = new JLabel("C\u00E9dula:");
-		lblCedula.setFont(new Font("Arial Black", Font.PLAIN, 16));
-		lblCedula.setBounds(415, 89, 81, 20);
+		lblCedula.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		lblCedula.setBounds(15, 74, 81, 20);
 		contentPane.add(lblCedula);
 		
-		JLabel lblDatosDeLa = new JLabel("DATOS DE LA CITA:");
-		lblDatosDeLa.setFont(new Font("Arial Black", Font.BOLD, 16));
+		JLabel lblDatosDeLa = new JLabel("Datos de la cita:");
+		lblDatosDeLa.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		lblDatosDeLa.setBounds(15, 209, 196, 20);
 		contentPane.add(lblDatosDeLa);
 		
 		JLabel lblDoctor = new JLabel("Doctor:");
-		lblDoctor.setFont(new Font("Arial Black", Font.PLAIN, 16));
-		lblDoctor.setBounds(15, 272, 81, 20);
+		lblDoctor.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		lblDoctor.setBounds(15, 245, 81, 20);
 		contentPane.add(lblDoctor);
 		
 		JLabel lblTipo = new JLabel("Tipo:");
-		lblTipo.setFont(new Font("Arial Black", Font.PLAIN, 16));
-		lblTipo.setBounds(318, 272, 81, 20);
+		lblTipo.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		lblTipo.setBounds(15, 288, 81, 20);
 		contentPane.add(lblTipo);
 		
 		JLabel lblFecha = new JLabel("Fecha:");
-		lblFecha.setFont(new Font("Arial Black", Font.PLAIN, 16));
-		lblFecha.setBounds(15, 345, 81, 20);
+		lblFecha.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		lblFecha.setBounds(15, 330, 81, 20);
 		contentPane.add(lblFecha);
 		
 		JLabel lblHora_1 = new JLabel("Hora:");
-		lblHora_1.setFont(new Font("Arial Black", Font.PLAIN, 16));
-		lblHora_1.setBounds(318, 345, 81, 20);
+		lblHora_1.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		lblHora_1.setBounds(295, 330, 81, 20);
 		contentPane.add(lblHora_1);
 		
 		txtNombre = new JTextField();
 		txtNombre.setEditable(false);
-		txtNombre.setBounds(96, 87, 304, 26);
+		txtNombre.setBounds(86, 116, 563, 26);
 		contentPane.add(txtNombre);
 		txtNombre.setColumns(10);
 		
 		txtCedula = new JTextField();
 		txtCedula.setColumns(10);
-		txtCedula.setBounds(486, 87, 146, 26);
+		txtCedula.setBounds(86, 71, 563, 26);
 		contentPane.add(txtCedula);
 		
 		txtDoctor = new JTextField();
 		txtDoctor.setColumns(10);
-		txtDoctor.setBounds(86, 270, 214, 26);
+		txtDoctor.setBounds(86, 245, 563, 26);
 		contentPane.add(txtDoctor);
 		
 		txtTipo = new JTextField();
 		txtTipo.setColumns(10);
-		txtTipo.setBounds(368, 270, 175, 26);
+		txtTipo.setBounds(86, 285, 563, 26);
 		contentPane.add(txtTipo);
 		
 		txtHora = new JTextField();
 		txtHora.setColumns(10);
-		txtHora.setBounds(377, 343, 146, 26);
+		txtHora.setBounds(357, 327, 146, 26);
 		contentPane.add(txtHora);
 		
 		txtFecha = new JTextField();
 		txtFecha.setColumns(10);
-		txtFecha.setBounds(81, 343, 146, 26);
+		txtFecha.setBounds(86, 327, 146, 26);
 		contentPane.add(txtFecha);
 		
 		JButton btnRegistrar = new JButton("Registrar");
@@ -160,7 +160,7 @@ public class RegCitas extends JFrame {
 				}
 			}
 		});
-		btnNewButton.setBounds(496, 129, 115, 29);
+		btnNewButton.setBounds(284, 158, 115, 29);
 		contentPane.add(btnNewButton);
 		btnCancelar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
