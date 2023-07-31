@@ -25,6 +25,8 @@ import java.awt.event.ActionListener;
 import java.text.SimpleDateFormat;
 import java.awt.event.ActionEvent;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.border.TitledBorder;
+import javax.swing.JTextArea;
 
 public class RegPaciente extends JDialog {
 
@@ -39,7 +41,7 @@ public class RegPaciente extends JDialog {
 	JSpinner spnEdad;
 	JComboBox<String> cbxSexo;
 	private Paciente miPaciente = null;
-	private JTextField txtAlergias;
+	private JTextArea txtAlergias;
 	
 
 	/**
@@ -70,12 +72,14 @@ public class RegPaciente extends JDialog {
 			setTitle("Modificar Paciente");
 		}
 		setBounds(100, 100, 527, 461);
+		setLocationRelativeTo(null);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
 		contentPanel.setLayout(new BorderLayout(0, 0));
 		{
 			JPanel panel = new JPanel();
+			panel.setBorder(new TitledBorder(null, "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 			contentPanel.add(panel, BorderLayout.CENTER);
 			panel.setLayout(null);
 			
@@ -168,14 +172,13 @@ public class RegPaciente extends JDialog {
 			cbxSexo.setBounds(303, 97, 168, 20);
 			panel.add(cbxSexo);
 			
-			txtAlergias = new JTextField();
-			txtAlergias.setBounds(30, 291, 441, 87);
-			panel.add(txtAlergias);
-			txtAlergias.setColumns(10);
-			
 			JLabel lblNewLabel_4 = new JLabel("Alergias:");
-			lblNewLabel_4.setBounds(30, 272, 117, 14);
+			lblNewLabel_4.setBounds(30, 261, 117, 14);
 			panel.add(lblNewLabel_4);
+			
+			txtAlergias = new JTextArea();
+			txtAlergias.setBounds(30, 285, 441, 69);
+			panel.add(txtAlergias);
 		}
 		{
 			JPanel buttonPane = new JPanel();

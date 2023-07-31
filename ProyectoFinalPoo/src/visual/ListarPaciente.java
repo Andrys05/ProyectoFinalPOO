@@ -30,6 +30,7 @@ import javax.swing.ScrollPaneConstants;
 import javax.swing.JMenuBar;
 import javax.swing.JMenu;
 import javax.swing.JMenuItem;
+import javax.swing.border.TitledBorder;
 
 public class ListarPaciente extends JDialog {
 
@@ -66,22 +67,24 @@ public class ListarPaciente extends JDialog {
 		Clinica.getInstance().setPacienteCedula("");
 		setTitle("Listado de Pacientes");
 		setBounds(100, 100, 996, 487);
+		setLocationRelativeTo(null);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
 		contentPanel.setLayout(new BorderLayout(0, 0));
 		{
 			JPanel panel = new JPanel();
+			panel.setBorder(new TitledBorder(null, "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 			contentPanel.add(panel, BorderLayout.CENTER);
 			panel.setLayout(null);
 			
 			JScrollPane scrollPane = new JScrollPane();
 			scrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
-			scrollPane.setBounds(10, 53, 950, 341);
+			scrollPane.setBounds(10, 40, 950, 311);
 			panel.add(scrollPane);
 			
 			lblNewLabel_1 = new JLabel("Cantidad de Pacientes en Lista: " + Clinica.getInstance().cantPacientes(seleccion));
-			lblNewLabel_1.setBounds(10, 28, 304, 14);
+			lblNewLabel_1.setBounds(10, 13, 304, 14);
 			panel.add(lblNewLabel_1);
 			
 			table = new JTable(modelo) {
@@ -120,16 +123,17 @@ public class ListarPaciente extends JDialog {
 				}
 			});
 			cbxCondicion.setModel(new DefaultComboBoxModel(new String[] {"<Todos>", "Sanos", "Enfermos", "Hombres", "Mujeres"}));
-			cbxCondicion.setBounds(801, 28, 159, 20);
+			cbxCondicion.setBounds(801, 10, 159, 20);
 			panel.add(cbxCondicion);
 			
 			JLabel lblNewLabel = new JLabel("Filtros de Busqueda:");
-			lblNewLabel.setBounds(653, 31, 138, 14);
+			lblNewLabel.setBounds(651, 13, 138, 14);
 			panel.add(lblNewLabel);
 			
 		}
 		{
 			JPanel buttonPane = new JPanel();
+			buttonPane.setBorder(new TitledBorder(null, "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 			buttonPane.setLayout(new FlowLayout(FlowLayout.RIGHT));
 			getContentPane().add(buttonPane, BorderLayout.SOUTH);
 			{
@@ -199,7 +203,7 @@ public class ListarPaciente extends JDialog {
 		JMenuBar menuBar = new JMenuBar();
 		setJMenuBar(menuBar);
 		
-		JMenu mnNewMenu = new JMenu("Historial Medical");
+		JMenu mnNewMenu = new JMenu("Historial M\u00E9dico");
 		menuBar.add(mnNewMenu);
 		
 		JMenuItem mntmNewMenuItem = new JMenuItem("Enfermedades");

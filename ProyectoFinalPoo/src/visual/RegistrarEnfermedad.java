@@ -55,6 +55,7 @@ public class RegistrarEnfermedad extends JFrame {
 	 * Create the frame.
 	 */
 	public RegistrarEnfermedad() {
+		setTitle("Registrar Enfermemdad");
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 820, 411);
@@ -64,6 +65,7 @@ public class RegistrarEnfermedad extends JFrame {
 		setContentPane(contentPane);
 		
 		JPanel panel = new JPanel();
+		panel.setBorder(new TitledBorder(null, "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 		panel.setBackground(SystemColor.inactiveCaptionBorder);
 		panel.setBackground(SystemColor.menu);
 		contentPane.add(panel, BorderLayout.CENTER);
@@ -74,6 +76,7 @@ public class RegistrarEnfermedad extends JFrame {
 		panel_2.setBackground(SystemColor.text);
 		panel_2.setBackground(SystemColor.menu);
 		panel_2.setBounds(10, 11, 774, 290);
+		panel_2.setBounds(15, 219, 774, 290);
 		panel.add(panel_2);
 		panel_2.setLayout(null);
 		
@@ -120,6 +123,7 @@ public class RegistrarEnfermedad extends JFrame {
 		});
 		rdbSi.setBackground(SystemColor.menu);
 		rdbSi.setBounds(15, 215, 69, 29);
+		rdbSi.setBounds(288, 230, 104, 29);
 		panel_2.add(rdbSi);
 		
 		rdbNo = new JRadioButton("No");
@@ -130,6 +134,7 @@ public class RegistrarEnfermedad extends JFrame {
 		});
 		rdbNo.setBackground(SystemColor.menu);
 		rdbNo.setBounds(98, 215, 155, 29);
+		rdbNo.setBounds(414, 230, 155, 29);
 		panel_2.add(rdbNo);
 		
 		txtCodigo = new JTextField();
@@ -168,6 +173,7 @@ public class RegistrarEnfermedad extends JFrame {
 			}
 		});
 		btnNewButton_3.setBounds(682, 316, 97, 25);
+		btnNewButton_3.setBounds(660, 588, 115, 29);
 		panel.add(btnNewButton_3);
 	}
 }

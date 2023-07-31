@@ -423,6 +423,7 @@ public class Clinica implements Serializable{
 	}
 
 
+
 	public static String getEnfermedadCodigo() {
 		return enfermedadCodigo;
 	}
@@ -432,3 +433,5 @@ public class Clinica implements Serializable{
 		this.enfermedadCodigo = enfermedadCodigo;
 	}
 }
+
+

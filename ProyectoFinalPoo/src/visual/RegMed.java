@@ -62,6 +62,7 @@ public class RegMed extends JDialog {
 		
 		setTitle("Registrar M\u00E9dico");
 		setBounds(100, 100, 573, 434);
+		setLocationRelativeTo(null);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBorder(new TitledBorder(null, "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
@@ -130,7 +131,7 @@ public class RegMed extends JDialog {
 		txtEsp.setColumns(10);
 		
 		JLabel lblNewLabel_5 = new JLabel("Direcci\u00F3n:");
-		lblNewLabel_5.setBounds(12, 230, 56, 16);
+		lblNewLabel_5.setBounds(12, 230, 85, 16);
 		contentPanel.add(lblNewLabel_5);
 		
 		lblNewLabel_8 = new JLabel("Edad:");
@@ -154,6 +155,11 @@ public class RegMed extends JDialog {
 				btnOk = new JButton("Aceptar");
 				btnOk.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
+						
+						if (txtEsp.getText().isEmpty() || txtNombre.getText().isEmpty() || txtCed.getText().isEmpty() || txtDir.getText().isEmpty() || 
+							    rdbtnMas.isSelected()|| txtTel.getText().isEmpty()) {
+							JOptionPane.showMessageDialog(null, "Disculpe, parece que faltan algunos datos en la registracion del paciente. Por favor, llene los datos que faltan e intenta la registracion de nuevo.\n", "Datos Ausentes", JOptionPane.INFORMATION_MESSAGE);
+						}else {
 						if(!control) {
 							Medico aux = new Medico(txtEsp.getText(),txtNombre.getText(),txtCed.getText(),txtDir.getText(),Integer.parseInt(spnEdad.getValue().toString()),rdbtnMas.isSelected(),txtTel.getText());
 							Clinica.getInstance().insertarMedico(aux);
@@ -171,6 +177,7 @@ public class RegMed extends JDialog {
 							dispose();
 							ListMed.loadMedicos();
 						}
+					 }
 					}
 				});
 				btnOk.setActionCommand("OK");

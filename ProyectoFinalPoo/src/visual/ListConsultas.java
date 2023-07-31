@@ -23,6 +23,7 @@ import javax.swing.ScrollPaneConstants;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.text.SimpleDateFormat;
+import javax.swing.border.TitledBorder;
 
 public class ListConsultas extends JDialog {
 
@@ -67,11 +68,12 @@ public class ListConsultas extends JDialog {
 		contentPanel.setLayout(new BorderLayout(0, 0));
 		{
 			JPanel panel = new JPanel();
+			panel.setBorder(new TitledBorder(null, "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 			contentPanel.add(panel, BorderLayout.CENTER);
 			panel.setLayout(null);
 			{
 				JScrollPane scrollPane = new JScrollPane();
-				scrollPane.setBounds(10, 36, 1002, 362);
+				scrollPane.setBounds(10, 36, 1002, 350);
 				scrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 				panel.add(scrollPane);
 				{
