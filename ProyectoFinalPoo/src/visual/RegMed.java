@@ -38,8 +38,6 @@ public class RegMed extends JDialog {
 	private JRadioButton rdbtnFem;
 	private JRadioButton rdbtnMas;
 	private JTextField txtEsp;
-	private JTextField txtUsu;
-	private JTextField txtContra;
 	private boolean control;
 	private JLabel lblNewLabel_8;
 	private JSpinner spnEdad;
@@ -69,7 +67,7 @@ public class RegMed extends JDialog {
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
 		contentPanel.setLayout(null);
 		
-		JLabel lblNewLabel = new JLabel("Nombre");
+		JLabel lblNewLabel = new JLabel("Nombre:");
 		lblNewLabel.setBounds(12, 13, 56, 16);
 		contentPanel.add(lblNewLabel);
 		
@@ -78,7 +76,7 @@ public class RegMed extends JDialog {
 		contentPanel.add(txtNombre);
 		txtNombre.setColumns(10);
 		
-		JLabel lblNewLabel_1 = new JLabel("C\u00E9dula");
+		JLabel lblNewLabel_1 = new JLabel("C\u00E9dula:");
 		lblNewLabel_1.setBounds(279, 87, 56, 16);
 		contentPanel.add(lblNewLabel_1);
 		
@@ -87,7 +85,7 @@ public class RegMed extends JDialog {
 		contentPanel.add(txtCed);
 		txtCed.setColumns(10);
 		
-		JLabel lblNewLabel_2 = new JLabel("Tel\u00E9fono");
+		JLabel lblNewLabel_2 = new JLabel("Tel\u00E9fono:");
 		lblNewLabel_2.setBounds(12, 87, 56, 16);
 		contentPanel.add(lblNewLabel_2);
 		
@@ -96,7 +94,7 @@ public class RegMed extends JDialog {
 		contentPanel.add(txtTel);
 		txtTel.setColumns(10);
 		
-		JLabel lblNewLabel_3 = new JLabel("Sexo");
+		JLabel lblNewLabel_3 = new JLabel("Sexo:");
 		lblNewLabel_3.setBounds(279, 163, 56, 16);
 		contentPanel.add(lblNewLabel_3);
 		
@@ -122,7 +120,7 @@ public class RegMed extends JDialog {
 		rdbtnMas.setBounds(279, 188, 85, 25);
 		contentPanel.add(rdbtnMas);
 		
-		JLabel lblNewLabel_4 = new JLabel("Especialidad");
+		JLabel lblNewLabel_4 = new JLabel("Especialidad:");
 		lblNewLabel_4.setBounds(12, 160, 85, 16);
 		contentPanel.add(lblNewLabel_4);
 		
@@ -131,29 +129,11 @@ public class RegMed extends JDialog {
 		contentPanel.add(txtEsp);
 		txtEsp.setColumns(10);
 		
-		JLabel lblNewLabel_5 = new JLabel("Direcci\u00F3n");
-		lblNewLabel_5.setBounds(279, 230, 56, 16);
+		JLabel lblNewLabel_5 = new JLabel("Direcci\u00F3n:");
+		lblNewLabel_5.setBounds(12, 230, 56, 16);
 		contentPanel.add(lblNewLabel_5);
 		
-		JLabel lblNewLabel_6 = new JLabel("Usuario");
-		lblNewLabel_6.setBounds(12, 224, 56, 16);
-		contentPanel.add(lblNewLabel_6);
-		
-		txtUsu = new JTextField();
-		txtUsu.setBounds(12, 253, 116, 22);
-		contentPanel.add(txtUsu);
-		txtUsu.setColumns(10);
-		
-		JLabel lblNewLabel_7 = new JLabel("Contrase\u00F1a");
-		lblNewLabel_7.setBounds(12, 288, 72, 16);
-		contentPanel.add(lblNewLabel_7);
-		
-		txtContra = new JTextField();
-		txtContra.setBounds(12, 312, 116, 22);
-		contentPanel.add(txtContra);
-		txtContra.setColumns(10);
-		
-		lblNewLabel_8 = new JLabel("Edad");
+		lblNewLabel_8 = new JLabel("Edad:");
 		lblNewLabel_8.setBounds(279, 13, 56, 16);
 		contentPanel.add(lblNewLabel_8);
 		
@@ -163,7 +143,7 @@ public class RegMed extends JDialog {
 		contentPanel.add(spnEdad);
 		
 		txtDir = new JTextPane();
-		txtDir.setBounds(279, 259, 223, 75);
+		txtDir.setBounds(12, 259, 223, 75);
 		contentPanel.add(txtDir);
 		{
 			JPanel buttonPane = new JPanel();
@@ -175,14 +155,12 @@ public class RegMed extends JDialog {
 				btnOk.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
 						if(!control) {
-							Medico aux = new Medico(txtUsu.getText(),txtContra.getText(),txtEsp.getText(),txtNombre.getText(),txtCed.getText(),txtDir.getText(),Integer.parseInt(spnEdad.getValue().toString()),rdbtnMas.isSelected(),txtTel.getText());
+							Medico aux = new Medico(txtEsp.getText(),txtNombre.getText(),txtCed.getText(),txtDir.getText(),Integer.parseInt(spnEdad.getValue().toString()),rdbtnMas.isSelected(),txtTel.getText());
 							Clinica.getInstance().insertarMedico(aux);
 						    JOptionPane.showMessageDialog(null, "Operación satisfactoria", "Registro", JOptionPane.INFORMATION_MESSAGE);				  
 						    clear();
 						}else {
 							
-							med.setUsuario(txtUsu.getText());
-							med.setContrasenaDoctor(txtContra.getText());
 							med.setNombre(txtNombre.getText());
 							med.setCedula(txtCed.getText());
 							med.setDireccion(txtDir.getText());
@@ -218,8 +196,6 @@ public class RegMed extends JDialog {
 	private void loadMed() {
 		
 		if(miMed != null) {
-		txtUsu.setText(miMed.getUsuario());
-		txtContra.setText(miMed.getContrasenaDoctor());
 		txtEsp.setText(miMed.getEspecialidad());
 		txtNombre.setText(miMed.getNombre());
 		txtCed.setText(miMed.getCedula());
@@ -241,8 +217,6 @@ public class RegMed extends JDialog {
 
 
 	private void clear() {
-		txtUsu.setText("");
-		txtContra.setText("");
 		txtEsp.setText("");
 		txtNombre.setText("");
 		txtCed.setText("");

@@ -27,6 +27,9 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.ScrollPaneConstants;
+import javax.swing.JMenuBar;
+import javax.swing.JMenu;
+import javax.swing.JMenuItem;
 
 public class ListarPaciente extends JDialog {
 
@@ -143,6 +146,7 @@ public class ListarPaciente extends JDialog {
 				btnConsultaHistorial = new JButton("Ver Consulta Historial");
 				btnConsultaHistorial.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
+						
 						ListConsultas list = new ListConsultas(seleccionado);
 						list.setModal(true);
 						list.setLocationRelativeTo(null);
@@ -164,6 +168,15 @@ public class ListarPaciente extends JDialog {
 					}
 				});
 				buttonPane.add(btnSeleccionar);
+				
+				JButton btnMedicoHistorial = new JButton("Ver Medico Historial");
+				btnMedicoHistorial.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+						
+					}
+				});
+				btnMedicoHistorial.setEnabled(false);
+				buttonPane.add(btnMedicoHistorial);
 				btnConsultaHistorial.setEnabled(false);
 				buttonPane.add(btnConsultaHistorial);
 				btnModificar.setActionCommand("OK");
@@ -182,6 +195,28 @@ public class ListarPaciente extends JDialog {
 				buttonPane.add(btnCancelar);
 			}
 		}
+		
+		JMenuBar menuBar = new JMenuBar();
+		setJMenuBar(menuBar);
+		
+		JMenu mnNewMenu = new JMenu("Historial Medical");
+		menuBar.add(mnNewMenu);
+		
+		JMenuItem mntmNewMenuItem = new JMenuItem("Enfermedades");
+		mntmNewMenuItem.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+			}
+		});
+		mnNewMenu.add(mntmNewMenuItem);
+		
+		JMenuItem mntmNewMenuItem_1 = new JMenuItem("Vacunas");
+		mntmNewMenuItem_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				ListVac list = new ListVac();
+			}
+		});
+		mnNewMenu.add(mntmNewMenuItem_1);
 		loadPacientes(seleccion);
 	}
 

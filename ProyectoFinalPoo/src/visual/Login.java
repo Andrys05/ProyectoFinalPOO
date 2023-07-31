@@ -7,6 +7,7 @@ import java.awt.FlowLayout;
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JPanel;
+import javax.swing.JPasswordField;
 import javax.swing.border.EmptyBorder;
 
 import logico.Administrador;
@@ -96,7 +97,7 @@ public class Login extends JDialog {
 			panel.add(txtUsuario);
 			txtUsuario.setColumns(10);
 			
-			txtContrasena = new JTextField();
+			txtContrasena = new JPasswordField();
 			txtContrasena.setBounds(38, 136, 182, 20);
 			panel.add(txtContrasena);
 			txtContrasena.setColumns(10);

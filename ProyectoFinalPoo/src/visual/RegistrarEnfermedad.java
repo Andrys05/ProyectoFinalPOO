@@ -19,6 +19,7 @@ import javax.swing.JRadioButton;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.awt.event.ActionEvent;
+import java.awt.SystemColor;
 
 public class RegistrarEnfermedad extends JFrame {
 
@@ -62,7 +63,7 @@ public class RegistrarEnfermedad extends JFrame {
 		setContentPane(contentPane);
 		
 		JPanel panel = new JPanel();
-		panel.setBackground(new Color(245, 255, 250));
+		panel.setBackground(SystemColor.inactiveCaptionBorder);
 		contentPane.add(panel, BorderLayout.CENTER);
 		panel.setLayout(null);
 		
@@ -111,7 +112,7 @@ public class RegistrarEnfermedad extends JFrame {
 		
 		JPanel panel_2 = new JPanel();
 		panel_2.setBorder(new TitledBorder(null, "Datos de enfermedad", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-		panel_2.setBackground(new Color(245, 255, 250));
+		panel_2.setBackground(SystemColor.text);
 		panel_2.setBounds(15, 239, 774, 290);
 		panel.add(panel_2);
 		panel_2.setLayout(null);

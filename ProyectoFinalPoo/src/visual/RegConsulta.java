@@ -252,6 +252,7 @@ public class RegConsulta extends JDialog {
 		txtCedMedico.setText("");
 		txtDescripcion.setText("");
 		txtDiagnostico.setText("");
+		txtTratamiento.setText("");
 		spnFecha.setValue(new Date());
 	}
 }

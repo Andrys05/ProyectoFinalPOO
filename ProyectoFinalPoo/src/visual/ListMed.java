@@ -62,7 +62,7 @@ public class ListMed extends JDialog {
 			JScrollPane scrollPane = new JScrollPane();
 			contentPanel.add(scrollPane, BorderLayout.CENTER);
 			{
-				String[] headers = {"Nombre","Cédula","Dirección","Teléfono","Usuario","Contraseña"};
+				String[] headers = {"Nombre","Cédula","Dirección","Teléfono"};
 				
 				Tabla = new JTable();
 				Tabla.addMouseListener(new MouseAdapter() {
@@ -97,6 +97,7 @@ public class ListMed extends JDialog {
 			getContentPane().add(buttonPane, BorderLayout.SOUTH);
 			{
 				btnModi = new JButton("Modificar Datos");
+				btnModi.setEnabled(false);
 				btnModi.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
 						ModMed update = new ModMed(selected);
@@ -128,14 +129,16 @@ public class ListMed extends JDialog {
 			}
 			{
 				btnElim = new JButton("Eliminar");
+				btnElim.setEnabled(false);
 				btnElim.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
 						if(selected != null) {
 							int option = JOptionPane.showConfirmDialog(null,"Está Seguro(a) que desea eliminar este empleado?"+selected.getNombre(), "Confirmación",JOptionPane.OK_CANCEL_OPTION);
 							if(option == JOptionPane.OK_OPTION) {
 								Clinica.getInstance().eliminarMedico(selected);
-								btnElim.setEnabled(true);
-								btnModi.setEnabled(true);
+								btnElim.setEnabled(false);
+								btnModi.setEnabled(false);
+								btnSeleccionar.setEnabled(false);
 								loadMedicos();
 							}
 						
@@ -168,8 +171,6 @@ public class ListMed extends JDialog {
 			row[1] = aux.getNombre();
 			row[2] = aux.getDireccion();
 			row[3] = aux.getTelefono();
-			row[4] = aux.getUsuario();
-			row[5] = aux.getContrasenaDoctor();
 			model.addRow(row);
 		  }
 	

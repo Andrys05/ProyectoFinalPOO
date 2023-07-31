@@ -5,6 +5,7 @@ import java.awt.FlowLayout;
 
 import javax.swing.JButton;
 import javax.swing.JDialog;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
@@ -31,6 +32,7 @@ public class ListConsultas extends JDialog {
 	private static Object[] fila;
 	private static int seleccion;
 	private int codigo;
+	JButton btnInfo;
 	private static Consulta seleccionado = null;
 	private static Paciente miPaciente = null;
 	
@@ -85,6 +87,7 @@ public class ListConsultas extends JDialog {
 							if (table.getSelectedRow() >= 0) {
 								int index = table.getSelectedRow();
 								//btnModificar.setEnabled(true);
+								btnInfo.setEnabled(true);
 								seleccionado = Clinica.getInstance().buscarConsulta(table.getValueAt(index, 0).toString());
 								codigo = (int)table.getModel().getValueAt(index, 0);
 							}
@@ -103,10 +106,29 @@ public class ListConsultas extends JDialog {
 			buttonPane.setLayout(new FlowLayout(FlowLayout.RIGHT));
 			getContentPane().add(buttonPane, BorderLayout.SOUTH);
 			{
-				JButton okButton = new JButton("OK");
-				okButton.setActionCommand("OK");
-				buttonPane.add(okButton);
-				getRootPane().setDefaultButton(okButton);
+				btnInfo = new JButton("Mas Informacion");
+				btnInfo.setEnabled(false);
+				btnInfo.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+						String diagnostico;
+						String vacuna;
+						if(seleccionado.getDiagnostico() == null) 
+							diagnostico = "N/A";
+						else
+							diagnostico = seleccionado.getDiagnostico().getNombre();
+						
+						if(seleccionado.getVacuna() == null) 
+							vacuna = "N/A";
+						else
+							vacuna = seleccionado.getVacuna().getNombre();
+						SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy hh:mm a");
+						String fechaOcurrida = dateFormat.format(seleccionado.getFechaConsulta());
+						JOptionPane.showMessageDialog(null, "Codigo: " + seleccionado.getCodigo() + "\nPaciente Cedula: " + seleccionado.getPaciente().getCedula() + "\nPaciente Nombre: " + seleccionado.getPaciente().getNombre() + "\nMedico Cedula: " + seleccionado.getMedico().getCedula() + "\nMedico Nombre: " + seleccionado.getMedico().getNombre() + "\nDescripcion: " + seleccionado.getDescripcion() + "\nFecha: " + fechaOcurrida + "\nDiagnostico: " + diagnostico + "\nTratamiento: " + seleccionado.getTratamiento() + "\nVacuna: " + vacuna, "Datos de Consulta Seleccionada", JOptionPane.INFORMATION_MESSAGE);
+					}
+				});
+				btnInfo.setActionCommand("OK");
+				buttonPane.add(btnInfo);
+				getRootPane().setDefaultButton(btnInfo);
 			}
 			{
 				JButton btnCancelar = new JButton("Cancelar");
