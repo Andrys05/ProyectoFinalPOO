@@ -44,8 +44,8 @@ public class Principal extends JFrame {
 	static DataOutputStream SalidaSocket;
 
 	
-	/**
-	 * Launch the application.
+	
+	 /* Launch the application.
 	 
 	
 	public static void main(String[] args) {
@@ -63,7 +63,7 @@ public class Principal extends JFrame {
 
 	/**
 	 * Create the frame.
-	 */
+	 **/
 	public Principal() {
 		addWindowListener(new WindowAdapter() {
 			@Override
