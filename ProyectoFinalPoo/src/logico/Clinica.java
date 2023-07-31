@@ -25,6 +25,7 @@ public class Clinica implements Serializable{
 	public static String pacienteCedula = "";
 	public static String medicoCedula = "";
 	public static String vacunaCodigo = "";
+	public static String enfermedadCodigo = "";
 	
 	
 	public static Clinica getInstance() {
@@ -419,5 +420,15 @@ public class Clinica implements Serializable{
 			}
 		}
 		return login;
+	}
+
+
+	public static String getEnfermedadCodigo() {
+		return enfermedadCodigo;
+	}
+
+
+	public void setEnfermedadCodigo(String enfermedadCodigo) {
+		this.enfermedadCodigo = enfermedadCodigo;
 	}
 }

@@ -118,7 +118,7 @@ public class Login extends JDialog {
 				JButton btnLogin = new JButton("Login");
 				btnLogin.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
-						if(Clinica.getInstance().confirmLogin(txtUsuario.getText(), txtContrasena.getText())) {
+						if(Clinica.getInstance().confirmLogin(txtUsuario.getText(), txtContrasena.getText()) && txtUsuario.getText()!= "" && txtContrasena.getText()!="") {
 							Principal principal = new Principal();
 							dispose();
 							principal.setVisible(true);

@@ -27,15 +27,13 @@ import javax.swing.UIManager;
 public class RegistrarEnfermedad extends JFrame {
 
 	private JPanel contentPane;
-	private JTextField textCedula;
-	private JTextField textNombre;
 	private JTextField textNombreEnfermedad;
 	private JTextField textSintomas;
 	ArrayList<String> Sintomas = new ArrayList<>(100);
 	private JRadioButton rdbSi;
 	private JRadioButton rdbNo;
 	private JButton btnNewButton_1;
-	private JButton btnNewButton;
+	private JTextField txtCodigo;
 
 	/**
 	 * Launch the application.
@@ -59,7 +57,7 @@ public class RegistrarEnfermedad extends JFrame {
 	public RegistrarEnfermedad() {
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 820, 689);
+		setBounds(100, 100, 820, 411);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		contentPane.setLayout(new BorderLayout(0, 0));
@@ -71,72 +69,29 @@ public class RegistrarEnfermedad extends JFrame {
 		contentPane.add(panel, BorderLayout.CENTER);
 		panel.setLayout(null);
 		
-		JPanel panel_1 = new JPanel();
-		panel_1.setBackground(SystemColor.menu);
-		panel_1.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Datos de paciente", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
-		panel_1.setBounds(15, 16, 774, 188);
-		panel.add(panel_1);
-		panel_1.setLayout(null);
-		
-		JLabel lblNewLabel = new JLabel("Cedula:");
-		lblNewLabel.setBounds(15, 37, 69, 20);
-		panel_1.add(lblNewLabel);
-		
-		textCedula = new JTextField();
-		textCedula.setBounds(83, 34, 676, 26);
-		panel_1.add(textCedula);
-		textCedula.setColumns(10);
-		
-		JLabel lblNombrel = new JLabel("Nombre:");
-		lblNombrel.setBounds(15, 90, 69, 20);
-		panel_1.add(lblNombrel);
-		
-		textNombre = new JTextField();
-		textNombre.setEditable(false);
-		textNombre.setColumns(10);
-		textNombre.setBounds(83, 87, 676, 26);
-		panel_1.add(textNombre);
-		
-		btnNewButton = new JButton("Buscar");
-		btnNewButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				if(Clinica.getInstance().buscarPaciente(textCedula.getText()) != null) {
-					JOptionPane.showMessageDialog(getContentPane(), "Usuario Encontrado");
-					textNombre.setText(Clinica.getInstance().buscarPaciente(textCedula.getText()).getNombre());
-				}
-				else if(Clinica.getInstance().buscarPaciente(textCedula.getText()) == null) {
-					JOptionPane.showMessageDialog(getContentPane(), "Usuario no Encontrado");
-				}
-			}
-		});
-		btnNewButton.setBackground(new Color(255, 255, 255));
-		btnNewButton.setForeground(SystemColor.desktop);
-		btnNewButton.setBounds(329, 129, 115, 29);
-		panel_1.add(btnNewButton);
-		
 		JPanel panel_2 = new JPanel();
 		panel_2.setBorder(new TitledBorder(null, "Datos de enfermedad", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 		panel_2.setBackground(SystemColor.text);
 		panel_2.setBackground(SystemColor.menu);
-		panel_2.setBounds(15, 239, 774, 290);
+		panel_2.setBounds(10, 11, 774, 290);
 		panel.add(panel_2);
 		panel_2.setLayout(null);
 		
 		JLabel lblNewLabel_1 = new JLabel("Nombre:");
-		lblNewLabel_1.setBounds(15, 36, 69, 20);
+		lblNewLabel_1.setBounds(10, 96, 69, 20);
 		panel_2.add(lblNewLabel_1);
 		
 		textNombreEnfermedad = new JTextField();
-		textNombreEnfermedad.setBounds(95, 33, 664, 26);
+		textNombreEnfermedad.setBounds(90, 93, 664, 26);
 		panel_2.add(textNombreEnfermedad);
 		textNombreEnfermedad.setColumns(10);
 		
 		JLabel lblNewLabel_2 = new JLabel("Sintomas:");
-		lblNewLabel_2.setBounds(15, 84, 86, 20);
+		lblNewLabel_2.setBounds(10, 144, 86, 20);
 		panel_2.add(lblNewLabel_2);
 		
 		textSintomas = new JTextField();
-		textSintomas.setBounds(95, 81, 664, 26);
+		textSintomas.setBounds(90, 141, 664, 26);
 		panel_2.add(textSintomas);
 		textSintomas.setColumns(10);
 		
@@ -150,11 +105,11 @@ public class RegistrarEnfermedad extends JFrame {
 			}
 		});
 		btnNewButton_1.setBackground(new Color(255, 255, 255));
-		btnNewButton_1.setBounds(329, 119, 115, 29);
+		btnNewButton_1.setBounds(324, 179, 115, 29);
 		panel_2.add(btnNewButton_1);
 		
 		JLabel lblNewLabel_3 = new JLabel("Permanente");
-		lblNewLabel_3.setBounds(335, 182, 104, 20);
+		lblNewLabel_3.setBounds(40, 199, 104, 20);
 		panel_2.add(lblNewLabel_3);
 		
 		rdbSi = new JRadioButton("Si");
@@ -164,7 +119,7 @@ public class RegistrarEnfermedad extends JFrame {
 			}
 		});
 		rdbSi.setBackground(SystemColor.menu);
-		rdbSi.setBounds(245, 230, 155, 29);
+		rdbSi.setBounds(15, 215, 69, 29);
 		panel_2.add(rdbSi);
 		
 		rdbNo = new JRadioButton("No");
@@ -174,8 +129,17 @@ public class RegistrarEnfermedad extends JFrame {
 			}
 		});
 		rdbNo.setBackground(SystemColor.menu);
-		rdbNo.setBounds(467, 230, 155, 29);
+		rdbNo.setBounds(98, 215, 155, 29);
 		panel_2.add(rdbNo);
+		
+		txtCodigo = new JTextField();
+		txtCodigo.setColumns(10);
+		txtCodigo.setBounds(90, 49, 664, 26);
+		panel_2.add(txtCodigo);
+		
+		JLabel lblCodigo = new JLabel("Codigo:");
+		lblCodigo.setBounds(10, 52, 69, 20);
+		panel_2.add(lblCodigo);
 		
 		JButton btnNewButton_2 = new JButton("Registrar");
 		btnNewButton_2.setBackground(new Color(240, 240, 240));
@@ -186,15 +150,15 @@ public class RegistrarEnfermedad extends JFrame {
 				if(rdbNo.isSelected()) {
 					aux1 = false;
 				}
-				Enfermedad aux = new Enfermedad(textCedula.getText(), textNombreEnfermedad.getText(), Sintomas, aux1);
+				Enfermedad aux = new Enfermedad(txtCodigo.getText(), textNombreEnfermedad.getText(), Sintomas, aux1);
 				Clinica.getInstance().insertarEnfermedad(aux);
 				textNombreEnfermedad.setText("");
-				textCedula.setText("");
-				textNombre.setText("");
+				txtCodigo.setText("");
+				textNombreEnfermedad.setText("");
 				textSintomas.setText("");
 			}
 		});
-		btnNewButton_2.setBounds(349, 542, 97, 25);
+		btnNewButton_2.setBounds(575, 316, 97, 25);
 		panel.add(btnNewButton_2);
 		
 		JButton btnNewButton_3 = new JButton("Volver");
@@ -203,7 +167,7 @@ public class RegistrarEnfermedad extends JFrame {
 				dispose();
 			}
 		});
-		btnNewButton_3.setBounds(674, 594, 115, 29);
+		btnNewButton_3.setBounds(682, 316, 97, 25);
 		panel.add(btnNewButton_3);
 	}
 }

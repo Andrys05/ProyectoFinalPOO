@@ -155,7 +155,9 @@ public class Principal extends JFrame {
 		JMenuItem mntmNewMenuItem_10 = new JMenuItem("Listar Enfermedad");
 		mntmNewMenuItem_10.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				ListaEnfermedades dialog = new ListaEnfermedades();
+				ListaEnfermedades dialog = new ListaEnfermedades(null);
+				dialog.setModal(true);
+				dialog.setLocationRelativeTo(null);
 				dialog.setVisible(true);
 			}
 		});
@@ -231,7 +233,7 @@ public class Principal extends JFrame {
 		JMenuItem mntmNewMenuItem_9 = new JMenuItem("Listar Vacunas");
 		mntmNewMenuItem_9.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				ListVac vacunas = new ListVac();
+				ListVac vacunas = new ListVac(null);
 				vacunas.setModal(true);
 				vacunas.setLocationRelativeTo(null);
 				vacunas.setVisible(true);

@@ -112,6 +112,8 @@ public class ListCitas extends JDialog {
 		 
 		 model.addRow(row);
 		}
+		
+		
 		}
 
 }
