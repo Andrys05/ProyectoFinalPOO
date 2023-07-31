@@ -155,10 +155,10 @@ public class RegMed extends JDialog {
 				btnOk = new JButton("Aceptar");
 				btnOk.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
-						
+						rdbtnMas.isSelected();
 						if (txtEsp.getText().isEmpty() || txtNombre.getText().isEmpty() || txtCed.getText().isEmpty() || txtDir.getText().isEmpty() || 
-							    rdbtnMas.isSelected()|| txtTel.getText().isEmpty()) {
-							JOptionPane.showMessageDialog(null, "Disculpe, parece que faltan algunos datos en la registracion del paciente. Por favor, llene los datos que faltan e intenta la registracion de nuevo.\n", "Datos Ausentes", JOptionPane.INFORMATION_MESSAGE);
+							txtTel.getText().isEmpty()) {
+							JOptionPane.showMessageDialog(null, "Debe completar todos los campos","Intentelo nuevamente", JOptionPane.INFORMATION_MESSAGE);
 						}else {
 						if(!control) {
 							Medico aux = new Medico(txtEsp.getText(),txtNombre.getText(),txtCed.getText(),txtDir.getText(),Integer.parseInt(spnEdad.getValue().toString()),rdbtnMas.isSelected(),txtTel.getText());
