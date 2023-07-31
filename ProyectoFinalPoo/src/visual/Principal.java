@@ -4,6 +4,7 @@ import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.EventQueue;
 
+import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
@@ -45,8 +46,8 @@ public class Principal extends JFrame {
 	
 	/**
 	 * Launch the application.
-	 */
-	/*
+	 
+	
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() { 
@@ -59,7 +60,7 @@ public class Principal extends JFrame {
 			}
 		});
 	}
-*/
+
 	/**
 	 * Create the frame.
 	 */
@@ -143,9 +144,21 @@ public class Principal extends JFrame {
 		menuBar.add(mnNewMenu_5);
 		
 		JMenuItem mntmNewMenuItem_4 = new JMenuItem("Agregar Enfermedad");
+		mntmNewMenuItem_4.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				RegistrarEnfermedad frame = new RegistrarEnfermedad();
+				frame.setVisible(true);
+			}
+		});
 		mnNewMenu_5.add(mntmNewMenuItem_4);
 		
 		JMenuItem mntmNewMenuItem_10 = new JMenuItem("Listar Enfermedad");
+		mntmNewMenuItem_10.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				ListaEnfermedades dialog = new ListaEnfermedades();
+				dialog.setVisible(true);
+			}
+		});
 		mnNewMenu_5.add(mntmNewMenuItem_10);
 		
 		JMenu mnNewMenu_2 = new JMenu("Cita");
@@ -248,15 +261,20 @@ public class Principal extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				try 
 			    {
+				  
 				  DataInputStream archivoOriginal = new DataInputStream(new FileInputStream("clinica.dat"));
 			      sfd = new Socket("127.0.0.1",7000);
 			      //EntradaSocket = new DataInputStream(new BufferedInputStream(sfd.getInputStream()));
 			      SalidaSocket = new DataOutputStream(new BufferedOutputStream(sfd.getOutputStream()));
 			      int byteLeido;
-			      while((byteLeido = archivoOriginal.read()) != -1)
-			    	  SalidaSocket.write(byteLeido);
-			      archivoOriginal.close();
-			      SalidaSocket.flush();
+			      try {
+			    	  while((byteLeido = archivoOriginal.read()) != -1)
+				    	  SalidaSocket.write(byteLeido);
+			      }finally {
+			    	  archivoOriginal.close();
+				      SalidaSocket.flush(); 
+				}
+			      
 			    }
 			    catch (UnknownHostException uhe)
 			    {
@@ -265,7 +283,7 @@ public class Principal extends JFrame {
 			    }
 			    catch (IOException ioe)
 			    {
-			      System.out.println("Comunicación rechazada.");
+			      System.out.println("Comunicación rechazada." + ioe.getMessage());
 			      System.exit(1);
 			    }
 			}

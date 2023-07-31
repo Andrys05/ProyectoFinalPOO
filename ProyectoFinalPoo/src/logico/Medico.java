@@ -9,8 +9,6 @@ public class Medico{
 	/**
 	 * 
 	 */
-	private String usuario;
-	private String contrasenaDoctor; 
 	private String especialidad;
 	private String nombre;
 	private String cedula;
@@ -21,11 +19,9 @@ public class Medico{
 	private ArrayList<Paciente> misPacientes;
 	private ArrayList<Cita> misCitas;
 	
-	public Medico(String usuario, String contrasenaDoctor, String especialidad,String nombre, String cedula, 
+	public Medico(String especialidad,String nombre, String cedula, 
 			String direccion,int edad, boolean sexo, String telefono) {
 		super();
-		this.usuario = usuario;
-		this.contrasenaDoctor = contrasenaDoctor;
 		this.especialidad = especialidad;
 		this.nombre = nombre;
 		this.cedula = cedula;
@@ -37,18 +33,6 @@ public class Medico{
 		misCitas = new ArrayList<>();
 	}
 	
-	public String getUsuario() {
-		return usuario;
-	}
-	public void setUsuario(String usuario) {
-		this.usuario = usuario;
-	}
-	public String getContrasenaDoctor() {
-		return contrasenaDoctor;
-	}
-	public void setContrasenaDoctor(String contrasenaDoctor) {
-		this.contrasenaDoctor = contrasenaDoctor;
-	}
 	public String getEspecialidad() {
 		return especialidad;
 	}

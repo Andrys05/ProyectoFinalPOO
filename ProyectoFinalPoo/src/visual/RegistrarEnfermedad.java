@@ -10,6 +10,7 @@ import java.awt.Color;
 import javax.swing.border.TitledBorder;
 
 import logico.Clinica;
+import logico.Enfermedad;
 
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -19,6 +20,9 @@ import javax.swing.JRadioButton;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.awt.event.ActionEvent;
+import java.awt.SystemColor;
+import javax.swing.UIManager;
+
 
 public class RegistrarEnfermedad extends JFrame {
 
@@ -53,6 +57,7 @@ public class RegistrarEnfermedad extends JFrame {
 	 * Create the frame.
 	 */
 	public RegistrarEnfermedad() {
+		setTitle("Registrar Enfermemdad");
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 820, 689);
@@ -62,13 +67,15 @@ public class RegistrarEnfermedad extends JFrame {
 		setContentPane(contentPane);
 		
 		JPanel panel = new JPanel();
-		panel.setBackground(new Color(245, 255, 250));
+		panel.setBorder(new TitledBorder(null, "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		panel.setBackground(SystemColor.inactiveCaptionBorder);
+		panel.setBackground(SystemColor.menu);
 		contentPane.add(panel, BorderLayout.CENTER);
 		panel.setLayout(null);
 		
 		JPanel panel_1 = new JPanel();
-		panel_1.setBackground(new Color(245, 255, 250));
-		panel_1.setBorder(new TitledBorder(null, "Datos de paciente", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		panel_1.setBackground(SystemColor.menu);
+		panel_1.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Datos de paciente", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
 		panel_1.setBounds(15, 16, 774, 188);
 		panel.add(panel_1);
 		panel_1.setLayout(null);
@@ -105,14 +112,15 @@ public class RegistrarEnfermedad extends JFrame {
 			}
 		});
 		btnNewButton.setBackground(new Color(255, 255, 255));
-		btnNewButton.setForeground(new Color(0, 0, 0));
+		btnNewButton.setForeground(SystemColor.desktop);
 		btnNewButton.setBounds(329, 129, 115, 29);
 		panel_1.add(btnNewButton);
 		
 		JPanel panel_2 = new JPanel();
 		panel_2.setBorder(new TitledBorder(null, "Datos de enfermedad", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-		panel_2.setBackground(new Color(245, 255, 250));
-		panel_2.setBounds(15, 239, 774, 290);
+		panel_2.setBackground(SystemColor.text);
+		panel_2.setBackground(SystemColor.menu);
+		panel_2.setBounds(15, 219, 774, 290);
 		panel.add(panel_2);
 		panel_2.setLayout(null);
 		
@@ -152,13 +160,52 @@ public class RegistrarEnfermedad extends JFrame {
 		panel_2.add(lblNewLabel_3);
 		
 		rdbSi = new JRadioButton("Si");
-		rdbSi.setBackground(new Color(245, 255, 250));
-		rdbSi.setBounds(245, 230, 155, 29);
+		rdbSi.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				rdbNo.setSelected(false);
+			}
+		});
+		rdbSi.setBackground(SystemColor.menu);
+		rdbSi.setBounds(288, 230, 104, 29);
 		panel_2.add(rdbSi);
 		
 		rdbNo = new JRadioButton("No");
-		rdbNo.setBackground(new Color(245, 255, 250));
-		rdbNo.setBounds(467, 230, 155, 29);
+		rdbNo.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				rdbSi.setSelected(false);
+			}
+		});
+		rdbNo.setBackground(SystemColor.menu);
+		rdbNo.setBounds(414, 230, 155, 29);
 		panel_2.add(rdbNo);
+		
+		JButton btnNewButton_2 = new JButton("Registrar");
+		btnNewButton_2.setBackground(new Color(240, 240, 240));
+		btnNewButton_2.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				JOptionPane.showMessageDialog(getContentPane(), "Registrado con exito");
+				boolean aux1 = true;
+				if(rdbNo.isSelected()) {
+					aux1 = false;
+				}
+				Enfermedad aux = new Enfermedad(textCedula.getText(), textNombreEnfermedad.getText(), Sintomas, aux1);
+				Clinica.getInstance().insertarEnfermedad(aux);
+				textNombreEnfermedad.setText("");
+				textCedula.setText("");
+				textNombre.setText("");
+				textSintomas.setText("");
+			}
+		});
+		btnNewButton_2.setBounds(349, 542, 97, 25);
+		panel.add(btnNewButton_2);
+		
+		JButton btnNewButton_3 = new JButton("Volver");
+		btnNewButton_3.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				dispose();
+			}
+		});
+		btnNewButton_3.setBounds(660, 588, 115, 29);
+		panel.add(btnNewButton_3);
 	}
 }

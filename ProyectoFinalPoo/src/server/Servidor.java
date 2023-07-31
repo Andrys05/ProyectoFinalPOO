@@ -1,9 +1,7 @@
 package server;
 
 import java.io.BufferedInputStream;
-import java.io.BufferedOutputStream;
 import java.io.DataInputStream;
-import java.io.DataOutput;
 import java.io.DataOutputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -39,7 +37,7 @@ public class Servidor extends Thread{
 					archivoNuevo.write(byteLeido);
 				fuente.close();
 				archivoNuevo.close();
-				System.out.println("FINALLY FFS");
+				sfd.close();
 			}
 			catch(IOException ioe)
 			{
