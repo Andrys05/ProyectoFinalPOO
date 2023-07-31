@@ -4,6 +4,7 @@ import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.EventQueue;
 
+import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
@@ -143,9 +144,21 @@ public class Principal extends JFrame {
 		menuBar.add(mnNewMenu_5);
 		
 		JMenuItem mntmNewMenuItem_4 = new JMenuItem("Agregar Enfermedad");
+		mntmNewMenuItem_4.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				RegistrarEnfermedad frame = new RegistrarEnfermedad();
+				frame.setVisible(true);
+			}
+		});
 		mnNewMenu_5.add(mntmNewMenuItem_4);
 		
 		JMenuItem mntmNewMenuItem_10 = new JMenuItem("Listar Enfermedad");
+		mntmNewMenuItem_10.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				ListaEnfermedades dialog = new ListaEnfermedades();
+				dialog.setVisible(true);
+			}
+		});
 		mnNewMenu_5.add(mntmNewMenuItem_10);
 		
 		JMenu mnNewMenu_2 = new JMenu("Cita");
