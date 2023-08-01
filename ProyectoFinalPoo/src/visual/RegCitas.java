@@ -60,44 +60,44 @@ public class RegCitas extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JLabel lblNewLabel = new JLabel("Datos del paciente");
-		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 13));
+
+		JLabel lblNewLabel = new JLabel("Datos del paciente:");
+		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		lblNewLabel.setBounds(15, 28, 242, 20);
 		contentPane.add(lblNewLabel);
 		
 		JLabel lblNombre = new JLabel("Nombre:");
-		   
-		lblNombre.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		lblNombre.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		lblNombre.setBounds(15, 119, 81, 20);
 		contentPane.add(lblNombre);
 		
 		JLabel lblCedula = new JLabel("C\u00E9dula:");
-		lblCedula.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		lblCedula.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		lblCedula.setBounds(15, 74, 81, 20);
 		contentPane.add(lblCedula);
 		
-		JLabel lblDatosDeLa = new JLabel("Datos de la cita");
-		lblDatosDeLa.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		JLabel lblDatosDeLa = new JLabel("Datos de la cita:");
+		lblDatosDeLa.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		lblDatosDeLa.setBounds(15, 209, 196, 20);
 		contentPane.add(lblDatosDeLa);
 		
 		JLabel lblDoctor = new JLabel("Doctor:");
-		lblDoctor.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		lblDoctor.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		lblDoctor.setBounds(15, 245, 81, 20);
 		contentPane.add(lblDoctor);
 		
 		JLabel lblTipo = new JLabel("Tipo:");
-		lblTipo.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		lblTipo.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		lblTipo.setBounds(15, 288, 81, 20);
 		contentPane.add(lblTipo);
 		
 		JLabel lblFecha = new JLabel("Fecha:");
-		lblFecha.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		lblFecha.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		lblFecha.setBounds(15, 330, 81, 20);
 		contentPane.add(lblFecha);
 		
 		JLabel lblHora_1 = new JLabel("Hora:");
-		lblHora_1.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		lblHora_1.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		lblHora_1.setBounds(295, 330, 81, 20);
 		contentPane.add(lblHora_1);
 		

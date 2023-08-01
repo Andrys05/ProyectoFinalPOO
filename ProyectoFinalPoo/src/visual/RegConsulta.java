@@ -177,7 +177,7 @@ public class RegConsulta extends JDialog {
 			JButton btnNewButton = new JButton("Buscar Vacuna");
 			btnNewButton.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
-					ListVac list = new ListVac();
+					ListVac list = new ListVac(null);
 					list.setModal(true);
 					list.setVisible(true);
 					if(Clinica.getVacunaCodigo() != "") {
@@ -189,6 +189,20 @@ public class RegConsulta extends JDialog {
 			btnNewButton.setBounds(430, 382, 138, 23);
 			panel.add(btnNewButton);
 			
+			JButton btnBuscarEnfermedades = new JButton("Buscar Enfermedad");
+			btnBuscarEnfermedades.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					ListaEnfermedades list = new ListaEnfermedades(null);
+					list.setModal(true);
+					list.setVisible(true);
+					if(Clinica.getEnfermedadCodigo() != "") {
+						txtDiagnostico.setText(Clinica.getEnfermedadCodigo());
+						Clinica.getInstance().setEnfermedadCodigo("");
+					}
+				}
+			});
+			btnBuscarEnfermedades.setBounds(177, 371, 138, 23);
+			panel.add(btnBuscarEnfermedades);
 			txtDescripcion = new JTextArea();
 			txtDescripcion.setBounds(10, 254, 558, 89);
 			panel.add(txtDescripcion);

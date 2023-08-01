@@ -12,7 +12,9 @@ import javax.swing.border.TitledBorder;
 import javax.swing.table.DefaultTableModel;
 
 import logico.Clinica;
+import logico.Consulta;
 import logico.Medico;
+import logico.Paciente;
 import logico.Vacuna;
 
 import javax.swing.JScrollPane;
@@ -32,11 +34,13 @@ public class ListVac extends JDialog {
 	private JButton btnElim;
 	private static DefaultTableModel model;
 	private static Object row[];
+	private static Paciente miPaciente = null;
 	private JButton btnNewButton;
 
 	/**
 	 * Launch the application.
 	 */
+	/*
 	public static void main(String[] args) {
 		try {
 			ListVac dialog = new ListVac();
@@ -46,13 +50,18 @@ public class ListVac extends JDialog {
 			e.printStackTrace();
 		}
 	}
-
+	*/
 	/**
 	 * Create the dialog.
 	 */
-	public ListVac() {
+	public ListVac(Paciente paciente) {
 		Clinica.getInstance().setVacunaCodigo("");
-		setTitle("Lista de Vacunas");
+		miPaciente = paciente;
+		if(miPaciente != null)
+			setTitle("Historial de Vacunas de "+ miPaciente.getNombre());
+		else {
+			setTitle("Listado de Vacunas");
+		}
 		setBounds(100, 100, 733, 433);
 		setLocationRelativeTo(null);
 		getContentPane().setLayout(new BorderLayout());
@@ -154,6 +163,7 @@ public class ListVac extends JDialog {
 		model.setRowCount(0);
 		row = new Object[model.getColumnCount()];
 		
+		if(miPaciente == null) {
 		for (Vacuna aux : Clinica.getInstance().getMisVacunas()) {
 			if(aux != null){
 			row[0] = aux.getCodigo();
@@ -161,7 +171,20 @@ public class ListVac extends JDialog {
 			row[2] = aux.getDescrip();
 			model.addRow(row);
 		  }
+		}
 	}
+		else {
+			for(Consulta aux : Clinica.getInstance().getMisConsultas()) {
+				if(aux.getPaciente().getCedula().equalsIgnoreCase(miPaciente.getCedula()) && aux.getVacuna() != null)
+				{
+					row[0] = aux.getVacuna().getCodigo();
+					row[1] = aux.getVacuna().getNombre();
+					row[2] = aux.getVacuna().getDescrip();
+					model.addRow(row);
+				}
+			}
+			
+		}
 }
 
 }

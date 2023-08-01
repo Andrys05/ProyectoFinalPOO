@@ -209,7 +209,10 @@ public class ListarPaciente extends JDialog {
 		JMenuItem mntmNewMenuItem = new JMenuItem("Enfermedades");
 		mntmNewMenuItem.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
+				ListaEnfermedades list = new ListaEnfermedades(seleccionado);
+				list.setModal(true);
+				list.setLocationRelativeTo(null);
+				list.setVisible(true);
 			}
 		});
 		mnNewMenu.add(mntmNewMenuItem);
@@ -217,7 +220,10 @@ public class ListarPaciente extends JDialog {
 		JMenuItem mntmNewMenuItem_1 = new JMenuItem("Vacunas");
 		mntmNewMenuItem_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				ListVac list = new ListVac();
+				ListVac list = new ListVac(seleccionado);
+				list.setModal(true);
+				list.setLocationRelativeTo(null);
+				list.setVisible(true);
 			}
 		});
 		mnNewMenu.add(mntmNewMenuItem_1);

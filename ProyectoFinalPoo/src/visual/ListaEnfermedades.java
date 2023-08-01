@@ -9,6 +9,7 @@ import java.awt.event.MouseEvent;
 
 import javax.swing.JButton;
 import javax.swing.JDialog;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
@@ -16,6 +17,9 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
 
 import logico.Clinica;
+import logico.Consulta;
+import logico.Enfermedad;
+import logico.Paciente;
 
 import java.awt.Color;
 import javax.swing.border.TitledBorder;
@@ -28,10 +32,14 @@ public class ListaEnfermedades extends JDialog {
 	private JTable table;
 	private DefaultTableModel model;
 	private Object row[];
+	private Enfermedad selected = null;
+	private static Paciente miPaciente = null;
+	private static JButton btnNewButton;
 
 	/**
 	 * Launch the application.
 	 */
+	/*
 	public static void main(String[] args) {
 		try {
 			ListaEnfermedades dialog = new ListaEnfermedades();
@@ -41,14 +49,21 @@ public class ListaEnfermedades extends JDialog {
 			e.printStackTrace();
 		}
 	}
-
+	*/
 	/**
 	 * Create the dialog.
+	 * @param paciente 
 	 */
-	public ListaEnfermedades() {
+	public ListaEnfermedades(Paciente paciente) {
+		Clinica.getInstance().setEnfermedadCodigo("");
+		miPaciente = paciente;
+		if(miPaciente != null)
+			setTitle("Historial de Enfermedades de "+ miPaciente.getNombre());
+		else {
+			setTitle("Listado de Enfermedades");
+		}
 		setBounds(100, 100, 588, 476);
 		setLocationRelativeTo(null);
-		setTitle("Listado de Enfermedades");
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBorder(new TitledBorder(null, "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
@@ -69,8 +84,10 @@ public class ListaEnfermedades extends JDialog {
 						table.addMouseListener(new MouseAdapter() {
 							@Override
 							public void mouseClicked(MouseEvent arg0) {
-								if(table.getSelectedRow()>-1) {
-									//okButton.setEnabled(true);
+								int value = table.getSelectedRow();
+								if(value>=0) {
+									btnNewButton.setEnabled(true);
+									selected = Clinica.getInstance().buscarEnfermedad(table.getValueAt(value, 0).toString());
 								}
 							}
 						});
@@ -94,26 +111,64 @@ public class ListaEnfermedades extends JDialog {
 						dispose();
 					}
 				});
+				{
+					btnNewButton = new JButton("Seleccionar Enfermedad (Solo Consulta)");
+					btnNewButton.setEnabled(false);
+					btnNewButton.addActionListener(new ActionListener() {
+						public void actionPerformed(ActionEvent e) {
+							if(selected != null) {
+								Clinica.getInstance().setEnfermedadCodigo(selected.getNombre());
+								dispose();
+							}
+							else
+								JOptionPane.showMessageDialog(null, "Disculpe, parece que no hay un valor seleccionado aqui para: \n" + Clinica.getEnfermedadCodigo() + "\n Por favor, seleccione una enfermedad y intentalo de nuevo.\n", "Error", JOptionPane.INFORMATION_MESSAGE);
+						}
+					});
+					buttonPane.add(btnNewButton);
+				}
 				buttonPane.add(btnVolver);
 			}
 		}
 		loadTable();
 	}
+	
+	
 	private void loadTable() {
 		model.setRowCount(0);
 		row = new Object[model.getColumnCount()];
-		for(int i = 0; i < Clinica.getInstance().getMisEnfermedades().size();i++) {
-		 row[0] = i;
-		 row[1] = Clinica.getInstance().getMisEnfermedades().get(i).getId();
-		 row[2] = Clinica.getInstance().getMisEnfermedades().get(i).getNombre();
-		 if(Clinica.getInstance().getMisEnfermedades().get(i).isPermanente() == true) {
-			 row[3] = "Si";
-		 }
-		 else
-			 row[3] = "No";
-		 
-		 model.addRow(row);
+		if(miPaciente == null) {
+			for(int i = 0; i < Clinica.getInstance().getMisEnfermedades().size();i++) {
+				 row[0] = i;
+				 row[1] = Clinica.getInstance().getMisEnfermedades().get(i).getId();
+				 row[2] = Clinica.getInstance().getMisEnfermedades().get(i).getNombre();
+				 if(Clinica.getInstance().getMisEnfermedades().get(i).isPermanente() == true) {
+					 row[3] = "Si";
+				 }
+				 else
+					 row[3] = "No";
+				 
+				 model.addRow(row);
 		}
+		}
+		else {
+			int i = 0;
+			for(Consulta aux : Clinica.getInstance().getMisConsultas()) {
+				if(aux.getPaciente().getCedula() == miPaciente.getCedula() && aux.getDiagnostico() != null) {
+					 row[0] = i;
+					 row[1] = aux.getDiagnostico().getId();
+					 row[2] = aux.getDiagnostico().getNombre();
+					 if(aux.getDiagnostico().isPermanente() == true) {
+						 row[3] = "Si";
+					 }
+					 else
+						 row[3] = "No";
+					 
+					 model.addRow(row);
+					 i++;
+				}
+			}
+			}
+		
 		}
 
 }
