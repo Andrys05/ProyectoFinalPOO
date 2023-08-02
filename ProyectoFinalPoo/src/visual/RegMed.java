@@ -121,6 +121,9 @@ public class RegMed extends JDialog {
 		rdbtnMas.setBounds(279, 188, 85, 25);
 		contentPanel.add(rdbtnMas);
 		
+		if(!rdbtnMas.isSelected() && !rdbtnFem.isSelected())
+			rdbtnMas.setSelected(true);
+		
 		JLabel lblNewLabel_4 = new JLabel("Especialidad:");
 		lblNewLabel_4.setBounds(12, 160, 85, 16);
 		contentPanel.add(lblNewLabel_4);
@@ -157,8 +160,8 @@ public class RegMed extends JDialog {
 					public void actionPerformed(ActionEvent e) {
 						
 						if (txtEsp.getText().isEmpty() || txtNombre.getText().isEmpty() || txtCed.getText().isEmpty() || txtDir.getText().isEmpty() || 
-							    rdbtnMas.isSelected()|| txtTel.getText().isEmpty()) {
-							JOptionPane.showMessageDialog(null, "Disculpe, parece que faltan algunos datos en la registracion del paciente. Por favor, llene los datos que faltan e intenta la registracion de nuevo.\n", "Datos Ausentes", JOptionPane.INFORMATION_MESSAGE);
+							    txtTel.getText().isEmpty()) {
+							JOptionPane.showMessageDialog(null, "Disculpe, parece que faltan algunos datos en la registracion del paciente. \nPor favor, llene los datos que faltan e intenta la registracion de nuevo.\n", "Datos Ausentes", JOptionPane.INFORMATION_MESSAGE);
 						}else {
 						if(!control) {
 							Medico aux = new Medico(txtEsp.getText(),txtNombre.getText(),txtCed.getText(),txtDir.getText(),Integer.parseInt(spnEdad.getValue().toString()),rdbtnMas.isSelected(),txtTel.getText());
@@ -208,8 +211,6 @@ public class RegMed extends JDialog {
 		txtCed.setText(miMed.getCedula());
 		txtDir.setText(miMed.getDireccion());
 		spnEdad.setValue(new Integer(miMed.getedad()));
-		rdbtnMas.setSelected(false);
-		rdbtnFem.setSelected(false);
 		
 		if(miMed.getSexo()) {
 			rdbtnMas.setSelected(true);
@@ -229,7 +230,7 @@ public class RegMed extends JDialog {
 		txtCed.setText("");
 		txtDir.setText("");
 		spnEdad.setValue(Integer.valueOf(0));
-		rdbtnMas.setSelected(false);
+		rdbtnMas.setSelected(true);
 		rdbtnFem.setSelected(false);
 		txtTel.setText("");
 	

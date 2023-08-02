@@ -108,7 +108,7 @@ public class ListMed extends JDialog {
 					}
 				});
 				{
-					btnSeleccionar = new JButton("Seleccionar Medico (Solo Consulta)");
+					btnSeleccionar = new JButton("Seleccionar Medico");
 					btnSeleccionar.setEnabled(false);
 					btnSeleccionar.addActionListener(new ActionListener() {
 						@Override

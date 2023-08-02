@@ -75,8 +75,7 @@ public class RegistrarEnfermedad extends JFrame {
 		panel_2.setBorder(new TitledBorder(null, "Datos de enfermedad", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 		panel_2.setBackground(SystemColor.text);
 		panel_2.setBackground(SystemColor.menu);
-		panel_2.setBounds(10, 11, 774, 290);
-		panel_2.setBounds(15, 219, 774, 290);
+		panel_2.setBounds(1, 11, 774, 290);
 		panel.add(panel_2);
 		panel_2.setLayout(null);
 		
@@ -123,7 +122,6 @@ public class RegistrarEnfermedad extends JFrame {
 		});
 		rdbSi.setBackground(SystemColor.menu);
 		rdbSi.setBounds(15, 215, 69, 29);
-		rdbSi.setBounds(288, 230, 104, 29);
 		panel_2.add(rdbSi);
 		
 		rdbNo = new JRadioButton("No");
@@ -134,7 +132,6 @@ public class RegistrarEnfermedad extends JFrame {
 		});
 		rdbNo.setBackground(SystemColor.menu);
 		rdbNo.setBounds(98, 215, 155, 29);
-		rdbNo.setBounds(414, 230, 155, 29);
 		panel_2.add(rdbNo);
 		
 		txtCodigo = new JTextField();
@@ -173,7 +170,6 @@ public class RegistrarEnfermedad extends JFrame {
 			}
 		});
 		btnNewButton_3.setBounds(682, 316, 97, 25);
-		btnNewButton_3.setBounds(660, 588, 115, 29);
 		panel.add(btnNewButton_3);
 	}
 }
