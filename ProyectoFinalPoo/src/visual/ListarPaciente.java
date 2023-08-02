@@ -158,7 +158,7 @@ public class ListarPaciente extends JDialog {
 					}
 				});
 				
-				btnSeleccionar = new JButton("Seleccionar Paciente (Solo Consulta)");
+				btnSeleccionar = new JButton("Seleccionar Paciente");
 				btnSeleccionar.setEnabled(false);
 				btnSeleccionar.addActionListener(new ActionListener() {
 					@Override

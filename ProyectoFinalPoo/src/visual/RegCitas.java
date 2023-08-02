@@ -108,13 +108,15 @@ public class RegCitas extends JFrame {
 		txtNombre.setColumns(10);
 		
 		txtCedula = new JTextField();
+		txtCedula.setEditable(false);
 		txtCedula.setColumns(10);
 		txtCedula.setBounds(86, 71, 115, 26);
 		contentPane.add(txtCedula);
 		
 		txtDoctor = new JTextField();
+		txtDoctor.setEditable(false);
 		txtDoctor.setColumns(10);
-		txtDoctor.setBounds(86, 245, 313, 26);
+		txtDoctor.setBounds(86, 245, 269, 26);
 		contentPane.add(txtDoctor);
 		
 		txtTipo = new JTextField();
@@ -135,23 +137,19 @@ public class RegCitas extends JFrame {
 		JButton btnNewButton = new JButton("Buscar");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				String cedula = txtCedula.getText(); 
-				if(Clinica.getInstance().buscarPaciente(cedula) != null) {
-					JOptionPane.showMessageDialog(getContentPane(), "Usuario Encontrado");
-					txtNombre.setText(Clinica.getInstance().buscarPaciente(cedula).getNombre());
-				}
-				else if(Clinica.getInstance().buscarPaciente(cedula) == null) {
-					JOptionPane.showMessageDialog(getContentPane(), "Usuario no Encontrado");
+				ListarPaciente list = new ListarPaciente();
+				list.setModal(true);
+				list.setLocationRelativeTo(null);
+				list.setVisible(true);
+				if(Clinica.getInstance().getPacienteCedula() != "")
+				{
+					txtCedula.setText(Clinica.getInstance().getPacienteCedula());
+					Clinica.getInstance().setPacienteCedula("");
 				}
 			}
 		});
-		btnNewButton.setBounds(284, 158, 115, 29);
+		btnNewButton.setBounds(225, 74, 89, 20);
 		contentPane.add(btnNewButton);
-		
-		JPanel panel = new JPanel();
-		panel.setBorder(new TitledBorder(null, "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-		panel.setBounds(12, 13, 620, 371);
-		contentPane.add(panel);
 		
 		JPanel panel_1 = new JPanel();
 		panel_1.setBounds(15, 390, 630, 50);
@@ -165,6 +163,22 @@ public class RegCitas extends JFrame {
 		JButton btnRegistrar = new JButton("Registrar");
 		btnRegistrar.setBounds(414, 13, 102, 25);
 		panel_1.add(btnRegistrar);
+		
+		JButton btnNewButton_1 = new JButton("Buscar");
+		btnNewButton_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				ListMed list = new ListMed();
+				list.setModal(true);
+				list.setLocationRelativeTo(null);
+				list.setVisible(true);
+				if(Clinica.getInstance().getMedicoCedula() != "") {
+					txtDoctor.setText(Clinica.getMedicoCedula());
+					Clinica.getInstance().setMedicoCedula("");
+				}
+			}
+		});
+		btnNewButton_1.setBounds(386, 244, 89, 23);
+		contentPane.add(btnNewButton_1);
 		btnRegistrar.addActionListener(new ActionListener() {
 			
 			public void actionPerformed(ActionEvent e) {
