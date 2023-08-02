@@ -35,8 +35,8 @@ public class RegMed extends JDialog {
 	private JTextField txtNombre;
 	private JTextField txtCed;
 	private JTextField txtTel;
-	private JRadioButton rdbtnFem;
-	private JRadioButton rdbtnMas;
+	public static JRadioButton rdbtnFem;
+	public static  JRadioButton rdbtnMas;
 	private JTextField txtEsp;
 	private boolean control;
 	private JLabel lblNewLabel_8;
@@ -162,7 +162,6 @@ public class RegMed extends JDialog {
 						if (txtEsp.getText().isEmpty() || txtNombre.getText().isEmpty() || txtCed.getText().isEmpty() || txtDir.getText().isEmpty() || 
 							txtTel.getText().isEmpty()){
 							JOptionPane.showMessageDialog(null, "Debe completar todos los campos","Intentelo nuevamente", JOptionPane.INFORMATION_MESSAGE);
-							    //txtTel.getText().isEmpty()) {
 							//JOptionPane.showMessageDialog(null, "Disculpe, parece que faltan algunos datos en la registracion del paciente. \nPor favor, llene los datos que faltan e intenta la registracion de nuevo.\n", "Datos Ausentes", JOptionPane.INFORMATION_MESSAGE);
 						}else {
 						if(!control) {

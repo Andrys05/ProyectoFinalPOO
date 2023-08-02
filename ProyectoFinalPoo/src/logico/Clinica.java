@@ -14,12 +14,9 @@ public class Clinica implements Serializable{
 	private ArrayList<Enfermedad> misEnfermedades;
 	private ArrayList<Administrador> misAdministradores;
 	private static Administrador loginAdministrador;
-	/*private int cant = 0;
-	private int cantmax = 0;
-	private String tipo;
-	private String tipomax;*/
 	public static int codigo = 1;
 	public static int consultaCodigo = 1;
+	public static int codigoEnf = 1;
 	private static Clinica clinic = null;
 
 	public static String pacienteCedula = "";
@@ -271,6 +268,7 @@ public class Clinica implements Serializable{
 
 	public void insertarEnfermedad(Enfermedad miEnfermedad) {
 		misEnfermedades.add(miEnfermedad);
+		codigoEnf++;
 	}
 	
 	public void insertarConsulta(Consulta miConsulta) {

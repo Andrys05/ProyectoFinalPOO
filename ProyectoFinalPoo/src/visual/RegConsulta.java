@@ -60,7 +60,7 @@ public class RegConsulta extends JDialog {
 	 */
 	public RegConsulta() {
 		setTitle("Registrar Consulta");
-		setBounds(100, 100, 608, 649);
+		setBounds(100, 100, 688, 649);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
@@ -135,11 +135,11 @@ public class RegConsulta extends JDialog {
 			txtVacuna = new JTextField();
 			txtVacuna.setEditable(false);
 			txtVacuna.setColumns(10);
-			txtVacuna.setBounds(253, 383, 138, 20);
+			txtVacuna.setBounds(364, 383, 138, 20);
 			panel.add(txtVacuna);
 			
 			JLabel lblVacuna = new JLabel("Vacuna:");
-			lblVacuna.setBounds(253, 356, 161, 14);
+			lblVacuna.setBounds(364, 356, 161, 14);
 			panel.add(lblVacuna);
 			
 			
@@ -186,7 +186,7 @@ public class RegConsulta extends JDialog {
 					}
 				}
 			});
-			btnNewButton.setBounds(430, 382, 138, 23);
+			btnNewButton.setBounds(526, 382, 122, 23);
 			panel.add(btnNewButton);
 			
 			JButton btnBuscarEnfermedades = new JButton("Buscar Enfermedad");
@@ -201,14 +201,14 @@ public class RegConsulta extends JDialog {
 					}
 				}
 			});
-			btnBuscarEnfermedades.setBounds(177, 371, 138, 23);
+			btnBuscarEnfermedades.setBounds(160, 382, 162, 23);
 			panel.add(btnBuscarEnfermedades);
 			txtDescripcion = new JTextArea();
-			txtDescripcion.setBounds(10, 254, 558, 89);
+			txtDescripcion.setBounds(10, 254, 638, 89);
 			panel.add(txtDescripcion);
 			
 			txtTratamiento = new JTextArea();
-			txtTratamiento.setBounds(10, 466, 558, 73);
+			txtTratamiento.setBounds(10, 466, 638, 73);
 			panel.add(txtTratamiento);
 		}
 		{

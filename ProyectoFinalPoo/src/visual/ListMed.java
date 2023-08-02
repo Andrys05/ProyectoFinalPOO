@@ -32,6 +32,7 @@ public class ListMed extends JDialog {
 	private static DefaultTableModel model;
 	private static Object row[];
 	private static JButton btnSeleccionar;
+	private static RegMed med = null;
 
 	/**
 	 * Launch the application.
@@ -62,7 +63,7 @@ public class ListMed extends JDialog {
 			JScrollPane scrollPane = new JScrollPane();
 			contentPanel.add(scrollPane, BorderLayout.CENTER);
 			{
-				String[] headers = {"Nombre","Cédula","Dirección","Teléfono"};
+				String[] headers = {"Nombre","Cédula","Especialidad","Sexo","Dirección","Teléfono"};
 				
 				Tabla = new JTable();
 				Tabla.addMouseListener(new MouseAdapter() {
@@ -167,10 +168,16 @@ public class ListMed extends JDialog {
 		
 		for (Medico aux : Clinica.getInstance().getMisMedicos()) {
 			if(aux != null){
-			row[0] = aux.getCedula();
-			row[1] = aux.getNombre();
-			row[2] = aux.getDireccion();
-			row[3] = aux.getTelefono();
+			row[0] = aux.getNombre();
+			row[1] = aux.getCedula();
+			row[2] = aux.getEspecialidad();
+			if(aux.getSexo()) {
+				row[3]= "Masculino";
+			}else{
+				row[3] = "Femenino";
+			}
+			row[4] = aux.getDireccion();
+			row[5] = aux.getTelefono();
 			model.addRow(row);
 		  }
 	

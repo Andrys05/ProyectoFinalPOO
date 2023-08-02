@@ -28,7 +28,7 @@ public class RegistrarEnfermedad extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField textNombreEnfermedad;
-	private JTextField textSintomas;
+	private JTextField txtSintomas;
 	ArrayList<String> Sintomas = new ArrayList<>(100);
 	private JRadioButton rdbSi;
 	private JRadioButton rdbNo;
@@ -92,17 +92,17 @@ public class RegistrarEnfermedad extends JFrame {
 		lblNewLabel_2.setBounds(10, 144, 86, 20);
 		panel_2.add(lblNewLabel_2);
 		
-		textSintomas = new JTextField();
-		textSintomas.setBounds(90, 141, 664, 26);
-		panel_2.add(textSintomas);
-		textSintomas.setColumns(10);
+		txtSintomas = new JTextField();
+		txtSintomas.setBounds(90, 141, 664, 26);
+		panel_2.add(txtSintomas);
+		txtSintomas.setColumns(10);
 		
 		btnNewButton_1 = new JButton("Agregar");
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-			 Sintomas.add(textSintomas.getText());
+			 Sintomas.add(txtSintomas.getText());
 			 JOptionPane.showMessageDialog(contentPane, "Añadido");
-			 textSintomas.setText("");
+			 txtSintomas.setText("");
 				
 			}
 		});
@@ -135,8 +135,10 @@ public class RegistrarEnfermedad extends JFrame {
 		panel_2.add(rdbNo);
 		
 		txtCodigo = new JTextField();
+		txtCodigo.setEditable(false);
+		txtCodigo.setText("Enf-"+Clinica.getInstance().codigoEnf);
 		txtCodigo.setColumns(10);
-		txtCodigo.setBounds(90, 49, 664, 26);
+		txtCodigo.setBounds(90, 49, 91, 26);
 		panel_2.add(txtCodigo);
 		
 		JLabel lblCodigo = new JLabel("Codigo:");
@@ -148,16 +150,16 @@ public class RegistrarEnfermedad extends JFrame {
 		btnNewButton_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				JOptionPane.showMessageDialog(getContentPane(), "Registrado con exito");
+				clear();
 				boolean aux1 = true;
 				if(rdbNo.isSelected()) {
 					aux1 = false;
 				}
-				Enfermedad aux = new Enfermedad(txtCodigo.getText(), textNombreEnfermedad.getText(), Sintomas, aux1);
+				Enfermedad aux = new Enfermedad(txtCodigo.getText(), textNombreEnfermedad.getText(),Sintomas, aux1);
 				Clinica.getInstance().insertarEnfermedad(aux);
 				textNombreEnfermedad.setText("");
-				txtCodigo.setText("");
 				textNombreEnfermedad.setText("");
-				textSintomas.setText("");
+				txtSintomas.setText("");
 			}
 		});
 		btnNewButton_2.setBounds(575, 316, 97, 25);
@@ -171,5 +173,13 @@ public class RegistrarEnfermedad extends JFrame {
 		});
 		btnNewButton_3.setBounds(682, 316, 97, 25);
 		panel.add(btnNewButton_3);
+	}
+
+	protected void clear() {
+		txtCodigo.setText("Enf-"+Clinica.getInstance().codigoEnf);
+		textNombreEnfermedad.setText("");
+		txtSintomas.setText("");
+		
+		
 	}
 }
